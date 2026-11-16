@@ -210,11 +210,118 @@
       <x>630</x>
       <y>80</y>
       <width>93</width>
-      <height>28</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="text">
      <string>Cari</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/search.png</normaloff>../icon/search.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_8">
+    <property name="geometry">
+     <rect>
+      <x>622</x>
+      <y>130</y>
+      <width>151</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Tambah Akun Baru</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/add.png</normaloff>../icon/add.png</iconset>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>170</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Daftar Akun Terdaftar</string>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>200</y>
+      <width>591</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>589</width>
+       <height>259</height>
+      </rect>
+     </property>
+     <widget class="QTableView" name="tableView">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>591</width>
+        <height>261</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_9">
+    <property name="geometry">
+     <rect>
+      <x>332</x>
+      <y>470</y>
+      <width>121</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ubah Akun</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/transfer-data.png</normaloff>../icon/transfer-data.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_10">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>470</y>
+      <width>121</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Hapus Akun</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/bin.png</normaloff>../icon/bin.png</iconset>
     </property>
    </widget>
   </widget>
