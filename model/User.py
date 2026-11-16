@@ -33,7 +33,8 @@ class User:
     def update_data(self, username, password, level):
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("update user set username = %s, password = %s, level=%s where username = %s")
+        cursor.execute("update user set username = %s, password = %s, level=%s where username = %s",
+                       (username, password, level))
         conn.commit()
         conn.close()
 
