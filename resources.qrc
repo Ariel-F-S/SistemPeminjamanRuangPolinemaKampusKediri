@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icon/add.png</file>
+	<file>icon/back-button.png</file>
+	<file>icon/bin.png</file>
+        <file>icon/close.png</file>
+        <file>icon/contract.png</file>
+	<file>icon/enter.png</file>
+        <file>icon/logo_polinema.png</file>
+        <file>icon/meeting-room.png</file>
+	<file>icon/login.png</file>
+        <file>icon/resume.png</file>
+        <file>icon/search.png</file>
+        <file>icon/verifikasi.png</file>
+        <file>icon/transfer-data.png</file>
+    </qresource>
+</RCC>
