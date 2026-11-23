@@ -111,7 +111,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>icons/ajukan.png</normaloff>icons/ajukan.png</iconset>
+     <normaloff>../icon/resume.png</normaloff>../icon/resume.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -140,7 +140,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>icons/riwayat.png</normaloff>icons/riwayat.png</iconset>
+     <normaloff>../icon/riwayat.png</normaloff>../icon/riwayat.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -172,7 +172,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>icons/jadwal.png</normaloff>icons/jadwal.png</iconset>
+     <normaloff>../icon/riwayat.png</normaloff>../icon/riwayat.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -201,7 +201,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>icons/logout.png</normaloff>icons/logout.png</iconset>
+     <normaloff>../icon/exit.png</normaloff>../icon/exit.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -320,22 +320,22 @@
    </property>
    <item>
     <property name="text">
-     <string>Semua</string>
+     <string/>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Diajukan</string>
+     <string/>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Disetujui</string>
+     <string/>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Ditolak</string>
+     <string/>
     </property>
    </item>
   </widget>
@@ -374,132 +374,10 @@
     <string>RIWAYAT PENGAJUAN ORGANISASI ANDA</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableRiwayat">
-   <property name="geometry">
-    <rect>
-     <x>215</x>
-     <y>182</y>
-     <width>765</width>
-     <height>340</height>
-    </rect>
-   </property>
-   <property name="editTriggers">
-    <set>QAbstractItemView::NoEditTriggers</set>
-   </property>
-   <property name="alternatingRowColors">
-    <bool>false</bool>
-   </property>
-   <property name="selectionMode">
-    <enum>QAbstractItemView::SingleSelection</enum>
-   </property>
-   <property name="selectionBehavior">
-    <enum>QAbstractItemView::SelectRows</enum>
-   </property>
-   <attribute name="horizontalHeaderStretchLastSection">
-    <bool>true</bool>
-   </attribute>
-   <attribute name="verticalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
-   <row/>
-   <row/>
-   <column>
-    <property name="text">
-     <string>Kode</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Nama Kegiatan</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Ruang</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Status</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Ket. BMN</string>
-    </property>
-   </column>
-   <item row="0" column="0">
-    <property name="text">
-     <string>P-01</string>
-    </property>
-   </item>
-   <item row="0" column="1">
-    <property name="text">
-     <string>Workshop Web</string>
-    </property>
-   </item>
-   <item row="0" column="2">
-    <property name="text">
-     <string>Lab 1</string>
-    </property>
-   </item>
-   <item row="0" column="3">
-    <property name="text">
-     <string>Setuju</string>
-    </property>
-   </item>
-   <item row="0" column="4">
-    <property name="text">
-     <string>-</string>
-    </property>
-   </item>
-   <item row="1" column="0">
-    <property name="text">
-     <string>P-04</string>
-    </property>
-   </item>
-   <item row="1" column="1">
-    <property name="text">
-     <string>Makrab HMTI</string>
-    </property>
-   </item>
-   <item row="1" column="2">
-    <property name="text">
-     <string>Aula B</string>
-    </property>
-   </item>
-   <item row="1" column="3">
-    <property name="text">
-     <string>Tolak</string>
-    </property>
-   </item>
-   <item row="1" column="4">
-    <property name="text">
-     <string>Dipakai Wisuda</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QPushButton" name="btnLihatDetail">
-   <property name="geometry">
-    <rect>
-     <x>215</x>
-     <y>540</y>
-     <width>160</width>
-     <height>36</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>LIHAT DETAIL</string>
-   </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>icons/cari.png</normaloff>icons/cari.png</iconset>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnCetakBukti">
    <property name="geometry">
     <rect>
-     <x>385</x>
+     <x>220</x>
      <y>540</y>
      <width>240</width>
      <height>36</height>
@@ -510,7 +388,17 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>icons/ajukan.png</normaloff>icons/ajukan.png</iconset>
+     <normaloff>../icon/verifikasi.png</normaloff>../icon/verifikasi.png</iconset>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>180</y>
+     <width>781</width>
+     <height>351</height>
+    </rect>
    </property>
   </widget>
  </widget>
