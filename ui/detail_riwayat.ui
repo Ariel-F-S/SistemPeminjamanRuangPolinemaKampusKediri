@@ -2,101 +2,324 @@
 <ui version="4.0">
  <class>DetailRiwayat</class>
  <widget class="QDialog" name="DetailRiwayat">
-  <property name="geometry"><rect><x>0</x><y>0</y><width>440</width><height>445</height></rect></property>
-  <property name="windowTitle"><string>Detail Pengajuan</string></property>
-  <property name="windowIcon"><iconset><normaloff>icons/app.png</normaloff>icons/app.png</iconset></property>
-  <property name="modal"><bool>true</bool></property>
- <widget class="QLabel" name="lblJudul">
-  <property name="geometry"><rect><x>20</x><y>15</y><width>400</width><height>26</height></rect></property>
-  <property name="text"><string>DETAIL PENGAJUAN</string></property>
-  <property name="font"><font><weight>75</weight><bold>true</bold></font></property>
- </widget>
- <widget class="QFrame" name="garisAtas">
-  <property name="geometry"><rect><x>20</x><y>47</y><width>400</width><height>2</height></rect></property>
-  <property name="frameShape"><enum>QFrame::HLine</enum></property>
-  <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
- </widget>
- <widget class="QLabel" name="lblKode">
-  <property name="geometry"><rect><x>20</x><y>62</y><width>110</width><height>26</height></rect></property>
-  <property name="text"><string>Kode :</string></property>
- </widget>
- <widget class="QLineEdit" name="editKode">
-  <property name="geometry"><rect><x>140</x><y>62</y><width>280</width><height>26</height></rect></property>
-  <property name="text"><string>P-01</string></property>
-  <property name="readOnly"><bool>true</bool></property>
- </widget>
- <widget class="QLabel" name="lblNamaKegiatan">
-  <property name="geometry"><rect><x>20</x><y>100</y><width>110</width><height>26</height></rect></property>
-  <property name="text"><string>Nama Kegiatan :</string></property>
- </widget>
- <widget class="QLineEdit" name="editNamaKegiatan">
-  <property name="geometry"><rect><x>140</x><y>100</y><width>280</width><height>26</height></rect></property>
-  <property name="text"><string>Workshop Web</string></property>
-  <property name="readOnly"><bool>true</bool></property>
- </widget>
- <widget class="QLabel" name="lblRuang">
-  <property name="geometry"><rect><x>20</x><y>138</y><width>110</width><height>26</height></rect></property>
-  <property name="text"><string>Ruang :</string></property>
- </widget>
- <widget class="QLineEdit" name="editRuang">
-  <property name="geometry"><rect><x>140</x><y>138</y><width>280</width><height>26</height></rect></property>
-  <property name="text"><string>Lab 1</string></property>
-  <property name="readOnly"><bool>true</bool></property>
- </widget>
- <widget class="QLabel" name="lblTanggal">
-  <property name="geometry"><rect><x>20</x><y>176</y><width>110</width><height>26</height></rect></property>
-  <property name="text"><string>Tanggal :</string></property>
- </widget>
- <widget class="QLineEdit" name="editTanggal">
-  <property name="geometry"><rect><x>140</x><y>176</y><width>280</width><height>26</height></rect></property>
-  <property name="text"><string>20-11-2026</string></property>
-  <property name="readOnly"><bool>true</bool></property>
- </widget>
- <widget class="QLabel" name="lblJam">
-  <property name="geometry"><rect><x>20</x><y>214</y><width>110</width><height>26</height></rect></property>
-  <property name="text"><string>Jam :</string></property>
- </widget>
- <widget class="QLineEdit" name="editJam">
-  <property name="geometry"><rect><x>140</x><y>214</y><width>280</width><height>26</height></rect></property>
-  <property name="text"><string>08:00 - 10:00</string></property>
-  <property name="readOnly"><bool>true</bool></property>
- </widget>
- <widget class="QLabel" name="lblStatus">
-  <property name="geometry"><rect><x>20</x><y>252</y><width>110</width><height>26</height></rect></property>
-  <property name="text"><string>Status :</string></property>
- </widget>
- <widget class="QLineEdit" name="editStatus">
-  <property name="geometry"><rect><x>140</x><y>252</y><width>280</width><height>26</height></rect></property>
-  <property name="text"><string>Disetujui</string></property>
-  <property name="readOnly"><bool>true</bool></property>
- </widget>
- <widget class="QLabel" name="lblKetBMN">
-  <property name="geometry"><rect><x>20</x><y>290</y><width>110</width><height>26</height></rect></property>
-  <property name="text"><string>Ket. BMN :</string></property>
- </widget>
- <widget class="QLineEdit" name="editKetBMN">
-  <property name="geometry"><rect><x>140</x><y>290</y><width>280</width><height>26</height></rect></property>
-  <property name="text"><string>-</string></property>
-  <property name="readOnly"><bool>true</bool></property>
- </widget>
- <widget class="QLabel" name="lblFileSurat">
-  <property name="geometry"><rect><x>20</x><y>328</y><width>110</width><height>26</height></rect></property>
-  <property name="text"><string>File Surat :</string></property>
- </widget>
- <widget class="QLineEdit" name="editFileSurat">
-  <property name="geometry"><rect><x>140</x><y>328</y><width>280</width><height>26</height></rect></property>
-  <property name="text"><string>surat_workshop_web.pdf</string></property>
-  <property name="readOnly"><bool>true</bool></property>
- </widget>
- <widget class="QFrame" name="garisBawah">
-  <property name="geometry"><rect><x>20</x><y>376</y><width>400</width><height>2</height></rect></property>
-  <property name="frameShape"><enum>QFrame::HLine</enum></property>
-  <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
- </widget>
- <widget class="QPushButton" name="btnTutup">
-  <property name="geometry"><rect><x>300</x><y>392</y><width>120</width><height>34</height></rect></property>
-  <property name="text"><string>TUTUP</string></property>
- </widget>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>440</width>
+    <height>445</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Detail Pengajuan</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icons/app.png</normaloff>icons/app.png</iconset>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <widget class="QLabel" name="lblJudul">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>15</y>
+     <width>400</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>DETAIL PENGAJUAN</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="garisAtas">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>47</y>
+     <width>400</width>
+     <height>2</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::HLine</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblKode">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>62</y>
+     <width>110</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Kode :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="editKode">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>62</y>
+     <width>280</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblNamaKegiatan">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>100</y>
+     <width>110</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nama Kegiatan :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="editNamaKegiatan">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>100</y>
+     <width>280</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblRuang">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>138</y>
+     <width>110</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ruang :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="editRuang">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>138</y>
+     <width>280</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblTanggal">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>176</y>
+     <width>110</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Tanggal :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="editTanggal">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>176</y>
+     <width>280</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblJam">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>214</y>
+     <width>110</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Jam :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="editJam">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>214</y>
+     <width>280</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblStatus">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>252</y>
+     <width>110</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Status :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="editStatus">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>252</y>
+     <width>280</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblKetBMN">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>290</y>
+     <width>110</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ket. BMN :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="editKetBMN">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>290</y>
+     <width>280</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblFileSurat">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>328</y>
+     <width>110</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>File Surat :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="editFileSurat">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>328</y>
+     <width>280</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QFrame" name="garisBawah">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>376</y>
+     <width>400</width>
+     <height>2</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::HLine</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnTutup">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>392</y>
+     <width>120</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TUTUP</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icon/close.png</normaloff>../icon/close.png</iconset>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
@@ -105,6 +328,16 @@
    <signal>clicked()</signal>
    <receiver>DetailRiwayat</receiver>
    <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
   </connection>
  </connections>
 </ui>
