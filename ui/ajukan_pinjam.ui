@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AjukanPinjam</class>
+ <widget class="QWidget" name="AjukanPinjam">
+  <property name="geometry"><rect><x>0</x><y>0</y><width>1000</width><height>620</height></rect></property>
+  <property name="windowTitle"><string>POLINEMA PSDKU KEDIRI - Ajukan Peminjaman Ruang</string></property>
+  <property name="windowIcon"><iconset><normaloff>icons/app.png</normaloff>icons/app.png</iconset></property>
+ <widget class="QLabel" name="lblBrand">
+  <property name="geometry"><rect><x>10</x><y>15</y><width>180</width><height>30</height></rect></property>
+  <property name="text"><string>Peminjaman Ruang</string></property>
+  <property name="font"><font><weight>75</weight><bold>true</bold></font></property>
+  <property name="alignment"><set>Qt::AlignCenter</set></property>
+ </widget>
+ <widget class="QPushButton" name="btnDashboard">
+  <property name="geometry"><rect><x>10</x><y>60</y><width>180</width><height>40</height></rect></property>
+  <property name="text"><string>Dashboard</string></property>
+  <property name="icon"><iconset><normaloff>icons/dashboard.png</normaloff>icons/dashboard.png</iconset></property>
+  <property name="iconSize"><size><width>20</width><height>20</height></size></property>
+  <property name="checkable"><bool>true</bool></property>
+  <property name="autoExclusive"><bool>true</bool></property>
+
+ </widget>
+ <widget class="QPushButton" name="btnDaftarRuang">
+  <property name="geometry"><rect><x>10</x><y>110</y><width>180</width><height>40</height></rect></property>
+  <property name="text"><string>Daftar Ruang</string></property>
+  <property name="icon"><iconset><normaloff>icons/ruang.png</normaloff>icons/ruang.png</iconset></property>
+  <property name="iconSize"><size><width>20</width><height>20</height></size></property>
+  <property name="checkable"><bool>true</bool></property>
+  <property name="autoExclusive"><bool>true</bool></property>
+
+ </widget>
+ <widget class="QPushButton" name="btnAjukanPinjam">
+  <property name="geometry"><rect><x>10</x><y>160</y><width>180</width><height>40</height></rect></property>
+  <property name="text"><string>Ajukan Pinjam</string></property>
+  <property name="icon"><iconset><normaloff>icons/ajukan.png</normaloff>icons/ajukan.png</iconset></property>
+  <property name="iconSize"><size><width>20</width><height>20</height></size></property>
+  <property name="checkable"><bool>true</bool></property>
+  <property name="checked"><bool>true</bool></property>
+  <property name="autoExclusive"><bool>true</bool></property>
+
+ </widget>
+ <widget class="QPushButton" name="btnRiwayat">
+  <property name="geometry"><rect><x>10</x><y>210</y><width>180</width><height>40</height></rect></property>
+  <property name="text"><string>Riwayat Saya</string></property>
+  <property name="icon"><iconset><normaloff>icons/riwayat.png</normaloff>icons/riwayat.png</iconset></property>
+  <property name="iconSize"><size><width>20</width><height>20</height></size></property>
+  <property name="checkable"><bool>true</bool></property>
+  <property name="autoExclusive"><bool>true</bool></property>
+
+ </widget>
+ <widget class="QPushButton" name="btnJadwal">
+  <property name="geometry"><rect><x>10</x><y>260</y><width>180</width><height>40</height></rect></property>
+  <property name="text"><string>Jadwal Kampus</string></property>
+  <property name="icon"><iconset><normaloff>icons/jadwal.png</normaloff>icons/jadwal.png</iconset></property>
+  <property name="iconSize"><size><width>20</width><height>20</height></size></property>
+  <property name="checkable"><bool>true</bool></property>
+  <property name="autoExclusive"><bool>true</bool></property>
+
+ </widget>
+ <widget class="QPushButton" name="btnLogout">
+  <property name="geometry"><rect><x>10</x><y>560</y><width>180</width><height>40</height></rect></property>
+  <property name="text"><string>Logout</string></property>
+  <property name="icon"><iconset><normaloff>icons/logout.png</normaloff>icons/logout.png</iconset></property>
+  <property name="iconSize"><size><width>20</width><height>20</height></size></property>
+
+ </widget>
+ <widget class="QFrame" name="garisSidebar">
+  <property name="geometry"><rect><x>198</x><y>0</y><width>2</width><height>620</height></rect></property>
+  <property name="frameShape"><enum>QFrame::VLine</enum></property>
+  <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+ </widget>
+ <widget class="QLabel" name="lblJudul">
+  <property name="geometry"><rect><x>215</x><y>15</y><width>540</width><height>30</height></rect></property>
+  <property name="text"><string>POLINEMA PSDKU KEDIRI – Ajukan Peminjaman Ruang</string></property>
+  <property name="font"><font><weight>75</weight><bold>true</bold></font></property>
+
+ </widget>
+ <widget class="QLabel" name="lblOki">
+  <property name="geometry"><rect><x>790</x><y>15</y><width>190</width><height>30</height></rect></property>
+  <property name="text"><string>OKI: HMTI Polinema</string></property>
+  <property name="alignment"><set>Qt::AlignRight|Qt::AlignVCenter</set></property>
+ </widget>
+ <widget class="QFrame" name="garisHeader">
+  <property name="geometry"><rect><x>215</x><y>50</y><width>765</width><height>2</height></rect></property>
+  <property name="frameShape"><enum>QFrame::HLine</enum></property>
+  <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+ </widget>
+ <widget class="QFrame" name="garisTengah">
+  <property name="geometry"><rect><x>630</x><y>60</y><width>2</width><height>520</height></rect></property>
+  <property name="frameShape"><enum>QFrame::VLine</enum></property>
+  <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+ </widget>
+ <widget class="QLabel" name="lblFormTitle">
+  <property name="geometry"><rect><x>215</x><y>62</y><width>300</width><height>24</height></rect></property>
+  <property name="text"><string>FORM PENGAJUAN</string></property>
+  <property name="font"><font><weight>75</weight><bold>true</bold></font></property>
+
+ </widget>
+ <widget class="QLabel" name="lblNamaKegiatan">
+  <property name="geometry"><rect><x>215</x><y>95</y><width>115</width><height>26</height></rect></property>
+  <property name="text"><string>Nama Kegiatan :</string></property>
+
+ </widget>
+ <widget class="QLineEdit" name="editNamaKegiatan">
+  <property name="geometry"><rect><x>335</x><y>95</y><width>285</width><height>26</height></rect></property>
+  <property name="placeholderText"><string>Masukkan nama kegiatan...</string></property>
+ </widget>
+ <widget class="QLabel" name="lblPilihRuang">
+  <property name="geometry"><rect><x>215</x><y>135</y><width>115</width><height>26</height></rect></property>
+  <property name="text"><string>Pilih Ruang :</string></property>
+
+ </widget>
+ <widget class="QComboBox" name="comboRuang">
+  <property name="geometry"><rect><x>335</x><y>135</y><width>285</width><height>26</height></rect></property>
+  <item><property name="text"><string>Ruang Teori 2.1</string></property></item>
+  <item><property name="text"><string>Aula Gedung B</string></property></item>
+  <item><property name="text"><string>Lab 1</string></property></item>
+
+ </widget>
+ <widget class="QLabel" name="lblTglPinjam">
+  <property name="geometry"><rect><x>215</x><y>175</y><width>115</width><height>26</height></rect></property>
+  <property name="text"><string>Tgl Pinjam :</string></property>
+
+ </widget>
+ <widget class="QDateEdit" name="dateTglPinjam">
+  <property name="geometry"><rect><x>335</x><y>175</y><width>285</width><height>26</height></rect></property>
+  <property name="displayFormat"><string>dd-MM-yyyy</string></property>
+  <property name="calendarPopup"><bool>true</bool></property>
+  <property name="date"><date><year>2026</year><month>11</month><day>23</day></date></property>
+ </widget>
+ <widget class="QLabel" name="lblJamMulai">
+  <property name="geometry"><rect><x>215</x><y>215</y><width>115</width><height>26</height></rect></property>
+  <property name="text"><string>Jam Mulai :</string></property>
+
+ </widget>
+ <widget class="QTimeEdit" name="timeJamMulai">
+  <property name="geometry"><rect><x>335</x><y>215</y><width>285</width><height>26</height></rect></property>
+  <property name="displayFormat"><string>HH:mm</string></property>
+  <property name="time"><time><hour>8</hour><minute>0</minute><second>0</second></time></property>
+ </widget>
+ <widget class="QLabel" name="lblJamSelesai">
+  <property name="geometry"><rect><x>215</x><y>255</y><width>115</width><height>26</height></rect></property>
+  <property name="text"><string>Jam Selesai :</string></property>
+
+ </widget>
+ <widget class="QTimeEdit" name="timeJamSelesai">
+  <property name="geometry"><rect><x>335</x><y>255</y><width>285</width><height>26</height></rect></property>
+  <property name="displayFormat"><string>HH:mm</string></property>
+  <property name="time"><time><hour>10</hour><minute>0</minute><second>0</second></time></property>
+ </widget>
+ <widget class="QPushButton" name="btnCekKetersediaan">
+  <property name="geometry"><rect><x>215</x><y>300</y><width>220</width><height>30</height></rect></property>
+  <property name="text"><string>CEK KETERSEDIAAN JADWAL</string></property>
+  <property name="icon"><iconset><normaloff>icons/jadwal.png</normaloff>icons/jadwal.png</iconset></property>
+ </widget>
+ <widget class="QLabel" name="lblStatus">
+  <property name="geometry"><rect><x>215</x><y>342</y><width>60</width><height>26</height></rect></property>
+  <property name="text"><string>Status :</string></property>
+
+ </widget>
+ <widget class="QLabel" name="lblStatusHasil">
+  <property name="geometry"><rect><x>280</x><y>342</y><width>200</width><height>26</height></rect></property>
+  <property name="text"><string>Tersedia!</string></property>
+  <property name="font"><font><weight>75</weight><bold>true</bold></font></property>
+
+ </widget>
+ <widget class="QFrame" name="garisForm1">
+  <property name="geometry"><rect><x>215</x><y>380</y><width>405</width><height>2</height></rect></property>
+  <property name="frameShape"><enum>QFrame::HLine</enum></property>
+  <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+ </widget>
+ <widget class="QLabel" name="lblSurat">
+  <property name="geometry"><rect><x>215</x><y>392</y><width>300</width><height>24</height></rect></property>
+  <property name="text"><string>Surat Pengajuan (PDF/JPG):</string></property>
+
+ </widget>
+ <widget class="QLineEdit" name="editSurat">
+  <property name="geometry"><rect><x>215</x><y>420</y><width>405</width><height>26</height></rect></property>
+  <property name="readOnly"><bool>true</bool></property>
+  <property name="placeholderText"><string>Belum ada file dipilih</string></property>
+ </widget>
+ <widget class="QPushButton" name="btnPilihSurat">
+  <property name="geometry"><rect><x>215</x><y>455</y><width>180</width><height>30</height></rect></property>
+  <property name="text"><string>PILIH FILE SURAT</string></property>
+  <property name="icon"><iconset><normaloff>icons/ajukan.png</normaloff>icons/ajukan.png</iconset></property>
+ </widget>
+ <widget class="QFrame" name="garisForm2">
+  <property name="geometry"><rect><x>215</x><y>500</y><width>405</width><height>2</height></rect></property>
+  <property name="frameShape"><enum>QFrame::HLine</enum></property>
+  <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+ </widget>
+ <widget class="QPushButton" name="btnReset">
+  <property name="geometry"><rect><x>215</x><y>515</y><width>120</width><height>36</height></rect></property>
+  <property name="text"><string>RESET</string></property>
+ </widget>
+ <widget class="QPushButton" name="btnKirim">
+  <property name="geometry"><rect><x>345</x><y>515</y><width>180</width><height>36</height></rect></property>
+  <property name="text"><string>KIRIM PENGAJUAN</string></property>
+  <property name="icon"><iconset><normaloff>icons/kirim.png</normaloff>icons/kirim.png</iconset></property>
+ </widget>
+ <widget class="QLabel" name="lblCekTitle">
+  <property name="geometry"><rect><x>650</x><y>62</y><width>300</width><height>24</height></rect></property>
+  <property name="text"><string>CEK JADWAL TERPAKAI</string></property>
+  <property name="font"><font><weight>75</weight><bold>true</bold></font></property>
+
+ </widget>
+ <widget class="QLabel" name="lblRuangTgl">
+  <property name="geometry"><rect><x>650</x><y>95</y><width>140</width><height>26</height></rect></property>
+  <property name="text"><string>Ruang &amp;&amp; Tgl Terpilih:</string></property>
+
+ </widget>
+ <widget class="QLabel" name="lblRuangTglIsi">
+  <property name="geometry"><rect><x>795</x><y>95</y><width>185</width><height>26</height></rect></property>
+  <property name="text"><string>-</string></property>
+
+ </widget>
+ <widget class="QTableWidget" name="tableJadwal">
+  <property name="geometry"><rect><x>650</x><y>130</y><width>330</width><height>250</height></rect></property>
+  <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+  <property name="alternatingRowColors"><bool>false</bool></property>
+  <property name="selectionBehavior"><enum>QAbstractItemView::SelectRows</enum></property>
+  <attribute name="horizontalHeaderStretchLastSection"><bool>true</bool></attribute>
+  <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+  <row/>
+  <column><property name="text"><string>Jam</string></property></column>
+  <column><property name="text"><string>Kegiatan</string></property></column>
+  <item row="0" column="0"><property name="text"><string>08-10</string></property></item>
+  <item row="0" column="1"><property name="text"><string>Rapat BEM</string></property></item>
+ </widget>
+ <widget class="QLabel" name="lblCatatan">
+  <property name="geometry"><rect><x>650</x><y>395</y><width>330</width><height>50</height></rect></property>
+  <property name="text"><string>Pastikan jam pengajuan tidak bertabrakan dengan jadwal di atas.</string></property>
+  <property name="wordWrap"><bool>true</bool></property>
+  <property name="alignment"><set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set></property>
+ </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
