@@ -53,11 +53,7 @@
    </property>
    <property name="icon">
     <iconset>
-<<<<<<< HEAD
      <normaloff>../icon/dashboard.png</normaloff>../icon/dashboard.png</iconset>
-=======
-     <normaloff>icons/dashboard.png</normaloff>icons/dashboard.png</iconset>
->>>>>>> 649e1ff286ab3067e2915d8037a80fc8a50b3b96
    </property>
    <property name="iconSize">
     <size>
@@ -86,11 +82,7 @@
    </property>
    <property name="icon">
     <iconset>
-<<<<<<< HEAD
      <normaloff>../icon/meeting-room.png</normaloff>../icon/meeting-room.png</iconset>
-=======
-     <normaloff>icons/ruang.png</normaloff>icons/ruang.png</iconset>
->>>>>>> 649e1ff286ab3067e2915d8037a80fc8a50b3b96
    </property>
    <property name="iconSize">
     <size>
@@ -119,11 +111,7 @@
    </property>
    <property name="icon">
     <iconset>
-<<<<<<< HEAD
-     <normaloff>../icon/resume.png</normaloff>../icon/resume.png</iconset>
-=======
      <normaloff>icons/ajukan.png</normaloff>icons/ajukan.png</iconset>
->>>>>>> 649e1ff286ab3067e2915d8037a80fc8a50b3b96
    </property>
    <property name="iconSize">
     <size>
@@ -152,11 +140,7 @@
    </property>
    <property name="icon">
     <iconset>
-<<<<<<< HEAD
-     <normaloff>../icon/riwayat.png</normaloff>../icon/riwayat.png</iconset>
-=======
      <normaloff>icons/riwayat.png</normaloff>icons/riwayat.png</iconset>
->>>>>>> 649e1ff286ab3067e2915d8037a80fc8a50b3b96
    </property>
    <property name="iconSize">
     <size>
@@ -188,11 +172,7 @@
    </property>
    <property name="icon">
     <iconset>
-<<<<<<< HEAD
-     <normaloff>../icon/search.png</normaloff>../icon/search.png</iconset>
-=======
      <normaloff>icons/jadwal.png</normaloff>icons/jadwal.png</iconset>
->>>>>>> 649e1ff286ab3067e2915d8037a80fc8a50b3b96
    </property>
    <property name="iconSize">
     <size>
@@ -221,11 +201,7 @@
    </property>
    <property name="icon">
     <iconset>
-<<<<<<< HEAD
-     <normaloff>../icon/exit.png</normaloff>../icon/exit.png</iconset>
-=======
      <normaloff>icons/logout.png</normaloff>icons/logout.png</iconset>
->>>>>>> 649e1ff286ab3067e2915d8037a80fc8a50b3b96
    </property>
    <property name="iconSize">
     <size>
@@ -398,12 +374,6 @@
     <string>RIWAYAT PENGAJUAN ORGANISASI ANDA</string>
    </property>
   </widget>
-<<<<<<< HEAD
-  <widget class="QPushButton" name="btnCetakBukti">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-=======
   <widget class="QTableWidget" name="tableRiwayat">
    <property name="geometry">
     <rect>
@@ -530,7 +500,6 @@
    <property name="geometry">
     <rect>
      <x>385</x>
->>>>>>> 649e1ff286ab3067e2915d8037a80fc8a50b3b96
      <y>540</y>
      <width>240</width>
      <height>36</height>
@@ -541,21 +510,7 @@
    </property>
    <property name="icon">
     <iconset>
-<<<<<<< HEAD
-     <normaloff>../icon/verifikasi.png</normaloff>../icon/verifikasi.png</iconset>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="tableWidget">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>180</y>
-     <width>781</width>
-     <height>341</height>
-    </rect>
-=======
      <normaloff>icons/ajukan.png</normaloff>icons/ajukan.png</iconset>
->>>>>>> 649e1ff286ab3067e2915d8037a80fc8a50b3b96
    </property>
   </widget>
  </widget>
