@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'dashboard_oki.ui'
+# Form implementation generated from reading ui file 'ui/dashboard_oki.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import resources_rc
 
 
 class Ui_DashboardOKI(object):
@@ -16,24 +17,20 @@ class Ui_DashboardOKI(object):
         DashboardOKI.setObjectName("DashboardOKI")
         DashboardOKI.resize(1000, 620)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/app.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("ui\\icons/app.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         DashboardOKI.setWindowIcon(icon)
-        DashboardOKI.setStyleSheet("background-color: #F2EFE7;")
         self.lblBrand = QtWidgets.QLabel(DashboardOKI)
         self.lblBrand.setGeometry(QtCore.QRect(10, 15, 180, 30))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         self.lblBrand.setFont(font)
-        self.lblBrand.setStyleSheet("color: #3368A0;")
         self.lblBrand.setAlignment(QtCore.Qt.AlignCenter)
         self.lblBrand.setObjectName("lblBrand")
         self.btnDashboard = QtWidgets.QPushButton(DashboardOKI)
         self.btnDashboard.setGeometry(QtCore.QRect(10, 60, 180, 40))
-        self.btnDashboard.setStyleSheet("background-color: #3368A0;\n"
-"color: white;")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("ui\\../icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnDashboard.setIcon(icon1)
         self.btnDashboard.setIconSize(QtCore.QSize(20, 20))
         self.btnDashboard.setCheckable(True)
@@ -42,9 +39,8 @@ class Ui_DashboardOKI(object):
         self.btnDashboard.setObjectName("btnDashboard")
         self.btnDaftarRuang = QtWidgets.QPushButton(DashboardOKI)
         self.btnDaftarRuang.setGeometry(QtCore.QRect(10, 110, 180, 40))
-        self.btnDaftarRuang.setStyleSheet("background-color: #C8DFDB;")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("ui\\../icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnDaftarRuang.setIcon(icon2)
         self.btnDaftarRuang.setIconSize(QtCore.QSize(20, 20))
         self.btnDaftarRuang.setCheckable(True)
@@ -52,9 +48,8 @@ class Ui_DashboardOKI(object):
         self.btnDaftarRuang.setObjectName("btnDaftarRuang")
         self.btnAjukanPinjam = QtWidgets.QPushButton(DashboardOKI)
         self.btnAjukanPinjam.setGeometry(QtCore.QRect(10, 160, 180, 40))
-        self.btnAjukanPinjam.setStyleSheet("background-color: #C8DFDB;")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../icon/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("ui\\../icon/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnAjukanPinjam.setIcon(icon3)
         self.btnAjukanPinjam.setIconSize(QtCore.QSize(20, 20))
         self.btnAjukanPinjam.setCheckable(True)
@@ -62,9 +57,8 @@ class Ui_DashboardOKI(object):
         self.btnAjukanPinjam.setObjectName("btnAjukanPinjam")
         self.btnRiwayat = QtWidgets.QPushButton(DashboardOKI)
         self.btnRiwayat.setGeometry(QtCore.QRect(10, 210, 180, 40))
-        self.btnRiwayat.setStyleSheet("background-color: #C8DFDB;")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("ui\\../icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnRiwayat.setIcon(icon4)
         self.btnRiwayat.setIconSize(QtCore.QSize(20, 20))
         self.btnRiwayat.setCheckable(True)
@@ -72,9 +66,8 @@ class Ui_DashboardOKI(object):
         self.btnRiwayat.setObjectName("btnRiwayat")
         self.btnJadwal = QtWidgets.QPushButton(DashboardOKI)
         self.btnJadwal.setGeometry(QtCore.QRect(10, 260, 180, 40))
-        self.btnJadwal.setStyleSheet("background-color: #C8DFDB;")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("../icon/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("ui\\../icon/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnJadwal.setIcon(icon5)
         self.btnJadwal.setIconSize(QtCore.QSize(20, 20))
         self.btnJadwal.setCheckable(True)
@@ -82,9 +75,8 @@ class Ui_DashboardOKI(object):
         self.btnJadwal.setObjectName("btnJadwal")
         self.btnLogout = QtWidgets.QPushButton(DashboardOKI)
         self.btnLogout.setGeometry(QtCore.QRect(10, 560, 180, 40))
-        self.btnLogout.setStyleSheet("background-color: #C8DFDB;")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("../icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("ui\\../icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnLogout.setIcon(icon6)
         self.btnLogout.setIconSize(QtCore.QSize(20, 20))
         self.btnLogout.setObjectName("btnLogout")
@@ -99,11 +91,9 @@ class Ui_DashboardOKI(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblJudul.setFont(font)
-        self.lblJudul.setStyleSheet("color: #3368A0;")
         self.lblJudul.setObjectName("lblJudul")
         self.lblOki = QtWidgets.QLabel(DashboardOKI)
         self.lblOki.setGeometry(QtCore.QRect(790, 15, 190, 30))
-        self.lblOki.setStyleSheet("color: #3368A0;")
         self.lblOki.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lblOki.setObjectName("lblOki")
         self.garisHeader = QtWidgets.QFrame(DashboardOKI)
@@ -117,7 +107,6 @@ class Ui_DashboardOKI(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblRingkasanTitle.setFont(font)
-        self.lblRingkasanTitle.setStyleSheet("color: #3368A0;")
         self.lblRingkasanTitle.setObjectName("lblRingkasanTitle")
         self.lblDiajukan = QtWidgets.QLabel(DashboardOKI)
         self.lblDiajukan.setGeometry(QtCore.QRect(215, 95, 240, 60))
@@ -125,8 +114,6 @@ class Ui_DashboardOKI(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblDiajukan.setFont(font)
-        self.lblDiajukan.setStyleSheet("background-color: #66A3BF;\n"
-"color: white;")
         self.lblDiajukan.setFrameShape(QtWidgets.QFrame.Box)
         self.lblDiajukan.setAlignment(QtCore.Qt.AlignCenter)
         self.lblDiajukan.setObjectName("lblDiajukan")
@@ -136,8 +123,6 @@ class Ui_DashboardOKI(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblDisetujui.setFont(font)
-        self.lblDisetujui.setStyleSheet("background-color: #66A3BF;\n"
-"color: white;")
         self.lblDisetujui.setFrameShape(QtWidgets.QFrame.Box)
         self.lblDisetujui.setAlignment(QtCore.Qt.AlignCenter)
         self.lblDisetujui.setObjectName("lblDisetujui")
@@ -147,8 +132,6 @@ class Ui_DashboardOKI(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblDitolak.setFont(font)
-        self.lblDitolak.setStyleSheet("background-color: #66A3BF;\n"
-"color: white;")
         self.lblDitolak.setFrameShape(QtWidgets.QFrame.Box)
         self.lblDitolak.setAlignment(QtCore.Qt.AlignCenter)
         self.lblDitolak.setObjectName("lblDitolak")
@@ -163,11 +146,9 @@ class Ui_DashboardOKI(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblStatusTitle.setFont(font)
-        self.lblStatusTitle.setStyleSheet("color: #3368A0;")
         self.lblStatusTitle.setObjectName("lblStatusTitle")
         self.tableWidget = QtWidgets.QTableWidget(DashboardOKI)
         self.tableWidget.setGeometry(QtCore.QRect(210, 220, 761, 381))
-        self.tableWidget.setStyleSheet("background-color: white;")
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)

@@ -1,49 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>VerifikasiAjuanBMN</class>
- <widget class="QMainWindow" name="VerifikasiAjuanBMN">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>620</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>8</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>POLINEMA PSDKU KEDIRI - Daftar Pengajuan Peminjaman - BMN</string>
+   <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="lblBrand">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>15</y>
-      <width>180</width>
-      <height>30</height>
+      <x>20</x>
+      <y>20</y>
+      <width>401</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>POLINEMA PSDKU KEDIRI - Daftar Pengajuan Peminjaman </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>131</width>
+      <height>28</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <weight>75</weight>
-      <bold>true</bold>
+      <pointsize>8</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
-    </property>
-    <property name="text">
-     <string>Peminjaman Ruang</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnDashboard">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>180</width>
-      <height>40</height>
-     </rect>
     </property>
     <property name="text">
      <string>Dashboard</string>
@@ -53,14 +58,21 @@
       <normaloff>../icon/dashboard.png</normaloff>../icon/dashboard.png</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnKelolaRuang">
+   <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>110</y>
-      <width>180</width>
-      <height>40</height>
+      <x>20</x>
+      <y>100</y>
+      <width>131</width>
+      <height>28</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
      <string>Kelola Ruang</string>
@@ -70,14 +82,21 @@
       <normaloff>../icon/meeting-room.png</normaloff>../icon/meeting-room.png</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVerifikasiAjuan">
+   <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>160</y>
-      <width>180</width>
-      <height>40</height>
+      <x>20</x>
+      <y>140</y>
+      <width>131</width>
+      <height>28</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
      <string>Verifikasi Ajuan</string>
@@ -87,14 +106,21 @@
       <normaloff>../icon/verifikasi.png</normaloff>../icon/verifikasi.png</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnRiwayatPinjam">
+   <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>210</y>
-      <width>180</width>
-      <height>40</height>
+      <x>20</x>
+      <y>180</y>
+      <width>131</width>
+      <height>28</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
      <string>Riwayat Pinjam</string>
@@ -104,14 +130,21 @@
       <normaloff>../icon/riwayat.png</normaloff>../icon/riwayat.png</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnLogout">
+   <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>530</y>
-      <width>180</width>
-      <height>40</height>
+      <x>20</x>
+      <y>220</y>
+      <width>131</width>
+      <height>28</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
      <string>Logout</string>
@@ -121,207 +154,150 @@
       <normaloff>../icon/exit.png</normaloff>../icon/exit.png</iconset>
     </property>
    </widget>
-   <widget class="QFrame" name="garisSidebar">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>198</x>
-      <y>0</y>
-      <width>2</width>
-      <height>600</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::VLine</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Sunken</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblJudul">
-    <property name="geometry">
-     <rect>
-      <x>215</x>
-      <y>15</y>
-      <width>550</width>
-      <height>30</height>
+      <x>180</x>
+      <y>60</y>
+      <width>161</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <pointsize>8</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>POLINEMA PSDKU KEDIRI - Daftar Pengajuan Peminjaman</string>
+     <string>Filter Pengajuan Masuk</string>
     </property>
    </widget>
-   <widget class="QFrame" name="garisHeader">
+   <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>215</x>
-      <y>50</y>
-      <width>765</width>
-      <height>2</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::HLine</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Sunken</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblFilterTitle">
-    <property name="geometry">
-     <rect>
-      <x>215</x>
-      <y>65</y>
-      <width>250</width>
-      <height>20</height>
+      <x>180</x>
+      <y>90</y>
+      <width>47</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <weight>75</weight>
-      <bold>true</bold>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="text">
-     <string>FILTER PENGAJUAN MASUK</string>
+     <string>Diajukan :</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lblStatus">
+   <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>215</x>
-      <y>95</y>
-      <width>60</width>
-      <height>26</height>
+      <x>240</x>
+      <y>90</y>
+      <width>121</width>
+      <height>22</height>
      </rect>
-    </property>
-    <property name="text">
-     <string>Status :</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboStatus">
+   <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>95</y>
-      <width>160</width>
-      <height>26</height>
+      <x>400</x>
+      <y>90</y>
+      <width>47</width>
+      <height>16</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>Diajukan</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Semua Status</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Disetujui</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Ditolak</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="lblCari">
-    <property name="geometry">
-     <rect>
-      <x>465</x>
-      <y>95</y>
-      <width>50</width>
-      <height>26</height>
-     </rect>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
      <string>Cari :</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="txtCari">
+   <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>95</y>
-      <width>230</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Nama OKI atau Nama Kegiatan...</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnCari">
-    <property name="geometry">
-     <rect>
-      <x>765</x>
-      <y>95</y>
-      <width>95</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Cari</string>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../icon/search.png</normaloff>../icon/search.png</iconset>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblDaftarTitle">
-    <property name="geometry">
-     <rect>
-      <x>215</x>
-      <y>140</y>
-      <width>250</width>
+      <x>440</x>
+      <y>90</y>
+      <width>151</width>
       <height>20</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <weight>75</weight>
-      <bold>true</bold>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="text">
-     <string>DAFTAR PENGAJUAN PEMINJAMAN</string>
+     <string>Nama OKI / Kategori</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tblPengajuan">
+   <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
      <rect>
-      <x>215</x>
-      <y>165</y>
-      <width>765</width>
-      <height>345</height>
+      <x>620</x>
+      <y>90</y>
+      <width>75</width>
+      <height>23</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Cari</string>
+    </property>
    </widget>
-   <widget class="QPushButton" name="btnDetailVerifikasi">
+   <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>455</x>
-      <y>530</y>
-      <width>280</width>
-      <height>35</height>
+      <x>180</x>
+      <y>140</y>
+      <width>121</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Lihat Detail dan Verifikasi Pengajuan</string>
+     <string>Status Pengajuan </string>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../icon/verifikasi.png</normaloff>../icon/verifikasi.png</iconset>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>170</y>
+      <width>591</width>
+      <height>291</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>480</y>
+      <width>221</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Lihat Detail dan Verifikasi Pengajuan</string>
     </property>
    </widget>
   </widget>
@@ -330,8 +306,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
-     <height>26</height>
+     <width>800</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

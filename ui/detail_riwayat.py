@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'detail_riwayat.ui'
+# Form implementation generated from reading ui file 'ui/detail_riwayat.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import resources_rc
 
 
 class Ui_DetailRiwayat(object):
@@ -16,9 +17,8 @@ class Ui_DetailRiwayat(object):
         DetailRiwayat.setObjectName("DetailRiwayat")
         DetailRiwayat.resize(440, 445)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/app.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("ui\\icons/app.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         DetailRiwayat.setWindowIcon(icon)
-        DetailRiwayat.setStyleSheet("background-color: #F2EFE7;")
         DetailRiwayat.setModal(True)
         self.lblJudul = QtWidgets.QLabel(DetailRiwayat)
         self.lblJudul.setGeometry(QtCore.QRect(20, 15, 400, 26))
@@ -26,7 +26,6 @@ class Ui_DetailRiwayat(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblJudul.setFont(font)
-        self.lblJudul.setStyleSheet("color: #3368A0;")
         self.lblJudul.setObjectName("lblJudul")
         self.garisAtas = QtWidgets.QFrame(DetailRiwayat)
         self.garisAtas.setGeometry(QtCore.QRect(20, 47, 400, 2))
@@ -38,7 +37,6 @@ class Ui_DetailRiwayat(object):
         self.lblKode.setObjectName("lblKode")
         self.editKode = QtWidgets.QLineEdit(DetailRiwayat)
         self.editKode.setGeometry(QtCore.QRect(140, 62, 280, 26))
-        self.editKode.setStyleSheet("background-color: white;")
         self.editKode.setText("")
         self.editKode.setReadOnly(True)
         self.editKode.setObjectName("editKode")
@@ -47,7 +45,6 @@ class Ui_DetailRiwayat(object):
         self.lblNamaKegiatan.setObjectName("lblNamaKegiatan")
         self.editNamaKegiatan = QtWidgets.QLineEdit(DetailRiwayat)
         self.editNamaKegiatan.setGeometry(QtCore.QRect(140, 100, 280, 26))
-        self.editNamaKegiatan.setStyleSheet("background-color: white;")
         self.editNamaKegiatan.setText("")
         self.editNamaKegiatan.setReadOnly(True)
         self.editNamaKegiatan.setObjectName("editNamaKegiatan")
@@ -56,7 +53,6 @@ class Ui_DetailRiwayat(object):
         self.lblRuang.setObjectName("lblRuang")
         self.editRuang = QtWidgets.QLineEdit(DetailRiwayat)
         self.editRuang.setGeometry(QtCore.QRect(140, 138, 280, 26))
-        self.editRuang.setStyleSheet("background-color: white;")
         self.editRuang.setText("")
         self.editRuang.setReadOnly(True)
         self.editRuang.setObjectName("editRuang")
@@ -65,7 +61,6 @@ class Ui_DetailRiwayat(object):
         self.lblTanggal.setObjectName("lblTanggal")
         self.editTanggal = QtWidgets.QLineEdit(DetailRiwayat)
         self.editTanggal.setGeometry(QtCore.QRect(140, 176, 280, 26))
-        self.editTanggal.setStyleSheet("background-color: white;")
         self.editTanggal.setText("")
         self.editTanggal.setReadOnly(True)
         self.editTanggal.setObjectName("editTanggal")
@@ -74,7 +69,6 @@ class Ui_DetailRiwayat(object):
         self.lblJam.setObjectName("lblJam")
         self.editJam = QtWidgets.QLineEdit(DetailRiwayat)
         self.editJam.setGeometry(QtCore.QRect(140, 214, 280, 26))
-        self.editJam.setStyleSheet("background-color: white;")
         self.editJam.setText("")
         self.editJam.setReadOnly(True)
         self.editJam.setObjectName("editJam")
@@ -83,7 +77,6 @@ class Ui_DetailRiwayat(object):
         self.lblStatus.setObjectName("lblStatus")
         self.editStatus = QtWidgets.QLineEdit(DetailRiwayat)
         self.editStatus.setGeometry(QtCore.QRect(140, 252, 280, 26))
-        self.editStatus.setStyleSheet("background-color: #C8DFDB;")
         self.editStatus.setText("")
         self.editStatus.setReadOnly(True)
         self.editStatus.setObjectName("editStatus")
@@ -92,7 +85,6 @@ class Ui_DetailRiwayat(object):
         self.lblKetBMN.setObjectName("lblKetBMN")
         self.editKetBMN = QtWidgets.QLineEdit(DetailRiwayat)
         self.editKetBMN.setGeometry(QtCore.QRect(140, 290, 280, 26))
-        self.editKetBMN.setStyleSheet("background-color: white;")
         self.editKetBMN.setText("")
         self.editKetBMN.setReadOnly(True)
         self.editKetBMN.setObjectName("editKetBMN")
@@ -101,7 +93,6 @@ class Ui_DetailRiwayat(object):
         self.lblFileSurat.setObjectName("lblFileSurat")
         self.editFileSurat = QtWidgets.QLineEdit(DetailRiwayat)
         self.editFileSurat.setGeometry(QtCore.QRect(140, 328, 280, 26))
-        self.editFileSurat.setStyleSheet("background-color: white;")
         self.editFileSurat.setText("")
         self.editFileSurat.setReadOnly(True)
         self.editFileSurat.setObjectName("editFileSurat")
@@ -112,10 +103,8 @@ class Ui_DetailRiwayat(object):
         self.garisBawah.setObjectName("garisBawah")
         self.btnTutup = QtWidgets.QPushButton(DetailRiwayat)
         self.btnTutup.setGeometry(QtCore.QRect(300, 392, 120, 34))
-        self.btnTutup.setStyleSheet("background-color: #3368A0;\n"
-"color: white;")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("ui\\../icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnTutup.setIcon(icon1)
         self.btnTutup.setObjectName("btnTutup")
 

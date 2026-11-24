@@ -9,13 +9,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import resources_rc
 
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 437)
-        Dialog.setStyleSheet("background-color: #F2EFE7;")
         self.label = QtWidgets.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(20, 10, 361, 31))
         font = QtGui.QFont()
@@ -23,7 +23,6 @@ class Ui_Dialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
-        self.label.setStyleSheet("color: #3368A0;")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Dialog)
@@ -32,7 +31,6 @@ class Ui_Dialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_2.setFont(font)
-        self.label_2.setStyleSheet("color: #3368A0;")
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(Dialog)
         self.label_3.setGeometry(QtCore.QRect(30, 70, 71, 16))
@@ -76,7 +74,6 @@ class Ui_Dialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_15.setFont(font)
-        self.label_15.setStyleSheet("color: #3368A0;")
         self.label_15.setObjectName("label_15")
         self.label_16 = QtWidgets.QLabel(Dialog)
         self.label_16.setGeometry(QtCore.QRect(30, 190, 91, 16))
@@ -111,11 +108,9 @@ class Ui_Dialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_25.setFont(font)
-        self.label_25.setStyleSheet("color: #3368A0;")
         self.label_25.setObjectName("label_25")
         self.scrollArea = QtWidgets.QScrollArea(Dialog)
         self.scrollArea.setGeometry(QtCore.QRect(30, 250, 341, 101))
-        self.scrollArea.setStyleSheet("background-color: white;")
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
@@ -131,15 +126,12 @@ class Ui_Dialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_27.setFont(font)
-        self.label_27.setStyleSheet("color: #3368A0;")
         self.label_27.setObjectName("label_27")
         self.label_28 = QtWidgets.QLabel(Dialog)
         self.label_28.setGeometry(QtCore.QRect(30, 390, 55, 16))
         self.label_28.setObjectName("label_28")
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(270, 390, 101, 28))
-        self.pushButton.setStyleSheet("background-color: #3368A0;\n"
-"color: white;")
         self.pushButton.setObjectName("pushButton")
 
         self.retranslateUi(Dialog)

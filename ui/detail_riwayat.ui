@@ -17,9 +17,6 @@
    <iconset>
     <normaloff>icons/app.png</normaloff>icons/app.png</iconset>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: #F2EFE7;</string>
-  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -37,9 +34,6 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>DETAIL PENGAJUAN</string>
@@ -83,9 +77,6 @@
      <height>26</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
-   </property>
    <property name="text">
     <string/>
    </property>
@@ -114,9 +105,6 @@
      <width>280</width>
      <height>26</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
    </property>
    <property name="text">
     <string/>
@@ -147,9 +135,6 @@
      <height>26</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
-   </property>
    <property name="text">
     <string/>
    </property>
@@ -178,9 +163,6 @@
      <width>280</width>
      <height>26</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
    </property>
    <property name="text">
     <string/>
@@ -211,9 +193,6 @@
      <height>26</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
-   </property>
    <property name="text">
     <string/>
    </property>
@@ -242,9 +221,6 @@
      <width>280</width>
      <height>26</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="text">
     <string/>
@@ -275,9 +251,6 @@
      <height>26</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
-   </property>
    <property name="text">
     <string/>
    </property>
@@ -306,9 +279,6 @@
      <width>280</width>
      <height>26</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
    </property>
    <property name="text">
     <string/>
@@ -341,10 +311,6 @@
      <width>120</width>
      <height>34</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #3368A0;
-color: white;</string>
    </property>
    <property name="text">
     <string>TUTUP</string>

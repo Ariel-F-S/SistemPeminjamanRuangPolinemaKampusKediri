@@ -13,9 +13,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: #F2EFE7;</string>
-  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -31,9 +28,6 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>DETAIL &amp; VERIFIKASI PENGAJUAN PEMINAJAMAN RUANG</string>
@@ -52,9 +46,6 @@
     <font>
      <pointsize>8</pointsize>
     </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="title">
     <string>Data Pengajuan</string>
@@ -251,9 +242,6 @@
      <height>91</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #C8DFDB;</string>
-   </property>
    <property name="title">
     <string>Berkas Surat Pengajuan</string>
    </property>
@@ -266,9 +254,6 @@
       <height>20</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;</string>
-    </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
@@ -278,10 +263,6 @@
       <width>181</width>
       <height>23</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #66A3BF;
-color: white;</string>
     </property>
     <property name="text">
      <string>BUKA dan LIHAT SURAT MASUK</string>
@@ -297,9 +278,6 @@ color: white;</string>
      <height>121</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #C8DFDB;</string>
-   </property>
    <property name="title">
     <string>Keputusan Verifikasi BMN</string>
    </property>
@@ -311,9 +289,6 @@ color: white;</string>
       <width>591</width>
       <height>61</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_16">
@@ -339,9 +314,6 @@ color: white;</string>
      <height>23</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #C8DFDB;</string>
-   </property>
    <property name="text">
     <string>TUTUP</string>
    </property>
@@ -355,10 +327,6 @@ color: white;</string>
      <height>23</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #66A3BF;
-color: white;</string>
-   </property>
    <property name="text">
     <string>TOLAK PENGAJUAN</string>
    </property>
@@ -371,10 +339,6 @@ color: white;</string>
      <width>141</width>
      <height>23</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #3368A0;
-color: white;</string>
    </property>
    <property name="text">
     <string>SETUJUI PENGAJUAN</string>

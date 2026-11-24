@@ -17,9 +17,6 @@
    <iconset>
     <normaloff>icons/app.png</normaloff>icons/app.png</iconset>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: #F2EFE7;</string>
-  </property>
   <widget class="QLabel" name="lblBrand">
    <property name="geometry">
     <rect>
@@ -34,9 +31,6 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>Peminjaman Ruang</string>
@@ -53,9 +47,6 @@
      <width>180</width>
      <height>40</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="text">
     <string>Dashboard</string>
@@ -85,10 +76,6 @@
      <width>180</width>
      <height>40</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #3368A0;
-color: white;</string>
    </property>
    <property name="text">
     <string>Daftar Ruang</string>
@@ -122,9 +109,6 @@ color: white;</string>
      <height>40</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #C8DFDB;</string>
-   </property>
    <property name="text">
     <string>Ajukan Pinjam</string>
    </property>
@@ -153,9 +137,6 @@ color: white;</string>
      <width>180</width>
      <height>40</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="text">
     <string>Riwayat Saya</string>
@@ -186,9 +167,6 @@ color: white;</string>
      <height>40</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #C8DFDB;</string>
-   </property>
    <property name="text">
     <string>Jadwal Kampus</string>
    </property>
@@ -217,9 +195,6 @@ color: white;</string>
      <width>180</width>
      <height>40</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="text">
     <string>Logout</string>
@@ -266,9 +241,6 @@ color: white;</string>
      <bold>true</bold>
     </font>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: #3368A0;</string>
-   </property>
    <property name="text">
     <string>POLINEMA PSDKU KEDIRI – Daftar Ruang Kampus</string>
    </property>
@@ -281,9 +253,6 @@ color: white;</string>
      <width>190</width>
      <height>30</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>OKI: HMTI Polinema</string>
@@ -323,9 +292,6 @@ color: white;</string>
      <bold>true</bold>
     </font>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: #3368A0;</string>
-   </property>
    <property name="text">
     <string>CARI RUANG TERSEDIA</string>
    </property>
@@ -351,9 +317,6 @@ color: white;</string>
      <width>250</width>
      <height>26</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
    </property>
    <property name="placeholderText">
     <string>Ketik nama atau kode ruang...</string>
@@ -383,9 +346,6 @@ color: white;</string>
      <width>120</width>
      <height>26</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
    </property>
    <property name="suffix">
     <string> Org</string>
@@ -419,9 +379,6 @@ color: white;</string>
      <height>26</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
-   </property>
    <item>
     <property name="text">
      <string>Semua</string>
@@ -447,10 +404,6 @@ color: white;</string>
      <height>26</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #66A3BF;
-color: white;</string>
-   </property>
    <property name="text">
     <string>Cari</string>
    </property>
@@ -473,9 +426,6 @@ color: white;</string>
      <weight>75</weight>
      <bold>true</bold>
     </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>INFORMASI RUANG KAMPUS</string>
@@ -503,9 +453,6 @@ color: white;</string>
      <height>26</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
-   </property>
    <property name="readOnly">
     <bool>true</bool>
    </property>
@@ -521,10 +468,6 @@ color: white;</string>
      <width>280</width>
      <height>40</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #3368A0;
-color: white;</string>
    </property>
    <property name="text">
     <string>AJUKAN PEMINJAMAN RUANG INI</string>
@@ -548,9 +491,6 @@ color: white;</string>
      <width>761</width>
      <height>291</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;</string>
    </property>
   </widget>
  </widget>

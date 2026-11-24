@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>POLINEMA PSDKU KEDIRI - Riwayat Pengajuan OKI</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icons/app.png</normaloff>icons/app.png</iconset>
+  </property>
   <widget class="QLabel" name="lblBrand">
    <property name="geometry">
     <rect>
@@ -316,22 +320,22 @@
    </property>
    <item>
     <property name="text">
-     <string>Semua Status</string>
+     <string/>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Diajukan</string>
+     <string/>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Disetujui</string>
+     <string/>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Ditolak</string>
+     <string/>
     </property>
    </item>
   </widget>
@@ -370,20 +374,10 @@
     <string>RIWAYAT PENGAJUAN ORGANISASI ANDA</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tblRiwayat">
-   <property name="geometry">
-    <rect>
-     <x>215</x>
-     <y>180</y>
-     <width>765</width>
-     <height>345</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnCetakBukti">
    <property name="geometry">
     <rect>
-     <x>215</x>
+     <x>220</x>
      <y>540</y>
      <width>240</width>
      <height>36</height>
@@ -395,6 +389,16 @@
    <property name="icon">
     <iconset>
      <normaloff>../icon/verifikasi.png</normaloff>../icon/verifikasi.png</iconset>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>180</y>
+     <width>781</width>
+     <height>351</height>
+    </rect>
    </property>
   </widget>
  </widget>

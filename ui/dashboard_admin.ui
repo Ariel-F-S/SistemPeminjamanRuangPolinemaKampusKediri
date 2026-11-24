@@ -13,9 +13,6 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: #F2EFE7;</string>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label_3">
     <property name="geometry">
@@ -33,9 +30,6 @@
       <bold>true</bold>
      </font>
     </property>
-    <property name="styleSheet">
-     <string notr="true">color: #3368A0;</string>
-    </property>
     <property name="text">
      <string>POLINEMA PSDKU KEDIRI - Dashboard Admin</string>
     </property>
@@ -51,10 +45,6 @@
       <width>131</width>
       <height>28</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #3368A0;
-color: white;</string>
     </property>
     <property name="text">
      <string>Dashboard</string>
@@ -73,9 +63,6 @@ color: white;</string>
       <height>28</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #C8DFDB;</string>
-    </property>
     <property name="text">
      <string>Kelola Akun</string>
     </property>
@@ -89,12 +76,9 @@ color: white;</string>
      <rect>
       <x>20</x>
       <y>130</y>
-     <width>131</width>
+      <width>131</width>
       <height>28</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #C8DFDB;</string>
     </property>
     <property name="text">
      <string>Data Ruang</string>
@@ -113,9 +97,6 @@ color: white;</string>
       <height>28</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #C8DFDB;</string>
-    </property>
     <property name="text">
      <string>Pengajuan</string>
     </property>
@@ -133,9 +114,6 @@ color: white;</string>
       <height>28</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #C8DFDB;</string>
-    </property>
     <property name="text">
      <string>Data Peminjaman</string>
     </property>
@@ -152,9 +130,6 @@ color: white;</string>
       <width>131</width>
       <height>28</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #C8DFDB;</string>
     </property>
     <property name="text">
      <string>Logout</string>
@@ -179,9 +154,6 @@ color: white;</string>
       <bold>true</bold>
      </font>
     </property>
-    <property name="styleSheet">
-     <string notr="true">color: #3368A0;</string>
-    </property>
     <property name="text">
      <string>Ringkasan Data Sistem</string>
     </property>
@@ -196,11 +168,7 @@ color: white;</string>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #66A3BF;
-color: white;</string>
+     <bool>true</bool>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -254,11 +222,7 @@ color: white;</string>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #66A3BF;
-color: white;</string>
+     <bool>true</bool>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -279,7 +243,7 @@ color: white;</string>
       </rect>
      </property>
      <property name="text">
-      <string>Akun BMN :</string>
+      <string>Akun OKI :</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -312,11 +276,7 @@ color: white;</string>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #66A3BF;
-color: white;</string>
+     <bool>true</bool>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -337,7 +297,7 @@ color: white;</string>
       </rect>
      </property>
      <property name="text">
-      <string>Total Ruang :</string>
+      <string>Akun OKI :</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -370,11 +330,7 @@ color: white;</string>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #66A3BF;
-color: white;</string>
+     <bool>true</bool>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -433,9 +389,6 @@ color: white;</string>
       <bold>true</bold>
      </font>
     </property>
-    <property name="styleSheet">
-     <string notr="true">color: #3368A0;</string>
-    </property>
     <property name="text">
      <string>Aktivitas Pengajuan Terbaru</string>
     </property>
@@ -448,9 +401,6 @@ color: white;</string>
       <width>601</width>
       <height>311</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;</string>
     </property>
    </widget>
   </widget>
