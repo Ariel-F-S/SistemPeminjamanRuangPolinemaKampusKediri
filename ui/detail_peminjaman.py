@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import resources_rc
 
 
 class Ui_Dialog(object):
