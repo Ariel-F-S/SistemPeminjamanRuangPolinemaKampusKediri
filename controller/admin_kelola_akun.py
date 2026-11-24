@@ -1,47 +1,141 @@
-from PyQt5 import QtWidgets
-
-from ui.kelola_akun_admin import Ui_MainWindow as KelolaAkunUI
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, QHeaderView, QAbstractItemView
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtCore import Qt
+from ui.kelola_akun_admin import Ui_MainWindow
 from model.User import User
-from controller.dashboard_admin import HalamanAdmin
-from controller.admin_monitoring_ruang import AdminMonitoringRuang
-from controller.admin_monitoring_pengajuan import AdminMonitoringPengajuan
-from controller.admin_monitoring_peminjaman import AdminMonitoringPeminjaman
 
 
-class AdminKelolaAkun(QtWidgets.QMainWindow, KelolaAkunUI):
-    def __init__(self):
+class AdminKelolaAkunController(QMainWindow):
+    def __init__(self, user_data):
         super().__init__()
-        self.setupUi(self)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.user = user_data
+        self.model = User()
 
-        self.user = User()
+        self.ui.lineEdit.setPlaceholderText("Cari nama / username...")
+        self.ui.comboBox.clear()
+        self.ui.comboBox.addItems(["Semua", "Admin", "BMN", "OKI"])
 
-        # tombol
-        self.pushButton.clicked.connect(self.dashboard)
-        self.pushButton_2.clicked.connect(self.kelola_akun)
-        self.pushButton_3.clicked.connect(self.data_ruang)
-        self.pushButton_4.clicked.connect(self.pengajuan)
-        self.pushButton_5.clicked.connect(self.data_peminjaman)
-        self.pushButton_6.clicked.connect(self.keluar)
-        self.pushButton_8.clicked.connect(self.tambah_akun)
-        self.pushButton_9.clicked.connect(self.ubah_akun)
-        self.pushButton_10.clicked.connect(self.hapus_akun)
+        self.table_model = QStandardItemModel()
+        self.ui.tableView.setModel(self.table_model)
+        self.ui.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.ui.tableView.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.ui.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-    def dashboard(self):
-        self.halaman = HalamanAdmin()
-        self.halaman.show()
+        self.ui.pushButton.clicked.connect(self.buka_dashboard)
+        self.ui.pushButton_3.clicked.connect(self.buka_monitoring_ruang)
+        self.ui.pushButton_4.clicked.connect(self.buka_monitoring_pengajuan)
+        self.ui.pushButton_5.clicked.connect(self.buka_monitoring_peminjaman)
+        self.ui.pushButton_6.clicked.connect(self.logout)
+
+        self.ui.pushButton_7.clicked.connect(self.load_data)
+        self.ui.lineEdit.returnPressed.connect(self.load_data)
+        self.ui.comboBox.currentTextChanged.connect(self.load_data)
+        self.ui.pushButton_8.clicked.connect(self.buka_tambah_akun)
+        self.ui.pushButton_9.clicked.connect(self.buka_ubah_akun)
+        self.ui.pushButton_10.clicked.connect(self.hapus_akun)
+
+        self.load_data()
+
+    def load_data(self):
+        keyword = self.ui.lineEdit.text().strip()
+        role_filter = self.ui.comboBox.currentText()
+        rows = self.model.select_data_tabel(keyword=keyword, role_filter=role_filter)
+
+        self.table_model.clear()
+        self.table_model.setHorizontalHeaderLabels([
+            "ID", "Username", "Nama / Organisasi", "No. WhatsApp", "Role", "Status"
+        ])
+        for row in rows:
+            item_id = QStandardItem(str(row[0]))
+            item_id.setData(row[0], Qt.UserRole)
+            self.table_model.appendRow([
+                item_id,
+                QStandardItem(row[1]),
+                QStandardItem(row[2]),
+                QStandardItem(row[3] or "-"),
+                QStandardItem(row[4]),
+                QStandardItem(row[5]),
+            ])
+
+    def _get_selected_id(self):
+        indexes = self.ui.tableView.selectionModel().selectedRows()
+        if not indexes:
+            return None
+        return self.table_model.item(indexes[0].row(), 0).data(Qt.UserRole)
+
+    def buka_tambah_akun(self):
+        from controller.dialog_tambah_akun import DialogTambahAkunController
+        dialog = DialogTambahAkunController(parent=self)
+        if dialog.exec_():
+            self.load_data()
+
+    def buka_ubah_akun(self):
+        id_pengguna = self._get_selected_id()
+        if not id_pengguna:
+            QMessageBox.warning(self, "Peringatan", "Pilih salah satu akun pada tabel terlebih dahulu!")
+            return
+        from controller.dialog_ubah_akun import DialogUbahAkunController
+        dialog = DialogUbahAkunController(id_pengguna, parent=self)
+        if dialog.exec_():
+            self.load_data()
+
+    def hapus_akun(self):
+        id_pengguna = self._get_selected_id()
+        if not id_pengguna:
+            QMessageBox.warning(self, "Peringatan", "Pilih akun yang ingin dihapus terlebih dahulu!")
+            return
+        if id_pengguna == self.user["id_pengguna"]:
+            QMessageBox.warning(self, "Peringatan", "Tidak dapat menghapus akun yang sedang digunakan login!")
+            return
+
+        reply = QMessageBox.question(
+            self, "Konfirmasi Hapus", "Apakah Anda yakin ingin menghapus akun ini?",
+            QMessageBox.Yes | QMessageBox.No, QMessageBox.No
+        )
+        if reply == QMessageBox.Yes:
+            if self.model.delete_data(id_pengguna):
+                QMessageBox.information(self, "Sukses", "Data akun berhasil dihapus.")
+                self.load_data()
+            else:
+                QMessageBox.critical(
+                    self, "Gagal Menghapus",
+                    "Akun tidak dapat dihapus karena masih memiliki relasi data pengajuan peminjaman!"
+                )
+
+    def buka_dashboard(self):
+        from controller.dashboard_admin import DashboardAdminController
+        self.win = DashboardAdminController(self.user)
+        self.win.show()
         self.close()
 
-    def data_ruang(self):
-        self.halaman = AdminMonitoringRuang()
-        self.halaman.show()
+    def buka_monitoring_ruang(self):
+        from controller.admin_monitoring_ruang import AdminMonitoringRuangController
+        self.win = AdminMonitoringRuangController(self.user)
+        self.win.show()
         self.close()
 
-    def pengajuan(self):
-        self.halaman = AdminMonitoringPengajuan()
-        self.halaman.show()
+    def buka_monitoring_pengajuan(self):
+        from controller.admin_monitoring_pengajuan import AdminMonitoringPengajuanController
+        self.win = AdminMonitoringPengajuanController(self.user)
+        self.win.show()
         self.close()
 
-    def data_peminjaman(self):
-        self.halaman = AdminMonitoringPeminjaman()
-        self.halaman.show()
+    def buka_monitoring_peminjaman(self):
+        from controller.admin_monitoring_peminjaman import AdminMonitoringPeminjamanController
+        self.win = AdminMonitoringPeminjamanController(self.user)
+        self.win.show()
         self.close()
+
+    def logout(self):
+        reply = QMessageBox.question(
+            self, "Konfirmasi Logout", "Apakah Anda yakin ingin keluar dari sistem?",
+            QMessageBox.Yes | QMessageBox.No, QMessageBox.No
+        )
+        if reply == QMessageBox.Yes:
+            from controller.login import LoginController
+            self.login_win = LoginController()
+            self.login_win.show()
+            self.close()
