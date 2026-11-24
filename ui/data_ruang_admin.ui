@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #F2EFE7;</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
@@ -22,6 +25,9 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #C8DFDB;</string>
     </property>
     <property name="text">
      <string>Logout</string>
@@ -47,6 +53,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
      <string>POLINEMA PSDKU KEDIRI - Data Ruang - Admin</string>
     </property>
@@ -62,6 +71,9 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #C8DFDB;</string>
     </property>
     <property name="text">
      <string>Data Peminjaman</string>
@@ -80,6 +92,9 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #C8DFDB;</string>
+    </property>
     <property name="text">
      <string>Dashboard</string>
     </property>
@@ -96,6 +111,10 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #3368A0;
+color: white;</string>
     </property>
     <property name="text">
      <string>Data Ruang</string>
@@ -114,6 +133,9 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #C8DFDB;</string>
+    </property>
     <property name="text">
      <string>Pengajuan</string>
     </property>
@@ -130,6 +152,9 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #C8DFDB;</string>
     </property>
     <property name="text">
      <string>Kelola Akun</string>
@@ -161,6 +186,9 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
@@ -190,6 +218,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
      <string>Pencarian &amp; Filter Ruang</string>
     </property>
@@ -203,6 +234,9 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
@@ -212,6 +246,10 @@
       <width>93</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #66A3BF;
+color: white;</string>
     </property>
     <property name="text">
      <string>Cari</string>
@@ -251,6 +289,9 @@
         <height>341</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
      </widget>
     </widget>
    </widget>
@@ -268,6 +309,9 @@
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
     </property>
     <property name="text">
      <string>Daftar Ruang</string>

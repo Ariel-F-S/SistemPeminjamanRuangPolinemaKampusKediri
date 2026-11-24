@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #F2EFE7;</string>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -28,6 +31,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>Detail Peminjaman</string>
@@ -50,6 +56,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>Informasi Peminjaman</string>
@@ -226,6 +235,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>Informasi Pengajuan</string>
    </property>
@@ -362,6 +374,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>Deskripsi Kegiatan</string>
    </property>
@@ -374,6 +389,9 @@
      <width>341</width>
      <height>101</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
    </property>
    <property name="widgetResizable">
     <bool>true</bool>
@@ -417,6 +435,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>Surat Pengajuan</string>
    </property>
@@ -442,6 +463,10 @@
      <width>101</width>
      <height>28</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #3368A0;
+color: white;</string>
    </property>
    <property name="text">
     <string>Lihat Surat</string>

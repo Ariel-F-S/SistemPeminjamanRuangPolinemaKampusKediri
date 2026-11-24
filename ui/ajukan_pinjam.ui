@@ -17,6 +17,9 @@
    <iconset>
     <normaloff>icons/app.png</normaloff>icons/app.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #F2EFE7;</string>
+  </property>
   <widget class="QLabel" name="lblBrand">
    <property name="geometry">
     <rect>
@@ -31,6 +34,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>Peminjaman Ruang</string>
@@ -47,6 +53,9 @@
      <width>180</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="text">
     <string>Dashboard</string>
@@ -77,6 +86,9 @@
      <height>40</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
+   </property>
    <property name="text">
     <string>Daftar Ruang</string>
    </property>
@@ -105,6 +117,10 @@
      <width>180</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #3368A0;
+color: white;</string>
    </property>
    <property name="text">
     <string>Ajukan Pinjam</string>
@@ -138,6 +154,9 @@
      <height>40</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
+   </property>
    <property name="text">
     <string>Riwayat Saya</string>
    </property>
@@ -167,6 +186,9 @@
      <height>40</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
+   </property>
    <property name="text">
     <string>Jadwal Kampus</string>
    </property>
@@ -195,6 +217,9 @@
      <width>180</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="text">
     <string>Logout</string>
@@ -241,6 +266,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>POLINEMA PSDKU KEDIRI – Ajukan Peminjaman Ruang</string>
    </property>
@@ -253,6 +281,9 @@
      <width>190</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>OKI: HMTI Polinema</string>
@@ -308,6 +339,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>FORM PENGAJUAN</string>
    </property>
@@ -334,6 +368,9 @@
      <height>26</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
+   </property>
    <property name="placeholderText">
     <string>Masukkan nama kegiatan...</string>
    </property>
@@ -359,6 +396,9 @@
      <width>285</width>
      <height>26</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
    </property>
    <item>
     <property name="text">
@@ -398,6 +438,9 @@
      <height>26</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
+   </property>
    <property name="displayFormat">
     <string>dd-MM-yyyy</string>
    </property>
@@ -434,6 +477,9 @@
      <height>26</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
+   </property>
    <property name="displayFormat">
     <string>HH:mm</string>
    </property>
@@ -467,6 +513,9 @@
      <height>26</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
+   </property>
    <property name="displayFormat">
     <string>HH:mm</string>
    </property>
@@ -486,6 +535,10 @@
      <width>220</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #66A3BF;
+color: white;</string>
    </property>
    <property name="text">
     <string>CEK KETERSEDIAAN JADWAL</string>
@@ -522,6 +575,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>Tersedia!</string>
@@ -565,6 +621,9 @@
      <height>26</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
+   </property>
    <property name="readOnly">
     <bool>true</bool>
    </property>
@@ -580,6 +639,9 @@
      <width>180</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="text">
     <string>PILIH FILE SURAT</string>
@@ -614,6 +676,9 @@
      <height>36</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
+   </property>
    <property name="text">
     <string>RESET</string>
    </property>
@@ -630,6 +695,10 @@
      <width>180</width>
      <height>36</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #3368A0;
+color: white;</string>
    </property>
    <property name="text">
     <string>KIRIM PENGAJUAN</string>
@@ -653,6 +722,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>CEK JADWAL TERPAKAI</string>
@@ -711,6 +783,9 @@
      <width>351</width>
      <height>261</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
    </property>
   </widget>
  </widget>

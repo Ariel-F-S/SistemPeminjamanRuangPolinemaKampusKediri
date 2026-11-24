@@ -17,6 +17,9 @@
    <iconset>
     <normaloff>icons/app.png</normaloff>icons/app.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #F2EFE7;</string>
+  </property>
   <widget class="QLabel" name="lblBrand">
    <property name="geometry">
     <rect>
@@ -31,6 +34,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>Peminjaman Ruang</string>
@@ -47,6 +53,10 @@
      <width>180</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #3368A0;
+color: white;</string>
    </property>
    <property name="text">
     <string>Dashboard</string>
@@ -80,6 +90,9 @@
      <height>40</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
+   </property>
    <property name="text">
     <string>Daftar Ruang</string>
    </property>
@@ -108,6 +121,9 @@
      <width>180</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="text">
     <string>Ajukan Pinjam</string>
@@ -138,6 +154,9 @@
      <height>40</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
+   </property>
    <property name="text">
     <string>Riwayat Saya</string>
    </property>
@@ -167,6 +186,9 @@
      <height>40</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
+   </property>
    <property name="text">
     <string>Jadwal Kampus</string>
    </property>
@@ -195,6 +217,9 @@
      <width>180</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="text">
     <string>Logout</string>
@@ -241,6 +266,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>POLINEMA PSDKU KEDIRI – Dashboard OKI</string>
    </property>
@@ -253,6 +281,9 @@
      <width>190</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>OKI: HMTI Polinema</string>
@@ -292,6 +323,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>RINGKASAN PENGAJUAN ORGANISASI</string>
    </property>
@@ -310,6 +344,10 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #66A3BF;
+color: white;</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::Box</enum>
@@ -336,6 +374,10 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #66A3BF;
+color: white;</string>
+   </property>
    <property name="frameShape">
     <enum>QFrame::Box</enum>
    </property>
@@ -360,6 +402,10 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #66A3BF;
+color: white;</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::Box</enum>
@@ -402,6 +448,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>STATUS PENGAJUAN TERBARU ORGANISASI ANDA</string>
    </property>
@@ -414,6 +463,9 @@
      <width>761</width>
      <height>381</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
    </property>
   </widget>
  </widget>

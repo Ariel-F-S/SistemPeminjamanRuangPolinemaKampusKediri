@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>LoginWindow</class>
+ <widget class="QMainWindow" name="LoginWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Login - Sistem Peminjaman Ruang POLINEMA PSDKU Kediri</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lblLogo">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>120</y>
-      <width>181</width>
-      <height>181</height>
+      <x>115</x>
+      <y>100</y>
+      <width>170</width>
+      <height>170</height>
      </rect>
     </property>
     <property name="text">
@@ -33,18 +33,18 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="lblSistemTitle">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>310</y>
-      <width>371</width>
-      <height>20</height>
+      <y>290</y>
+      <width>360</width>
+      <height>22</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>11</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -56,13 +56,13 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="lblKampus">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>330</y>
-      <width>371</width>
-      <height>20</height>
+      <y>315</y>
+      <width>360</width>
+      <height>22</height>
      </rect>
     </property>
     <property name="font">
@@ -79,21 +79,14 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="lblSubTitle1">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>390</y>
-      <width>371</width>
-      <height>21</height>
+      <y>365</y>
+      <width>360</width>
+      <height>20</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
     </property>
     <property name="text">
      <string>Aplikasi Pengelolaan Sarana &amp;</string>
@@ -102,21 +95,14 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="lblSubTitle2">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>410</y>
-      <width>371</width>
-      <height>21</height>
+      <y>385</y>
+      <width>360</width>
+      <height>20</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
     </property>
     <property name="text">
      <string>Prasarana Kegiatan Mahasiswa</string>
@@ -125,18 +111,34 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_6">
+   <widget class="QFrame" name="garisPemisah">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>160</y>
-      <width>371</width>
-      <height>21</height>
+      <x>395</x>
+      <y>60</y>
+      <width>2</width>
+      <height>410</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::VLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblLoginHeader">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>130</y>
+      <width>350</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -148,121 +150,97 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QLabel" name="lblLoginSub">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>180</y>
-      <width>371</width>
-      <height>21</height>
+      <x>420</x>
+      <y>155</y>
+      <width>350</width>
+      <height>20</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>8</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
     <property name="text">
-     <string>Silahkan Masuk dengan Akun Terdaftar</string>
+     <string>Silakan Masuk dengan Akun Terdaftar</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_8">
+   <widget class="QLabel" name="lblUsername">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>230</y>
-      <width>71</width>
-      <height>16</height>
+      <x>425</x>
+      <y>210</y>
+      <width>80</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="text">
-     <string>Username</string>
+     <string>Username :</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_9">
+   <widget class="QLineEdit" name="txtUsername">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>270</y>
-      <width>71</width>
-      <height>16</height>
+      <x>510</x>
+      <y>210</y>
+      <width>250</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Masukkan username...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblPassword">
+    <property name="geometry">
+     <rect>
+      <x>425</x>
+      <y>255</y>
+      <width>80</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="text">
-     <string>Password</string>
+     <string>Password :</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_10">
+   <widget class="QLineEdit" name="txtPassword">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>230</y>
-      <width>16</width>
-      <height>16</height>
+      <x>510</x>
+      <y>255</y>
+      <width>250</width>
+      <height>26</height>
      </rect>
     </property>
-    <property name="text">
-     <string>:</string>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+    <property name="placeholderText">
+     <string>Masukkan password...</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_11">
+   <widget class="QCheckBox" name="chkShowPassword">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>270</y>
-      <width>16</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>230</y>
-      <width>281</width>
+      <x>510</x>
+      <y>290</y>
+      <width>160</width>
       <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>270</y>
-      <width>281</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>300</y>
-      <width>151</width>
-      <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>Tampilkan Password</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnMasuk">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>350</y>
-      <width>93</width>
-      <height>28</height>
+      <x>510</x>
+      <y>335</y>
+      <width>120</width>
+      <height>34</height>
      </rect>
     </property>
     <property name="text">

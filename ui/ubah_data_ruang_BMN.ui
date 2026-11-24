@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>DialogUbahRuang</class>
+ <widget class="QDialog" name="DialogUbahRuang">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
-    <height>450</height>
+    <width>520</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Ubah Data Ruang</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="lblJudul">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>20</y>
-     <width>141</width>
-     <height>20</height>
+     <x>10</x>
+     <y>15</y>
+     <width>500</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>11</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -32,165 +32,209 @@
    <property name="text">
     <string>UBAH DATA RUANG</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="lblKodeRuang">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>60</y>
-     <width>101</width>
-     <height>16</height>
+     <x>25</x>
+     <y>55</y>
+     <width>125</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>Kode Ruang: </string>
+    <string>Kode Ruang :</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLineEdit" name="txtKodeRuang">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>100</y>
-     <width>91</width>
-     <height>16</height>
+     <x>160</x>
+     <y>55</y>
+     <width>330</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblNamaRuang">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>95</y>
+     <width>125</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>Nama Ruang:</string>
+    <string>Nama Ruang :</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
+  <widget class="QLineEdit" name="txtNamaRuang">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>140</y>
-     <width>101</width>
-     <height>16</height>
+     <x>160</x>
+     <y>95</y>
+     <width>330</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblLokasiGedung">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>135</y>
+     <width>125</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>Lokasi Gedung:</string>
+    <string>Lokasi Gedung :</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QComboBox" name="comboGedung">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>180</y>
-     <width>101</width>
-     <height>16</height>
+     <x>160</x>
+     <y>135</y>
+     <width>330</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Gedung Kuliah 1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Gedung Kuliah 2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Gedung Teknik</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Aula</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="lblKapasitas">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>175</y>
+     <width>125</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>Kapasitas (Orang):</string>
+    <string>Kapasitas (Orang) :</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QSpinBox" name="spinKapasitas">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>220</y>
-     <width>111</width>
-     <height>16</height>
+     <x>160</x>
+     <y>175</y>
+     <width>330</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>1000</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblFasilitas">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>215</y>
+     <width>125</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>Fasilitas Ruang:</string>
+    <string>Fasilitas Ruang :</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_7">
+  <widget class="QTextEdit" name="txtFasilitas">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>160</x>
+     <y>215</y>
+     <width>330</width>
+     <height>80</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblStatusKondisi">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
      <y>310</y>
-     <width>101</width>
-     <height>16</height>
+     <width>125</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>Status Kondisi:</string>
+    <string>Status Kondisi :</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QComboBox" name="comboStatus">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>60</y>
-     <width>391</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>100</y>
-     <width>391</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>140</y>
-     <width>391</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>180</y>
-     <width>391</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>220</y>
-     <width>391</width>
-     <height>71</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox_2">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
+     <x>160</x>
      <y>310</y>
-     <width>391</width>
-     <height>22</height>
+     <width>330</width>
+     <height>24</height>
     </rect>
    </property>
+   <item>
+    <property name="text">
+     <string>Tersedia</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Perbaikan</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Tidak Tersedia</string>
+    </property>
+   </item>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="btnBatal">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>390</y>
-     <width>75</width>
-     <height>23</height>
+     <x>220</x>
+     <y>370</y>
+     <width>100</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="text">
     <string>BATAL</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="btnSimpan">
    <property name="geometry">
     <rect>
-     <x>344</x>
-     <y>390</y>
-     <width>131</width>
-     <height>23</height>
+     <x>330</x>
+     <y>370</y>
+     <width>160</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="text">
