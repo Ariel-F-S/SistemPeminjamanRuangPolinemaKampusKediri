@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/riwayat_saya.ui'
+# Form implementation generated from reading ui file 'riwayat_saya.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import resources_rc
 
 
 class Ui_RiwayatSaya(object):
@@ -16,20 +17,33 @@ class Ui_RiwayatSaya(object):
         RiwayatSaya.setObjectName("RiwayatSaya")
         RiwayatSaya.resize(1000, 620)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("ui\\icons/app.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("icons/app.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         RiwayatSaya.setWindowIcon(icon)
+        RiwayatSaya.setStyleSheet("QWidget#RiwayatSaya {\n"
+"    background-color: #F2EFE7;\n"
+"}")
         self.lblBrand = QtWidgets.QLabel(RiwayatSaya)
         self.lblBrand.setGeometry(QtCore.QRect(10, 15, 180, 30))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         self.lblBrand.setFont(font)
+        self.lblBrand.setStyleSheet("color: #3368A0;")
         self.lblBrand.setAlignment(QtCore.Qt.AlignCenter)
         self.lblBrand.setObjectName("lblBrand")
         self.btnDashboard = QtWidgets.QPushButton(RiwayatSaya)
         self.btnDashboard.setGeometry(QtCore.QRect(10, 60, 180, 40))
+        self.btnDashboard.setStyleSheet("QPushButton {\n"
+"    background-color: #C8DFDB;\n"
+"    color: #3368A0;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #66A3BF;\n"
+"    color: #FFFFFF;\n"
+"}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("ui\\../icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("../icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnDashboard.setIcon(icon1)
         self.btnDashboard.setIconSize(QtCore.QSize(20, 20))
         self.btnDashboard.setCheckable(True)
@@ -37,8 +51,17 @@ class Ui_RiwayatSaya(object):
         self.btnDashboard.setObjectName("btnDashboard")
         self.btnDaftarRuang = QtWidgets.QPushButton(RiwayatSaya)
         self.btnDaftarRuang.setGeometry(QtCore.QRect(10, 110, 180, 40))
+        self.btnDaftarRuang.setStyleSheet("QPushButton {\n"
+"    background-color: #C8DFDB;\n"
+"    color: #3368A0;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #66A3BF;\n"
+"    color: #FFFFFF;\n"
+"}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("ui\\../icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("../icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnDaftarRuang.setIcon(icon2)
         self.btnDaftarRuang.setIconSize(QtCore.QSize(20, 20))
         self.btnDaftarRuang.setCheckable(True)
@@ -46,8 +69,17 @@ class Ui_RiwayatSaya(object):
         self.btnDaftarRuang.setObjectName("btnDaftarRuang")
         self.btnAjukanPinjam = QtWidgets.QPushButton(RiwayatSaya)
         self.btnAjukanPinjam.setGeometry(QtCore.QRect(10, 160, 180, 40))
+        self.btnAjukanPinjam.setStyleSheet("QPushButton {\n"
+"    background-color: #C8DFDB;\n"
+"    color: #3368A0;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #66A3BF;\n"
+"    color: #FFFFFF;\n"
+"}")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("ui\\../icon/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("../icon/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnAjukanPinjam.setIcon(icon3)
         self.btnAjukanPinjam.setIconSize(QtCore.QSize(20, 20))
         self.btnAjukanPinjam.setCheckable(True)
@@ -55,8 +87,14 @@ class Ui_RiwayatSaya(object):
         self.btnAjukanPinjam.setObjectName("btnAjukanPinjam")
         self.btnRiwayat = QtWidgets.QPushButton(RiwayatSaya)
         self.btnRiwayat.setGeometry(QtCore.QRect(10, 210, 180, 40))
+        self.btnRiwayat.setStyleSheet("QPushButton {\n"
+"    background-color: #3368A0;\n"
+"    color: #FFFFFF;\n"
+"    border-radius: 5px;\n"
+"    font-weight: bold;\n"
+"}")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("ui\\../icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("../icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnRiwayat.setIcon(icon4)
         self.btnRiwayat.setIconSize(QtCore.QSize(20, 20))
         self.btnRiwayat.setCheckable(True)
@@ -65,20 +103,39 @@ class Ui_RiwayatSaya(object):
         self.btnRiwayat.setObjectName("btnRiwayat")
         self.btnJadwal = QtWidgets.QPushButton(RiwayatSaya)
         self.btnJadwal.setGeometry(QtCore.QRect(10, 260, 180, 40))
+        self.btnJadwal.setStyleSheet("QPushButton {\n"
+"    background-color: #C8DFDB;\n"
+"    color: #3368A0;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #66A3BF;\n"
+"    color: #FFFFFF;\n"
+"}")
         self.btnJadwal.setIcon(icon4)
         self.btnJadwal.setIconSize(QtCore.QSize(20, 20))
         self.btnJadwal.setCheckable(True)
         self.btnJadwal.setAutoExclusive(True)
         self.btnJadwal.setObjectName("btnJadwal")
         self.btnLogout = QtWidgets.QPushButton(RiwayatSaya)
-        self.btnLogout.setGeometry(QtCore.QRect(10, 560, 180, 40))
+        self.btnLogout.setGeometry(QtCore.QRect(10, 310, 180, 40))
+        self.btnLogout.setStyleSheet("QPushButton {\n"
+"    background-color: #C8DFDB;\n"
+"    color: #3368A0;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #3368A0;\n"
+"    color: #FFFFFF;\n"
+"}")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("ui\\../icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("../icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnLogout.setIcon(icon5)
         self.btnLogout.setIconSize(QtCore.QSize(20, 20))
         self.btnLogout.setObjectName("btnLogout")
         self.garisSidebar = QtWidgets.QFrame(RiwayatSaya)
         self.garisSidebar.setGeometry(QtCore.QRect(198, 0, 2, 620))
+        self.garisSidebar.setStyleSheet("background-color: #C8DFDB;")
         self.garisSidebar.setFrameShape(QtWidgets.QFrame.VLine)
         self.garisSidebar.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.garisSidebar.setObjectName("garisSidebar")
@@ -88,13 +145,17 @@ class Ui_RiwayatSaya(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblJudul.setFont(font)
+        self.lblJudul.setStyleSheet("color: #3368A0;")
         self.lblJudul.setObjectName("lblJudul")
         self.lblOki = QtWidgets.QLabel(RiwayatSaya)
         self.lblOki.setGeometry(QtCore.QRect(790, 15, 190, 30))
+        self.lblOki.setStyleSheet("color: #3368A0;\n"
+"font-weight: bold;")
         self.lblOki.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lblOki.setObjectName("lblOki")
         self.garisHeader = QtWidgets.QFrame(RiwayatSaya)
         self.garisHeader.setGeometry(QtCore.QRect(215, 50, 765, 2))
+        self.garisHeader.setStyleSheet("background-color: #C8DFDB;")
         self.garisHeader.setFrameShape(QtWidgets.QFrame.HLine)
         self.garisHeader.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.garisHeader.setObjectName("garisHeader")
@@ -104,12 +165,18 @@ class Ui_RiwayatSaya(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblFilterTitle.setFont(font)
+        self.lblFilterTitle.setStyleSheet("color: #3368A0;")
         self.lblFilterTitle.setObjectName("lblFilterTitle")
         self.lblStatus = QtWidgets.QLabel(RiwayatSaya)
         self.lblStatus.setGeometry(QtCore.QRect(215, 95, 60, 26))
+        self.lblStatus.setStyleSheet("color: #3368A0;")
         self.lblStatus.setObjectName("lblStatus")
         self.comboStatus = QtWidgets.QComboBox(RiwayatSaya)
         self.comboStatus.setGeometry(QtCore.QRect(280, 95, 250, 26))
+        self.comboStatus.setStyleSheet("background-color: #FFFFFF;\n"
+"border: 1px solid #66A3BF;\n"
+"border-radius: 4px;\n"
+"padding-left: 5px;")
         self.comboStatus.setObjectName("comboStatus")
         self.comboStatus.addItem("")
         self.comboStatus.setItemText(0, "")
@@ -121,6 +188,7 @@ class Ui_RiwayatSaya(object):
         self.comboStatus.setItemText(3, "")
         self.garisFilter = QtWidgets.QFrame(RiwayatSaya)
         self.garisFilter.setGeometry(QtCore.QRect(215, 140, 765, 2))
+        self.garisFilter.setStyleSheet("background-color: #C8DFDB;")
         self.garisFilter.setFrameShape(QtWidgets.QFrame.HLine)
         self.garisFilter.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.garisFilter.setObjectName("garisFilter")
@@ -130,15 +198,36 @@ class Ui_RiwayatSaya(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblRiwayatTitle.setFont(font)
+        self.lblRiwayatTitle.setStyleSheet("color: #3368A0;")
         self.lblRiwayatTitle.setObjectName("lblRiwayatTitle")
         self.btnCetakBukti = QtWidgets.QPushButton(RiwayatSaya)
         self.btnCetakBukti.setGeometry(QtCore.QRect(220, 540, 240, 36))
+        self.btnCetakBukti.setStyleSheet("QPushButton {\n"
+"    background-color: #3368A0;\n"
+"    color: #FFFFFF;\n"
+"    border-radius: 5px;\n"
+"    font-weight: bold;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #66A3BF;\n"
+"}")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("ui\\../icon/verifikasi.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("../icon/verifikasi.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnCetakBukti.setIcon(icon6)
         self.btnCetakBukti.setObjectName("btnCetakBukti")
         self.tableWidget = QtWidgets.QTableWidget(RiwayatSaya)
         self.tableWidget.setGeometry(QtCore.QRect(210, 180, 781, 351))
+        self.tableWidget.setStyleSheet("QTableWidget {\n"
+"    background-color: #FFFFFF;\n"
+"    border: 2px solid #C8DFDB;\n"
+"    border-radius: 6px;\n"
+"}\n"
+"QHeaderView::section {\n"
+"    background-color: #3368A0;\n"
+"    color: #FFFFFF;\n"
+"    font-weight: bold;\n"
+"    padding: 4px;\n"
+"}")
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)

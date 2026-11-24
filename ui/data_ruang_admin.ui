@@ -11,9 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Data Ruang - Admin</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralwidget {
+    background-color: #F2EFE7;
+}</string>
+   </property>
    <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
      <rect>
@@ -22,6 +27,17 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #3368A0;
+    color: #FFFFFF;
+}</string>
     </property>
     <property name="text">
      <string>Logout</string>
@@ -47,6 +63,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
      <string>POLINEMA PSDKU KEDIRI - Data Ruang - Admin</string>
     </property>
@@ -62,6 +81,17 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
     </property>
     <property name="text">
      <string>Data Peminjaman</string>
@@ -80,6 +110,17 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+    </property>
     <property name="text">
      <string>Dashboard</string>
     </property>
@@ -96,6 +137,14 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}</string>
     </property>
     <property name="text">
      <string>Data Ruang</string>
@@ -114,6 +163,17 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+    </property>
     <property name="text">
      <string>Pengajuan</string>
     </property>
@@ -130,6 +190,17 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
     </property>
     <property name="text">
      <string>Kelola Akun</string>
@@ -148,6 +219,9 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
      <string>Filter Gedung :</string>
     </property>
@@ -161,6 +235,12 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
@@ -170,6 +250,9 @@
       <width>71</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
     </property>
     <property name="text">
      <string>Cari Ruang :</string>
@@ -190,6 +273,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
      <string>Pencarian &amp; Filter Ruang</string>
     </property>
@@ -197,11 +283,17 @@
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>260</x>
       <y>80</y>
       <width>171</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_7">
@@ -212,6 +304,17 @@
       <width>93</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #3368A0;
+}</string>
     </property>
     <property name="text">
      <string>Cari</string>
@@ -230,6 +333,13 @@
       <height>341</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QScrollArea {
+    border: 2px solid #C8DFDB;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+}</string>
+    </property>
     <property name="widgetResizable">
      <bool>true</bool>
     </property>
@@ -238,8 +348,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>589</width>
-       <height>339</height>
+       <width>587</width>
+       <height>337</height>
       </rect>
      </property>
      <widget class="QTableView" name="tableView">
@@ -250,6 +360,18 @@
         <width>591</width>
         <height>341</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableView {
+    background-color: #FFFFFF;
+    border: none;
+}
+QHeaderView::section {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 4px;
+}</string>
       </property>
      </widget>
     </widget>
@@ -268,6 +390,9 @@
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
     </property>
     <property name="text">
      <string>Daftar Ruang</string>

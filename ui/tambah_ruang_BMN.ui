@@ -11,7 +11,12 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Tambah Ruang</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#Dialog {
+    background-color: #F2EFE7;
+}</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -19,7 +24,7 @@
      <x>220</x>
      <y>20</y>
      <width>121</width>
-     <height>16</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="font">
@@ -28,6 +33,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>Tambah Ruang</string>
@@ -42,6 +50,9 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>Kode Ruang: </string>
    </property>
@@ -55,6 +66,9 @@
      <height>16</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>Nama Ruang:</string>
    </property>
@@ -64,9 +78,12 @@
     <rect>
      <x>20</x>
      <y>130</y>
-     <width>81</width>
+     <width>91</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>Lokasi Gedung:</string>
@@ -81,6 +98,9 @@
      <height>16</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>Kapasitas (Orang):</string>
    </property>
@@ -93,6 +113,9 @@
      <width>91</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>Fasilitas Ruang:</string>
@@ -107,6 +130,9 @@
      <height>16</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>Status Kondisi:</string>
    </property>
@@ -117,8 +143,14 @@
      <x>140</x>
      <y>50</y>
      <width>381</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_2">
@@ -127,8 +159,14 @@
      <x>140</x>
      <y>90</y>
      <width>381</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox">
@@ -140,6 +178,12 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
+   </property>
   </widget>
   <widget class="QSpinBox" name="spinBox">
    <property name="geometry">
@@ -149,6 +193,12 @@
      <width>381</width>
      <height>22</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit">
@@ -160,6 +210,12 @@
      <height>71</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding: 4px;</string>
+   </property>
   </widget>
   <widget class="QComboBox" name="comboBox_2">
    <property name="geometry">
@@ -170,23 +226,40 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
      <x>310</x>
      <y>390</y>
-     <width>75</width>
-     <height>23</height>
+     <width>80</width>
+     <height>28</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
    </property>
    <property name="text">
     <string>BATAL</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icon/close.png</normaloff>../icon/close.png</iconset>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
@@ -194,12 +267,27 @@
     <rect>
      <x>410</x>
      <y>390</y>
-     <width>75</width>
-     <height>23</height>
+     <width>101</width>
+     <height>28</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+}</string>
    </property>
    <property name="text">
     <string>SIMPAN</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icon/resume.png</normaloff>../icon/resume.png</iconset>
    </property>
   </widget>
  </widget>

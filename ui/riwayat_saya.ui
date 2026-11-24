@@ -17,6 +17,11 @@
    <iconset>
     <normaloff>icons/app.png</normaloff>icons/app.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#RiwayatSaya {
+    background-color: #F2EFE7;
+}</string>
+  </property>
   <widget class="QLabel" name="lblBrand">
    <property name="geometry">
     <rect>
@@ -31,6 +36,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
    </property>
    <property name="text">
     <string>Peminjaman Ruang</string>
@@ -47,6 +55,17 @@
      <width>180</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
    </property>
    <property name="text">
     <string>Dashboard</string>
@@ -77,6 +96,17 @@
      <height>40</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+   </property>
    <property name="text">
     <string>Daftar Ruang</string>
    </property>
@@ -106,6 +136,17 @@
      <height>40</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+   </property>
    <property name="text">
     <string>Ajukan Pinjam</string>
    </property>
@@ -134,6 +175,14 @@
      <width>180</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}</string>
    </property>
    <property name="text">
     <string>Riwayat Saya</string>
@@ -167,6 +216,17 @@
      <height>40</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+   </property>
    <property name="text">
     <string>Jadwal Kampus</string>
    </property>
@@ -191,10 +251,21 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>560</y>
+     <y>310</y>
      <width>180</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #3368A0;
+    color: #FFFFFF;
+}</string>
    </property>
    <property name="text">
     <string>Logout</string>
@@ -219,6 +290,9 @@
      <height>620</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
+   </property>
    <property name="frameShape">
     <enum>QFrame::VLine</enum>
    </property>
@@ -241,6 +315,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>POLINEMA PSDKU KEDIRI – Riwayat Pengajuan OKI</string>
    </property>
@@ -253,6 +330,10 @@
      <width>190</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;
+font-weight: bold;</string>
    </property>
    <property name="text">
     <string>OKI: HMTI Polinema</string>
@@ -269,6 +350,9 @@
      <width>765</width>
      <height>2</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::HLine</enum>
@@ -292,6 +376,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>FILTER RIWAYAT PENGAJUAN ORGANISASI</string>
    </property>
@@ -305,6 +392,9 @@
      <height>26</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>Status :</string>
    </property>
@@ -317,6 +407,12 @@
      <width>250</width>
      <height>26</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
    </property>
    <item>
     <property name="text">
@@ -348,6 +444,9 @@
      <height>2</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C8DFDB;</string>
+   </property>
    <property name="frameShape">
     <enum>QFrame::HLine</enum>
    </property>
@@ -370,6 +469,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
     <string>RIWAYAT PENGAJUAN ORGANISASI ANDA</string>
    </property>
@@ -382,6 +484,17 @@
      <width>240</width>
      <height>36</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+}</string>
    </property>
    <property name="text">
     <string>CETAK BUKTI PEMINJAMAN</string>
@@ -399,6 +512,19 @@
      <width>781</width>
      <height>351</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget {
+    background-color: #FFFFFF;
+    border: 2px solid #C8DFDB;
+    border-radius: 6px;
+}
+QHeaderView::section {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 4px;
+}</string>
    </property>
   </widget>
  </widget>

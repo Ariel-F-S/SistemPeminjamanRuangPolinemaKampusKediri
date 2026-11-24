@@ -11,9 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Dashboard Admin</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralwidget {
+    background-color: #F2EFE7;
+}</string>
+   </property>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
@@ -30,6 +35,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
      <string>POLINEMA PSDKU KEDIRI - Dashboard Admin</string>
     </property>
@@ -45,6 +53,14 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}</string>
     </property>
     <property name="text">
      <string>Dashboard</string>
@@ -63,6 +79,17 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+    </property>
     <property name="text">
      <string>Kelola Akun</string>
     </property>
@@ -79,6 +106,17 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
     </property>
     <property name="text">
      <string>Data Ruang</string>
@@ -97,6 +135,17 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+    </property>
     <property name="text">
      <string>Pengajuan</string>
     </property>
@@ -114,6 +163,17 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+    </property>
     <property name="text">
      <string>Data Peminjaman</string>
     </property>
@@ -130,6 +190,17 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #3368A0;
+    color: #FFFFFF;
+}</string>
     </property>
     <property name="text">
      <string>Logout</string>
@@ -154,6 +225,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
      <string>Ringkasan Data Sistem</string>
     </property>
@@ -163,21 +237,22 @@
      <rect>
       <x>170</x>
       <y>70</y>
-      <width>161</width>
+      <width>171</width>
       <height>41</height>
      </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
+    <property name="styleSheet">
+     <string notr="true">QFrame#frame {
+    background-color: #66A3BF;
+    border-radius: 6px;
+}
+QLabel {
+    color: #FFFFFF;
+    font-weight: bold;
+}</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <property name="midLineWidth">
-     <number>0</number>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
@@ -200,7 +275,7 @@
       <rect>
        <x>90</x>
        <y>0</y>
-       <width>55</width>
+       <width>71</width>
        <height>41</height>
       </rect>
      </property>
@@ -217,21 +292,22 @@
      <rect>
       <x>380</x>
       <y>70</y>
-      <width>161</width>
+      <width>171</width>
       <height>41</height>
      </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
+    <property name="styleSheet">
+     <string notr="true">QFrame#frame_2 {
+    background-color: #66A3BF;
+    border-radius: 6px;
+}
+QLabel {
+    color: #FFFFFF;
+    font-weight: bold;
+}</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <property name="midLineWidth">
-     <number>0</number>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <widget class="QLabel" name="label_5">
      <property name="geometry">
@@ -254,7 +330,7 @@
       <rect>
        <x>90</x>
        <y>0</y>
-       <width>55</width>
+       <width>71</width>
        <height>41</height>
       </rect>
      </property>
@@ -271,21 +347,22 @@
      <rect>
       <x>580</x>
       <y>70</y>
-      <width>161</width>
+      <width>171</width>
       <height>41</height>
      </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
+    <property name="styleSheet">
+     <string notr="true">QFrame#frame_3 {
+    background-color: #66A3BF;
+    border-radius: 6px;
+}
+QLabel {
+    color: #FFFFFF;
+    font-weight: bold;
+}</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <property name="midLineWidth">
-     <number>0</number>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <widget class="QLabel" name="label_7">
      <property name="geometry">
@@ -308,7 +385,7 @@
       <rect>
        <x>90</x>
        <y>0</y>
-       <width>55</width>
+       <width>71</width>
        <height>41</height>
       </rect>
      </property>
@@ -325,21 +402,22 @@
      <rect>
       <x>170</x>
       <y>120</y>
-      <width>261</width>
+      <width>291</width>
       <height>41</height>
      </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
+    <property name="styleSheet">
+     <string notr="true">QFrame#frame_4 {
+    background-color: #66A3BF;
+    border-radius: 6px;
+}
+QLabel {
+    color: #FFFFFF;
+    font-weight: bold;
+}</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <property name="midLineWidth">
-     <number>0</number>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <widget class="QLabel" name="label_9">
      <property name="geometry">
@@ -362,7 +440,7 @@
       <rect>
        <x>190</x>
        <y>0</y>
-       <width>55</width>
+       <width>81</width>
        <height>41</height>
       </rect>
      </property>
@@ -389,6 +467,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
      <string>Aktivitas Pengajuan Terbaru</string>
     </property>
@@ -401,6 +482,19 @@
       <width>601</width>
       <height>311</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget {
+    background-color: #FFFFFF;
+    border: 2px solid #C8DFDB;
+    border-radius: 6px;
+}
+QHeaderView::section {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 4px;
+}</string>
     </property>
    </widget>
   </widget>

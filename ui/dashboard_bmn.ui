@@ -11,9 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Dashboard BMN</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralwidget {
+    background-color: #F2EFE7;
+}</string>
+   </property>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -26,9 +31,11 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
     </property>
     <property name="text">
      <string>POLINEMA PSDKU KEDIRI - Dashboard BMN</string>
@@ -48,6 +55,14 @@
       <pointsize>8</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}</string>
+    </property>
     <property name="text">
      <string>Dashboard</string>
     </property>
@@ -64,6 +79,17 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
     </property>
     <property name="text">
      <string>Kelola Ruang</string>
@@ -82,6 +108,17 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+    </property>
     <property name="text">
      <string>Verifikasi Ajuan</string>
     </property>
@@ -99,6 +136,17 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+    </property>
     <property name="text">
      <string>Riwayat Pinjam</string>
     </property>
@@ -115,6 +163,17 @@
       <width>131</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #3368A0;
+    color: #FFFFFF;
+}</string>
     </property>
     <property name="text">
      <string>Logout</string>
@@ -135,12 +194,14 @@
     </property>
     <property name="font">
      <font>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
-     <string>Ringkasan Operasional BMN </string>
+     <string>Ringkasan Operasional BMN</string>
     </property>
    </widget>
    <widget class="QFrame" name="frame">
@@ -152,14 +213,18 @@
       <height>41</height>
      </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
+    <property name="styleSheet">
+     <string notr="true">QFrame#frame {
+    background-color: #66A3BF;
+    border-radius: 6px;
+}
+QLabel {
+    color: #FFFFFF;
+    font-weight: bold;
+}</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <widget class="QLabel" name="label_3">
      <property name="geometry">
@@ -197,14 +262,18 @@
       <height>41</height>
      </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
+    <property name="styleSheet">
+     <string notr="true">QFrame#frame_2 {
+    background-color: #66A3BF;
+    border-radius: 6px;
+}
+QLabel {
+    color: #FFFFFF;
+    font-weight: bold;
+}</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <widget class="QLabel" name="label_5">
      <property name="geometry">
@@ -242,14 +311,18 @@
       <height>41</height>
      </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
+    <property name="styleSheet">
+     <string notr="true">QFrame#frame_3 {
+    background-color: #66A3BF;
+    border-radius: 6px;
+}
+QLabel {
+    color: #FFFFFF;
+    font-weight: bold;
+}</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <widget class="QLabel" name="label_7">
      <property name="geometry">
@@ -289,12 +362,14 @@
     </property>
     <property name="font">
      <font>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
-     <string>Antrean Pengajuan Verifikasi </string>
+     <string>Antrean Pengajuan Verifikasi</string>
     </property>
    </widget>
    <widget class="QTableWidget" name="tableWidget">
@@ -305,6 +380,19 @@
       <width>591</width>
       <height>331</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget {
+    background-color: #FFFFFF;
+    border: 2px solid #C8DFDB;
+    border-radius: 6px;
+}
+QHeaderView::section {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 4px;
+}</string>
     </property>
    </widget>
   </widget>

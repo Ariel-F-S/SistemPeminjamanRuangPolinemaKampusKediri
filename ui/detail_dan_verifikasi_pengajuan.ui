@@ -11,14 +11,19 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Detail &amp; Verifikasi Pengajuan</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#Dialog {
+    background-color: #F2EFE7;
+}</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>361</width>
+     <width>381</width>
      <height>16</height>
     </rect>
    </property>
@@ -29,8 +34,11 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #3368A0;</string>
+   </property>
    <property name="text">
-    <string>DETAIL &amp; VERIFIKASI PENGAJUAN PEMINAJAMAN RUANG</string>
+    <string>DETAIL &amp; VERIFIKASI PENGAJUAN PEMINJAMAN RUANG</string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
@@ -45,7 +53,26 @@
    <property name="font">
     <font>
      <pointsize>8</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox {
+    background-color: #C8DFDB;
+    border: 1px solid #66A3BF;
+    border-radius: 6px;
+    margin-top: 8px;
+    color: #3368A0;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 4px;
+}
+QLabel {
+    color: #3368A0;
+}</string>
    </property>
    <property name="title">
     <string>Data Pengajuan</string>
@@ -107,7 +134,7 @@
      <rect>
       <x>100</x>
       <y>20</y>
-      <width>47</width>
+      <width>201</width>
       <height>16</height>
      </rect>
     </property>
@@ -120,7 +147,7 @@
      <rect>
       <x>100</x>
       <y>40</y>
-      <width>47</width>
+      <width>211</width>
       <height>16</height>
      </rect>
     </property>
@@ -133,7 +160,7 @@
      <rect>
       <x>100</x>
       <y>60</y>
-      <width>47</width>
+      <width>221</width>
       <height>16</height>
      </rect>
     </property>
@@ -146,7 +173,7 @@
      <rect>
       <x>100</x>
       <y>80</y>
-      <width>47</width>
+      <width>171</width>
       <height>16</height>
      </rect>
     </property>
@@ -198,7 +225,7 @@
      <rect>
       <x>410</x>
       <y>20</y>
-      <width>47</width>
+      <width>151</width>
       <height>16</height>
      </rect>
     </property>
@@ -211,7 +238,7 @@
      <rect>
       <x>410</x>
       <y>40</y>
-      <width>47</width>
+      <width>181</width>
       <height>21</height>
      </rect>
     </property>
@@ -224,7 +251,7 @@
      <rect>
       <x>410</x>
       <y>60</y>
-      <width>47</width>
+      <width>181</width>
       <height>21</height>
      </rect>
     </property>
@@ -242,6 +269,26 @@
      <height>91</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox {
+    background-color: #C8DFDB;
+    border: 1px solid #66A3BF;
+    border-radius: 6px;
+    margin-top: 8px;
+    color: #3368A0;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 4px;
+}</string>
+   </property>
    <property name="title">
     <string>Berkas Surat Pengajuan</string>
    </property>
@@ -251,8 +298,14 @@
       <x>10</x>
       <y>20</y>
       <width>331</width>
-      <height>20</height>
+      <height>22</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
@@ -260,9 +313,20 @@
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>181</width>
-      <height>23</height>
+      <width>241</width>
+      <height>25</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #3368A0;
+}</string>
     </property>
     <property name="text">
      <string>BUKA dan LIHAT SURAT MASUK</string>
@@ -278,6 +342,29 @@
      <height>121</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox {
+    background-color: #C8DFDB;
+    border: 1px solid #66A3BF;
+    border-radius: 6px;
+    margin-top: 8px;
+    color: #3368A0;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 4px;
+}
+QLabel {
+    color: #3368A0;
+}</string>
+   </property>
    <property name="title">
     <string>Keputusan Verifikasi BMN</string>
    </property>
@@ -290,45 +377,82 @@
       <height>61</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding: 4px;</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>20</y>
-      <width>281</width>
+      <width>291</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Keterangan/ Alasan Penolakan (wajib disi jika ditolak):</string>
+     <string>Keterangan/ Alasan Penolakan (wajib diisi jika ditolak):</string>
     </property>
    </widget>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>180</x>
      <y>480</y>
      <width>75</width>
-     <height>23</height>
+     <height>28</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
    </property>
    <property name="text">
     <string>TUTUP</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icon/back-button.png</normaloff>../icon/back-button.png</iconset>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>270</x>
      <y>480</y>
-     <width>131</width>
-     <height>23</height>
+     <width>161</width>
+     <height>28</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #3368A0;
+}</string>
    </property>
    <property name="text">
     <string>TOLAK PENGAJUAN</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icon/close.png</normaloff>../icon/close.png</iconset>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
@@ -336,12 +460,27 @@
     <rect>
      <x>450</x>
      <y>480</y>
-     <width>141</width>
-     <height>23</height>
+     <width>161</width>
+     <height>28</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+}</string>
    </property>
    <property name="text">
     <string>SETUJUI PENGAJUAN</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icon/resume.png</normaloff>../icon/resume.png</iconset>
    </property>
   </widget>
  </widget>

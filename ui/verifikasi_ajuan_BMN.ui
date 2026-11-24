@@ -18,9 +18,14 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Daftar Pengajuan Peminjaman - BMN</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralwidget {
+    background-color: #F2EFE7;
+}</string>
+   </property>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -30,8 +35,18 @@
       <height>16</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
-     <string>POLINEMA PSDKU KEDIRI - Daftar Pengajuan Peminjaman </string>
+     <string>POLINEMA PSDKU KEDIRI - Daftar Pengajuan Peminjaman</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
@@ -49,6 +64,17 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
     </property>
     <property name="text">
      <string>Dashboard</string>
@@ -74,6 +100,17 @@
       <bold>false</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+    </property>
     <property name="text">
      <string>Kelola Ruang</string>
     </property>
@@ -94,9 +131,17 @@
     <property name="font">
      <font>
       <pointsize>8</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}</string>
     </property>
     <property name="text">
      <string>Verifikasi Ajuan</string>
@@ -122,6 +167,17 @@
       <bold>false</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+}</string>
+    </property>
     <property name="text">
      <string>Riwayat Pinjam</string>
     </property>
@@ -146,6 +202,17 @@
       <bold>false</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #C8DFDB;
+    color: #3368A0;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #3368A0;
+    color: #FFFFFF;
+}</string>
+    </property>
     <property name="text">
      <string>Logout</string>
     </property>
@@ -166,7 +233,12 @@
     <property name="font">
      <font>
       <pointsize>8</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
     </property>
     <property name="text">
      <string>Filter Pengajuan Masuk</string>
@@ -177,8 +249,8 @@
      <rect>
       <x>180</x>
       <y>90</y>
-      <width>47</width>
-      <height>16</height>
+      <width>55</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -186,6 +258,9 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
     </property>
     <property name="text">
      <string>Diajukan :</string>
@@ -200,6 +275,12 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
@@ -207,7 +288,7 @@
       <x>400</x>
       <y>90</y>
       <width>47</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -215,6 +296,9 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
     </property>
     <property name="text">
      <string>Cari :</string>
@@ -226,7 +310,7 @@
       <x>440</x>
       <y>90</y>
       <width>151</width>
-      <height>20</height>
+      <height>22</height>
      </rect>
     </property>
     <property name="font">
@@ -235,7 +319,16 @@
       <bold>false</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #FFFFFF;
+border: 1px solid #66A3BF;
+border-radius: 4px;
+padding-left: 5px;</string>
+    </property>
     <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
      <string>Nama OKI / Kategori</string>
     </property>
    </widget>
@@ -245,14 +338,25 @@
       <x>620</x>
       <y>90</y>
       <width>75</width>
-      <height>23</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <weight>50</weight>
-      <bold>false</bold>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #66A3BF;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #3368A0;
+}</string>
     </property>
     <property name="text">
      <string>Cari</string>
@@ -263,12 +367,15 @@
      <rect>
       <x>180</x>
       <y>140</y>
-      <width>121</width>
+      <width>141</width>
       <height>16</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3368A0;</string>
+    </property>
     <property name="text">
-     <string>Status Pengajuan </string>
+     <string>Status Pengajuan</string>
     </property>
    </widget>
    <widget class="QTableWidget" name="tableWidget">
@@ -280,21 +387,45 @@
       <height>291</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget {
+    background-color: #FFFFFF;
+    border: 2px solid #C8DFDB;
+    border-radius: 6px;
+}
+QHeaderView::section {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 4px;
+}</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>310</x>
       <y>480</y>
-      <width>221</width>
-      <height>23</height>
+      <width>291</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <weight>50</weight>
-      <bold>false</bold>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3368A0;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #66A3BF;
+}</string>
     </property>
     <property name="text">
      <string>Lihat Detail dan Verifikasi Pengajuan</string>
@@ -307,7 +438,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
