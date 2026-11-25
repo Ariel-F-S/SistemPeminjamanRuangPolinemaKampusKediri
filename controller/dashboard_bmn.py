@@ -74,56 +74,35 @@ class DashboardBMNController(QMainWindow):
         return str(tanggal)
 
     # --- TAMPILKAN DATA DASHBOARD ---
+    
     def load_data(self):
         try:
             # Ambil statistik BMN
-            menunggu, tersedia, terpakai = (
-                self.model.get_statistik_bmn()
-            )
+            menunggu, tersedia, terpakai = self.model.get_statistik_bmn()
 
             # Tampilkan statistik
             self.ui.label_4.setText(str(menunggu))
             self.ui.label_6.setText(str(tersedia))
             self.ui.label_8.setText(str(terpakai))
 
-            # Ambil pengajuan menunggu
-            rows = self.model.select_pengajuan_admin("Menunggu")
+            # Ambil pengajuan yang menunggu verifikasi
+            rows = self.model.select_pengajuan_admin("Menunggu") or []
 
             # Bersihkan tabel
             self.ui.tableWidget.setRowCount(0)
-
-            # Masukkan data ke tabel
             self.ui.tableWidget.setRowCount(len(rows))
 
-<<<<<<< HEAD
-        sql = """
-            SELECT p.id_pengajuan, COALESCE(u.nama_organisasi, u.nama), p.nama_kegiatan,
-                   r.kode_ruang, r.nama_ruang, p.tanggal_mulai, p.tanggal_selesai, p.status_pengajuan
-            FROM pengajuan_peminjaman p
-            JOIN ruang r ON p.id_ruang = r.id_ruang
-            JOIN pengguna u ON p.id_oki = u.id_pengguna
-            ORDER BY p.id_pengajuan ASC
-        """
-        cursor.execute(sql)
-        rows = cursor.fetchall() or []
-        conn.close()
-=======
+            # Masukkan data ke tabel
             for i, row in enumerate(rows):
->>>>>>> d979c26333f1efecfc1ccaa5ec6c2810c9eab7a3
-
                 tanggal_mulai = self.format_tanggal(
-                    row[5],
-                    "%d-%m-%Y %H:%M"
+                    row[5], "%d-%m-%Y %H:%M"
                 )
 
                 tanggal_selesai = self.format_tanggal(
-                    row[6],
-                    "%H:%M"
+                    row[6], "%H:%M"
                 )
 
-                waktu = (
-                    f"{tanggal_mulai} s/d {tanggal_selesai}"
-                )
+                waktu = f"{tanggal_mulai} s/d {tanggal_selesai}"
 
                 values = [
                     row[0],
@@ -136,9 +115,7 @@ class DashboardBMNController(QMainWindow):
 
                 for j, value in enumerate(values):
                     item = QTableWidgetItem(str(value))
-
                     item.setData(Qt.UserRole, row[0])
-
                     self.ui.tableWidget.setItem(i, j, item)
 
             self.ui.tableWidget.resizeRowsToContents()
@@ -147,27 +124,28 @@ class DashboardBMNController(QMainWindow):
             print("Terjadi kesalahan saat memuat Dashboard BMN:")
             traceback.print_exc()
 
+
     # --- MENU KELOLA RUANG ---
     def menu_kelola_ruang(self):
-        from controller.bmn_kelola_ruang import KelolaDataRuangController
+        from controller.bmn_kelola_ruang import BmnKelolaRuangController
 
-        self.win = KelolaDataRuangController(self.user)
+        self.win = BmnKelolaRuangController(self.user)
         self.win.show()
         self.close()
 
     # --- MENU VERIFIKASI ---
     def menu_verifikasi(self):
-        from controller.bmn_kelola_pengajuan import VerifikasiAjuanController
+        from controller.bmn_kelola_pengajuan import BmnKelolaPengajuanController
 
-        self.win = VerifikasiAjuanController(self.user)
+        self.win = BmnKelolaPengajuanController(self.user)
         self.win.show()
         self.close()
 
     # --- MENU RIWAYAT ---
     def menu_riwayat(self):
-        from controller.bmn_riwayat_peminjaman import RiwayatPeminjamanController
+        from controller.bmn_riwayat_peminjaman import BmnRiwayatPeminjamanController
 
-        self.win = RiwayatPeminjamanController(self.user)
+        self.win = BmnRiwayatPeminjamanController(self.user)
         self.win.show()
         self.close()
 
