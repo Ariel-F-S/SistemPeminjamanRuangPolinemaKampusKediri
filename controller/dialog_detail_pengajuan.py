@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import os
 
 from PyQt5.QtWidgets import QDialog, QMessageBox
@@ -132,5 +131,3 @@ class DialogDetailPengajuanController(QDialog):
                 os.path.abspath(self.file_surat)
             )
         )
-=======
->>>>>>> 5cd3826aa7264c429c6569c543d1537661225c85

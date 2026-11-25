@@ -8,7 +8,7 @@ from model.connectiondb import get_db_connection
 try:
     import ui.jadwal_kampus as _ui_form
 except ImportError:
-    import ui.jadwal_disetujui as _ui_form
+    import ui.jadwal_kampus as _ui_form
 
 _ui_name = [n for n in dir(_ui_form) if n.startswith("Ui_")][0]
 _UiClass = getattr(_ui_form, _ui_name)
