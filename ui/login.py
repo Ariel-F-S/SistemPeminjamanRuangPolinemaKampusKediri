@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/login.ui'
+# Form implementation generated from reading ui file 'login.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -130,13 +130,13 @@ class Ui_MainWindow(object):
 "    background-color: #66A3BF;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("ui\\../icon/enter.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../icon/enter.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon)
         self.pushButton.setObjectName("pushButton")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(120, 120, 181, 181))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("ui\\../icon/logo_polinema copy.png"))
+        self.label.setPixmap(QtGui.QPixmap("../icon/logo_polinema copy.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         MainWindow.setCentralWidget(self.centralwidget)

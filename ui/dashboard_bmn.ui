@@ -24,13 +24,14 @@
      <rect>
       <x>20</x>
       <y>30</y>
-      <width>341</width>
+      <width>501</width>
       <height>16</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -52,7 +53,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -194,6 +196,7 @@ QPushButton:hover {
     </property>
     <property name="font">
      <font>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -362,6 +365,7 @@ QLabel {
     </property>
     <property name="font">
      <font>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -402,7 +406,7 @@ QHeaderView::section {
      <x>0</x>
      <y>0</y>
      <width>801</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
