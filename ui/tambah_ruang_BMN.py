@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'tambah_ruang_BMN.ui'
+# Form implementation generated from reading ui file 'D:\kuliah\SMT 3\PBO\UAS\ui\tambah_ruang_BMN.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import resources_rc
 
 
 class Ui_Dialog(object):
@@ -107,7 +106,7 @@ class Ui_Dialog(object):
 "    color: #FFFFFF;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(Dialog)
@@ -122,7 +121,7 @@ class Ui_Dialog(object):
 "    background-color: #66A3BF;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icon/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_2.setIcon(icon1)
         self.pushButton_2.setObjectName("pushButton_2")
 

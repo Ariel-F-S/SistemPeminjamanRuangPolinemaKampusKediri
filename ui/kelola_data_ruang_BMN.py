@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'kelola_data_ruang_BMN.ui'
+# Form implementation generated from reading ui file 'D:\kuliah\SMT 3\PBO\UAS\ui\kelola_data_ruang_BMN.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import resources_rc
 
 
 class Ui_MainWindow(object):
@@ -42,7 +41,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
@@ -54,7 +53,7 @@ class Ui_MainWindow(object):
 "    font-weight: bold;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_2.setIcon(icon1)
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
@@ -69,7 +68,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("icon/verifikasi.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/verifikasi.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_3.setIcon(icon2)
         self.pushButton_3.setObjectName("pushButton_3")
         self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
@@ -84,7 +83,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_4.setIcon(icon3)
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
@@ -99,7 +98,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_5.setIcon(icon4)
         self.pushButton_5.setObjectName("pushButton_5")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
@@ -145,7 +144,7 @@ class Ui_MainWindow(object):
 "    background-color: #3368A0;\n"
 "}")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("icon/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_6.setIcon(icon5)
         self.pushButton_6.setObjectName("pushButton_6")
         self.pushButton_7 = QtWidgets.QPushButton(self.centralwidget)
@@ -160,7 +159,7 @@ class Ui_MainWindow(object):
 "    background-color: #66A3BF;\n"
 "}")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("icon/add.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/add.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_7.setIcon(icon6)
         self.pushButton_7.setObjectName("pushButton_7")
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
@@ -191,7 +190,7 @@ class Ui_MainWindow(object):
 "    background-color: #3368A0;\n"
 "}")
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap("icon/transfer-data.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/transfer-data.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_8.setIcon(icon7)
         self.pushButton_8.setObjectName("pushButton_8")
         self.pushButton_9 = QtWidgets.QPushButton(self.centralwidget)
@@ -206,7 +205,7 @@ class Ui_MainWindow(object):
 "    background-color: #3368A0;\n"
 "}")
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap("icon/bin.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/bin.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_9.setIcon(icon8)
         self.pushButton_9.setObjectName("pushButton_9")
         MainWindow.setCentralWidget(self.centralwidget)

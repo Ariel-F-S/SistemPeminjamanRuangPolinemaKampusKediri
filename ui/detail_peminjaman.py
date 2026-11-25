@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'detail_peminjaman.ui'
+# Form implementation generated from reading ui file 'D:\kuliah\SMT 3\PBO\UAS\ui\detail_peminjaman.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import resources_rc
 
 
 class Ui_Dialog(object):
@@ -183,7 +182,7 @@ class Ui_Dialog(object):
 "    background-color: #3368A0;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icon/contract.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/contract.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon)
         self.pushButton.setObjectName("pushButton")
 

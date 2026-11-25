@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'dashboard_bmn.ui'
+# Form implementation generated from reading ui file 'D:\kuliah\SMT 3\PBO\UAS\ui\dashboard_bmn.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import resources_rc
 
 
 class Ui_MainWindow(object):
@@ -43,7 +42,7 @@ class Ui_MainWindow(object):
 "    font-weight: bold;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
@@ -58,7 +57,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_2.setIcon(icon1)
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
@@ -73,7 +72,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("icon/verifikasi.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/verifikasi.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_3.setIcon(icon2)
         self.pushButton_3.setObjectName("pushButton_3")
         self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
@@ -88,7 +87,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_4.setIcon(icon3)
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
@@ -103,7 +102,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_5.setIcon(icon4)
         self.pushButton_5.setObjectName("pushButton_5")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
@@ -130,10 +129,10 @@ class Ui_MainWindow(object):
         self.label_3.setGeometry(QtCore.QRect(10, 10, 71, 16))
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setGeometry(QtCore.QRect(80, 10, 47, 16))
+        self.label_4.setGeometry(QtCore.QRect(80, 10, 71, 16))
         self.label_4.setObjectName("label_4")
         self.frame_2 = QtWidgets.QFrame(self.centralwidget)
-        self.frame_2.setGeometry(QtCore.QRect(390, 90, 161, 41))
+        self.frame_2.setGeometry(QtCore.QRect(360, 90, 161, 41))
         self.frame_2.setStyleSheet("QFrame#frame_2 {\n"
 "    background-color: #66A3BF;\n"
 "    border-radius: 6px;\n"
@@ -148,10 +147,10 @@ class Ui_MainWindow(object):
         self.label_5.setGeometry(QtCore.QRect(10, 10, 71, 21))
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(self.frame_2)
-        self.label_6.setGeometry(QtCore.QRect(90, 10, 47, 21))
+        self.label_6.setGeometry(QtCore.QRect(90, 10, 61, 21))
         self.label_6.setObjectName("label_6")
         self.frame_3 = QtWidgets.QFrame(self.centralwidget)
-        self.frame_3.setGeometry(QtCore.QRect(600, 90, 161, 41))
+        self.frame_3.setGeometry(QtCore.QRect(540, 90, 191, 41))
         self.frame_3.setStyleSheet("QFrame#frame_3 {\n"
 "    background-color: #66A3BF;\n"
 "    border-radius: 6px;\n"
@@ -163,10 +162,10 @@ class Ui_MainWindow(object):
         self.frame_3.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frame_3.setObjectName("frame_3")
         self.label_7 = QtWidgets.QLabel(self.frame_3)
-        self.label_7.setGeometry(QtCore.QRect(10, 10, 91, 16))
+        self.label_7.setGeometry(QtCore.QRect(10, 10, 111, 16))
         self.label_7.setObjectName("label_7")
         self.label_8 = QtWidgets.QLabel(self.frame_3)
-        self.label_8.setGeometry(QtCore.QRect(100, 10, 47, 16))
+        self.label_8.setGeometry(QtCore.QRect(120, 10, 61, 16))
         self.label_8.setObjectName("label_8")
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
         self.label_9.setGeometry(QtCore.QRect(180, 160, 171, 16))
@@ -194,7 +193,7 @@ class Ui_MainWindow(object):
         self.tableWidget.setRowCount(0)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 801, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 801, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)

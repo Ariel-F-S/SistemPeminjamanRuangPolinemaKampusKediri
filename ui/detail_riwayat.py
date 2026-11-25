@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'detail_riwayat.ui'
+# Form implementation generated from reading ui file 'D:\kuliah\SMT 3\PBO\UAS\ui\detail_riwayat.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import resources_rc
 
 
 class Ui_DetailRiwayat(object):
@@ -17,7 +16,7 @@ class Ui_DetailRiwayat(object):
         DetailRiwayat.setObjectName("DetailRiwayat")
         DetailRiwayat.resize(440, 445)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/app.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\icons/app.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         DetailRiwayat.setWindowIcon(icon)
         DetailRiwayat.setStyleSheet("QDialog#DetailRiwayat {\n"
 "    background-color: #F2EFE7;\n"
@@ -167,7 +166,7 @@ class Ui_DetailRiwayat(object):
 "    background-color: #66A3BF;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnTutup.setIcon(icon1)
         self.btnTutup.setObjectName("btnTutup")
 
