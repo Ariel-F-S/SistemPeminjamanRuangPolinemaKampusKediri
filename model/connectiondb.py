@@ -5,5 +5,6 @@ def get_db_connection():
         host="localhost",
         user="root",
         password="",
-        database="uas_pbo"
+        database="uas_pbo",
+        use_pure=True
     )
