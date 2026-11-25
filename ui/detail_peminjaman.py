@@ -183,7 +183,7 @@ class Ui_Dialog(object):
 "    background-color: #3368A0;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../icon/contract.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("icon/contract.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon)
         self.pushButton.setObjectName("pushButton")
 

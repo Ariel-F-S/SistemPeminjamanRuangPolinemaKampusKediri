@@ -176,7 +176,7 @@ class Ui_Dialog(object):
 "    color: #FFFFFF;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../icon/back-button.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("icon/back-button.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_2.setIcon(icon)
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_3 = QtWidgets.QPushButton(Dialog)
@@ -191,7 +191,7 @@ class Ui_Dialog(object):
 "    background-color: #3368A0;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_3.setIcon(icon1)
         self.pushButton_3.setObjectName("pushButton_3")
         self.pushButton_4 = QtWidgets.QPushButton(Dialog)
@@ -206,7 +206,7 @@ class Ui_Dialog(object):
 "    background-color: #66A3BF;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../icon/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("icon/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_4.setIcon(icon2)
         self.pushButton_4.setObjectName("pushButton_4")
 

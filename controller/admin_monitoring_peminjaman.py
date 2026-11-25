@@ -1,12 +1,12 @@
 from datetime import datetime
 from PyQt5.QtWidgets import (
     QMainWindow, QMessageBox, QTableWidgetItem, QHeaderView,
-    QAbstractItemView, QPushButton, QFileDialog
+    QAbstractItemView, QFileDialog
 )
-from PyQt5.QtGui import QTextDocument
+from PyQt5.QtGui import QStandardItemModel, QStandardItem, QTextDocument
 from PyQt5.QtPrintSupport import QPrinter
 from PyQt5.QtCore import Qt
-from ui.dashboard_admin import Ui_MainWindow
+from ui.data_peminjaman_admin import Ui_MainWindow
 from model.User import User
 
 
@@ -18,44 +18,35 @@ class AdminMonitoringPeminjamanController(QMainWindow):
         self.user = user_data
         self.model = User()
 
-        self.ui.label_2.setText("Akun OKI :")
-        self.ui.label_5.setText("Akun BMN :")
-        self.ui.label_7.setText("Akun Admin :")
-        self.ui.label_11.setText("Monitoring Data Peminjaman Ruang (Disetujui)")
+        self.setWindowTitle("POLINEMA PSDKU KEDIRI - Data Peminjaman")
 
-        # Tambahkan tombol Cetak Riwayat PDF otomatis tanpa mengubah file .ui
-        self.btnCetakRiwayat = QPushButton("Cetak Riwayat PDF", self.ui.centralwidget)
-        self.btnCetakRiwayat.setStyleSheet("""
-            QPushButton {
-                background-color: #3368A0;
-                color: white;
-                font-weight: bold;
-                border-radius: 6px;
-                padding: 6px 14px;
-            }
-            QPushButton:hover {
-                background-color: #275280;
-            }
-        """)
-        self.btnCetakRiwayat.adjustSize()
-        self.btnCetakRiwayat.setFixedHeight(32)
-        # Posisikan rapi di pojok kanan atas tabel
-        tbl_geo = self.ui.tableWidget.geometry()
-        self.btnCetakRiwayat.move(
-            tbl_geo.x() + tbl_geo.width() - self.btnCetakRiwayat.width(),
-            tbl_geo.y() - 38
-        )
-        self.btnCetakRiwayat.clicked.connect(self.cetak_riwayat_pdf)
+        if hasattr(self.ui, "label_11"):
+            self.ui.label_11.setText("Data Peminjaman Ruang (Disetujui & Selesai)")
 
-        self.ui.tableWidget.setColumnCount(6)
-        self.ui.tableWidget.setHorizontalHeaderLabels([
-            "ID", "Organisasi (OKI)", "Nama Kegiatan", "Ruang", "Waktu Pinjam", "Status"
-        ])
-        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.ui.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.ui.tableWidget.doubleClicked.connect(self.buka_detail_pengajuan)
+        # Setup tabel (otomatis mendukung tableWidget maupun tableView)
+        if hasattr(self.ui, "tableWidget"):
+            self.ui.tableWidget.setColumnCount(6)
+            self.ui.tableWidget.setHorizontalHeaderLabels([
+                "ID", "Organisasi (OKI)", "Nama Kegiatan", "Ruang", "Waktu Pinjam", "Status"
+            ])
+            self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+            self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
+            self.ui.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+            self.ui.tableWidget.doubleClicked.connect(self.buka_detail_pengajuan)
+        elif hasattr(self.ui, "tableView"):
+            self.table_model = QStandardItemModel()
+            self.ui.tableView.setModel(self.table_model)
+            self.ui.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
+            self.ui.tableView.setSelectionMode(QAbstractItemView.SingleSelection)
+            self.ui.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
+            self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+            self.ui.tableView.doubleClicked.connect(self.buka_detail_pengajuan)
 
+        # Hubungkan tombol Cetak Riwayat Peminjaman di bawah tabel (pushButton_7)
+        if hasattr(self.ui, "pushButton_7"):
+            self.ui.pushButton_7.clicked.connect(self.cetak_riwayat_pdf)
+
+        # Navigasi Sidebar Admin
         self.ui.pushButton.clicked.connect(self.buka_dashboard)
         self.ui.pushButton_2.clicked.connect(self.buka_kelola_akun)
         self.ui.pushButton_3.clicked.connect(self.buka_monitoring_ruang)
@@ -65,27 +56,44 @@ class AdminMonitoringPeminjamanController(QMainWindow):
 
         self.load_data()
 
-    def load_data(self):
-        stat = self.model.get_statistik_dashboard()
-        self.ui.label_4.setText(str(stat["OKI"]))
-        self.ui.label_6.setText(str(stat["BMN"]))
-        self.ui.label_8.setText(str(stat["Admin"]))
-        self.ui.label_10.setText(str(stat["Disetujui"]))
+    def _ambil_data_peminjaman(self):
+        return (self.model.select_pengajuan_admin("Disetujui") or []) + (
+            self.model.select_pengajuan_admin("Selesai") or []
+        )
 
-        rows = self.model.select_pengajuan_admin("Disetujui")
-        self.ui.tableWidget.setRowCount(len(rows))
-        for idx, row in enumerate(rows):
-            waktu = f"{row[5].strftime('%d-%m-%Y %H:%M')} s/d {row[6].strftime('%H:%M')}"
-            items = [str(row[0]), row[1], row[2], f"{row[3]} - {row[4]}", waktu, row[7]]
-            for col, val in enumerate(items):
-                item = QTableWidgetItem(val)
-                item.setData(Qt.UserRole, row[0])
-                self.ui.tableWidget.setItem(idx, col, item)
+    def load_data(self):
+        rows = self._ambil_data_peminjaman()
+        headers = ["ID", "Organisasi (OKI)", "Nama Kegiatan", "Ruang", "Waktu Pinjam", "Status"]
+
+        if hasattr(self.ui, "tableWidget"):
+            self.ui.tableWidget.setRowCount(len(rows))
+            for idx, row in enumerate(rows):
+                waktu = f"{row[5].strftime('%d-%m-%Y %H:%M')} s/d {row[6].strftime('%H:%M')}"
+                items = [str(row[0]), row[1], row[2], f"{row[3]} - {row[4]}", waktu, row[7]]
+                for col, val in enumerate(items):
+                    item = QTableWidgetItem(val)
+                    item.setData(Qt.UserRole, row[0])
+                    self.ui.tableWidget.setItem(idx, col, item)
+        elif hasattr(self.ui, "tableView"):
+            self.table_model.clear()
+            self.table_model.setHorizontalHeaderLabels(headers)
+            for row in rows:
+                waktu = f"{row[5].strftime('%d-%m-%Y %H:%M')} s/d {row[6].strftime('%H:%M')}"
+                item_id = QStandardItem(str(row[0]))
+                item_id.setData(row[0], Qt.UserRole)
+                self.table_model.appendRow([
+                    item_id,
+                    QStandardItem(row[1]),
+                    QStandardItem(row[2]),
+                    QStandardItem(f"{row[3]} - {row[4]}"),
+                    QStandardItem(waktu),
+                    QStandardItem(row[7]),
+                ])
 
     def cetak_riwayat_pdf(self):
-        rows = self.model.select_pengajuan_admin("Disetujui")
+        rows = self._ambil_data_peminjaman()
         if not rows:
-            QMessageBox.warning(self, "Data Kosong", "Belum ada data peminjaman yang disetujui untuk dicetak.")
+            QMessageBox.warning(self, "Data Kosong", "Belum ada data peminjaman untuk dicetak.")
             return
 
         default_name = f"Riwayat_Peminjaman_Ruang_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf"
@@ -155,13 +163,22 @@ class AdminMonitoringPeminjamanController(QMainWindow):
         QMessageBox.information(self, "Berhasil", f"Laporan riwayat peminjaman berhasil disimpan di:\n{file_path}")
 
     def buka_detail_pengajuan(self):
-        row_idx = self.ui.tableWidget.currentRow()
-        if row_idx < 0:
-            return
-        id_pengajuan = self.ui.tableWidget.item(row_idx, 0).data(Qt.UserRole)
-        from controller.dialog_detail_pengajuan import DialogDetailPengajuanController
-        dialog = DialogDetailPengajuanController(id_pengajuan, parent=self)
-        dialog.exec_()
+        id_pengajuan = None
+        if hasattr(self.ui, "tableWidget"):
+            row_idx = self.ui.tableWidget.currentRow()
+            if row_idx < 0:
+                return
+            id_pengajuan = self.ui.tableWidget.item(row_idx, 0).data(Qt.UserRole)
+        elif hasattr(self.ui, "tableView"):
+            indexes = self.ui.tableView.selectionModel().selectedRows()
+            if not indexes:
+                return
+            id_pengajuan = self.table_model.item(indexes[0].row(), 0).data(Qt.UserRole)
+
+        if id_pengajuan:
+            from controller.dialog_detail_pengajuan import DialogDetailPengajuanController
+            dialog = DialogDetailPengajuanController(id_pengajuan, parent=self)
+            dialog.exec_()
 
     def buka_dashboard(self):
         from controller.dashboard_admin import DashboardAdminController

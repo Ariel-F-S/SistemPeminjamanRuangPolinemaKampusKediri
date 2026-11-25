@@ -167,7 +167,7 @@ class Ui_DetailRiwayat(object):
 "    background-color: #66A3BF;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnTutup.setIcon(icon1)
         self.btnTutup.setObjectName("btnTutup")
 
