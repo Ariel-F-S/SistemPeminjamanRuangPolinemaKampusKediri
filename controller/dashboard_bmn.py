@@ -1,100 +1,101 @@
+
+import traceback
+
 from PyQt5.QtWidgets import (
-    QMainWindow, QWidget, QMessageBox, QTableWidget, QTableWidgetItem,
-    QHeaderView, QAbstractItemView, QPushButton, QLabel
+    QMainWindow,
+    QMessageBox,
+    QTableWidgetItem,
+    QHeaderView,
+    QAbstractItemView
 )
 from PyQt5.QtCore import Qt
-import ui.dashboard_bmn as _ui_form
-from model.connectiondb import get_db_connection
 
-_ui_name = [n for n in dir(_ui_form) if n.startswith("Ui_")][0]
-_UiClass = getattr(_ui_form, _ui_name)
-_BaseClass = QMainWindow if _ui_name == "Ui_MainWindow" else QWidget
+from ui.dashboard_bmn import Ui_MainWindow
+from model.User import User
 
 
-class DashboardBMNController(_BaseClass):
-    def __init__(self, user_data):
+class DashboardBMNController(QMainWindow):
+    def __init__(self, user=None):
         super().__init__()
-        self.ui = _UiClass()
+
+        self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.user = user_data
 
-        nama_bmn = self.user.get("nama", "Petugas BMN")
-        for nama_lbl in ("lblBmn", "lblUser", "label_user", "label_bmn"):
-            lbl = getattr(self.ui, nama_lbl, None)
-            if isinstance(lbl, QLabel):
-                lbl.setText(f"BMN: {nama_bmn}")
-                break
+        self.user = user or {}
+        self.model = User()
 
-        # Simpan referensi 3 QLabel angka ('TextLabel') dari kiri ke kanan sekali saat init
-        self.label_angka = sorted(
-            [lbl for lbl in self.findChildren(QLabel) if lbl.text().strip().lower() == "textlabel"],
-            key=lambda w: w.mapToGlobal(w.rect().topLeft()).x()
-        )
+        self.setWindowTitle("Dashboard BMN - POLINEMA PSDKU KEDIRI")
 
-        # Pengaturan lebar kolom tabel agar proporsional dan terbaca utuh
-        daftar_tbl = self.findChildren(QTableWidget)
-        self.tabel = daftar_tbl[0] if daftar_tbl else None
-        if self.tabel:
-            self.tabel.setColumnCount(6)
-            self.tabel.setHorizontalHeaderLabels([
-                "ID", "Organisasi (OKI)", "Nama Kegiatan", "Ruang", "Waktu Pinjam", "Status"
-            ])
-            header = self.tabel.horizontalHeader()
-            header.setSectionResizeMode(QHeaderView.Interactive)
-            header.setStretchLastSection(True)
-
-            self.tabel.setColumnWidth(0, 42)   # ID
-            self.tabel.setColumnWidth(1, 135)  # Organisasi (OKI)
-            self.tabel.setColumnWidth(2, 185)  # Nama Kegiatan
-            self.tabel.setColumnWidth(3, 165)  # Ruang
-            self.tabel.setColumnWidth(4, 120)  # Waktu Pinjam (2 baris)
-            self.tabel.setColumnWidth(5, 90)   # Status
-
-            self.tabel.verticalHeader().setVisible(False)
-            self.tabel.setWordWrap(True)
-            self.tabel.setSelectionBehavior(QAbstractItemView.SelectRows)
-            self.tabel.setSelectionMode(QAbstractItemView.SingleSelection)
-            self.tabel.setEditTriggers(QAbstractItemView.NoEditTriggers)
-            self.tabel.doubleClicked.connect(self.buka_dialog_verifikasi)
-
-        for btn in self.findChildren(QPushButton):
-            teks = btn.text().lower()
-            if "dashboard" in teks:
-                btn.clicked.connect(self.load_data)
-            elif "ruang" in teks:
-                btn.clicked.connect(self.buka_kelola_ruang)
-            elif "verifikasi" in teks or "ajuan" in teks or "pengajuan" in teks:
-                btn.clicked.connect(self.buka_kelola_pengajuan)
-            elif "riwayat" in teks:
-                btn.clicked.connect(self.buka_riwayat_bmn)
-            elif "logout" in teks:
-                btn.clicked.connect(self.logout)
-
+        self.setup_table()
+        self.connect_signals()
         self.load_data()
 
-    def load_data(self):
-        conn = get_db_connection()
-        cursor = conn.cursor()
+    # --- PENGATURAN TABEL ---
+    def setup_table(self):
+        self.ui.tableWidget.setColumnCount(6)
 
-        cursor.execute("SELECT COUNT(*) FROM pengajuan_peminjaman WHERE status_pengajuan = 'Menunggu'")
-        jml_menunggu = cursor.fetchone()[0]
+        self.ui.tableWidget.setHorizontalHeaderLabels([
+            "ID",
+            "Organisasi",
+            "Kegiatan",
+            "Ruang",
+            "Waktu Pinjam",
+            "Status"
+        ])
 
-        cursor.execute("SELECT COUNT(*) FROM ruang WHERE status_ruang = 'Tersedia'")
-        jml_ruang_siap = cursor.fetchone()[0]
-
-        cursor.execute(
-            """
-            SELECT COUNT(*) FROM pengajuan_peminjaman
-            WHERE status_pengajuan = 'Disetujui' AND DATE(tanggal_mulai) = CURDATE()
-            """
+        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(
+            QHeaderView.Stretch
         )
-        jml_terpakai_hari_ini = cursor.fetchone()[0]
 
-        if len(self.label_angka) >= 3:
-            self.label_angka[0].setText(str(jml_menunggu))
-            self.label_angka[1].setText(str(jml_ruang_siap))
-            self.label_angka[2].setText(str(jml_terpakai_hari_ini))
+        self.ui.tableWidget.setSelectionBehavior(
+            QAbstractItemView.SelectRows
+        )
 
+        self.ui.tableWidget.setEditTriggers(
+            QAbstractItemView.NoEditTriggers
+        )
+
+    # --- HUBUNGKAN TOMBOL ---
+    def connect_signals(self):
+        self.ui.pushButton.clicked.connect(self.load_data)
+        self.ui.pushButton_2.clicked.connect(self.menu_kelola_ruang)
+        self.ui.pushButton_3.clicked.connect(self.menu_verifikasi)
+        self.ui.pushButton_4.clicked.connect(self.menu_riwayat)
+        self.ui.pushButton_5.clicked.connect(self.menu_logout)
+
+    # --- FORMAT TANGGAL ---
+    def format_tanggal(self, tanggal, format_tanggal):
+        if tanggal is None:
+            return "-"
+
+        if hasattr(tanggal, "strftime"):
+            return tanggal.strftime(format_tanggal)
+
+        return str(tanggal)
+
+    # --- TAMPILKAN DATA DASHBOARD ---
+    def load_data(self):
+        try:
+            # Ambil statistik BMN
+            menunggu, tersedia, terpakai = (
+                self.model.get_statistik_bmn()
+            )
+
+            # Tampilkan statistik
+            self.ui.label_4.setText(str(menunggu))
+            self.ui.label_6.setText(str(tersedia))
+            self.ui.label_8.setText(str(terpakai))
+
+            # Ambil pengajuan menunggu
+            rows = self.model.select_pengajuan_admin("Menunggu")
+
+            # Bersihkan tabel
+            self.ui.tableWidget.setRowCount(0)
+
+            # Masukkan data ke tabel
+            self.ui.tableWidget.setRowCount(len(rows))
+
+<<<<<<< HEAD
         sql = """
             SELECT p.id_pengajuan, COALESCE(u.nama_organisasi, u.nama), p.nama_kegiatan,
                    r.kode_ruang, r.nama_ruang, p.tanggal_mulai, p.tanggal_selesai, p.status_pengajuan
@@ -106,63 +107,83 @@ class DashboardBMNController(_BaseClass):
         cursor.execute(sql)
         rows = cursor.fetchall() or []
         conn.close()
+=======
+            for i, row in enumerate(rows):
+>>>>>>> d979c26333f1efecfc1ccaa5ec6c2810c9eab7a3
 
-        if not self.tabel:
-            return
+                tanggal_mulai = self.format_tanggal(
+                    row[5],
+                    "%d-%m-%Y %H:%M"
+                )
 
-        self.tabel.setRowCount(len(rows))
-        for idx, row in enumerate(rows):
-            waktu = f"{row[5].strftime('%d-%m-%Y')}\n{row[5].strftime('%H:%M')} - {row[6].strftime('%H:%M')}"
-            items = [
-                str(row[0]), row[1], row[2],
-                f"{row[3]} - {row[4]}", waktu, row[7]
-            ]
-            for col, val in enumerate(items):
-                item = QTableWidgetItem(val)
-                item.setData(Qt.UserRole, row[0])
-                if col in (0, 4, 5):
-                    item.setTextAlignment(Qt.AlignCenter)
-                self.tabel.setItem(idx, col, item)
+                tanggal_selesai = self.format_tanggal(
+                    row[6],
+                    "%H:%M"
+                )
 
-        self.tabel.resizeRowsToContents()
-        for r in range(self.tabel.rowCount()):
-            if self.tabel.rowHeight(r) < 50:
-                self.tabel.setRowHeight(r, 50)
+                waktu = (
+                    f"{tanggal_mulai} s/d {tanggal_selesai}"
+                )
 
-    def buka_dialog_verifikasi(self):
-        if not self.tabel or self.tabel.currentRow() < 0:
-            return
-        id_pengajuan = self.tabel.item(self.tabel.currentRow(), 0).data(Qt.UserRole)
-        from controller.dialog_verifikasi_pengajuan import DialogVerifikasiPengajuanController
-        dialog = DialogVerifikasiPengajuanController(id_pengajuan, self.user, parent=self)
-        dialog.exec_()
-        self.load_data()
+                values = [
+                    row[0],
+                    row[1],
+                    row[2],
+                    f"{row[3]} - {row[4]}",
+                    waktu,
+                    row[7]
+                ]
 
-    def buka_kelola_ruang(self):
-        from controller.bmn_kelola_ruang import BmnKelolaRuangController
-        self.win = BmnKelolaRuangController(self.user)
+                for j, value in enumerate(values):
+                    item = QTableWidgetItem(str(value))
+
+                    item.setData(Qt.UserRole, row[0])
+
+                    self.ui.tableWidget.setItem(i, j, item)
+
+            self.ui.tableWidget.resizeRowsToContents()
+
+        except Exception:
+            print("Terjadi kesalahan saat memuat Dashboard BMN:")
+            traceback.print_exc()
+
+    # --- MENU KELOLA RUANG ---
+    def menu_kelola_ruang(self):
+        from controller.bmn_kelola_ruang import KelolaDataRuangController
+
+        self.win = KelolaDataRuangController(self.user)
         self.win.show()
         self.close()
 
-    def buka_kelola_pengajuan(self):
-        from controller.bmn_kelola_pengajuan import BmnKelolaPengajuanController
-        self.win = BmnKelolaPengajuanController(self.user)
+    # --- MENU VERIFIKASI ---
+    def menu_verifikasi(self):
+        from controller.bmn_kelola_pengajuan import VerifikasiAjuanController
+
+        self.win = VerifikasiAjuanController(self.user)
         self.win.show()
         self.close()
 
-    def buka_riwayat_bmn(self):
-        from controller.bmn_riwayat_peminjaman import RiwayatPeminjamanBMNController
-        self.win = RiwayatPeminjamanBMNController(self.user)
+    # --- MENU RIWAYAT ---
+    def menu_riwayat(self):
+        from controller.bmn_riwayat_peminjaman import RiwayatPeminjamanController
+
+        self.win = RiwayatPeminjamanController(self.user)
         self.win.show()
         self.close()
 
-    def logout(self):
+    # --- LOGOUT ---
+    def menu_logout(self):
         reply = QMessageBox.question(
-            self, "Konfirmasi Logout", "Apakah Anda yakin ingin keluar dari sistem?",
-            QMessageBox.Yes | QMessageBox.No, QMessageBox.No
+            self,
+            "Konfirmasi Logout",
+            "Yakin ingin keluar?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
         )
+
         if reply == QMessageBox.Yes:
             from controller.login import LoginController
+
             self.login_win = LoginController()
             self.login_win.show()
             self.close()
