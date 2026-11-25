@@ -1,13 +1,14 @@
 from datetime import datetime
 from PyQt5.QtWidgets import (
     QMainWindow, QMessageBox, QTableWidgetItem, QHeaderView,
-    QAbstractItemView, QFileDialog
+    QAbstractItemView, QFileDialog, QLabel
 )
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QTextDocument
 from PyQt5.QtPrintSupport import QPrinter
 from PyQt5.QtCore import Qt
 from ui.data_peminjaman_admin import Ui_MainWindow
 from model.User import User
+from model.connectiondb import get_db_connection
 
 
 class AdminMonitoringPeminjamanController(QMainWindow):
@@ -22,6 +23,25 @@ class AdminMonitoringPeminjamanController(QMainWindow):
 
         if hasattr(self.ui, "label_11"):
             self.ui.label_11.setText("Data Peminjaman Ruang (Disetujui & Selesai)")
+
+        # Rapikan judul 3 kartu teratas yang sebelumnya duplikat 'Akun OKI :'
+        lbl_judul = sorted(
+            [lbl for lbl in self.findChildren(QLabel) if "akun oki" in lbl.text().lower()],
+            key=lambda w: w.mapToGlobal(w.rect().topLeft()).x()
+        )
+        if len(lbl_judul) >= 3:
+            lbl_judul[0].setText("Akun OKI :")
+            lbl_judul[1].setText("Total Ruang :")
+            lbl_judul[2].setText("Menunggu :")
+
+        # Simpan referensi 4 QLabel angka ('TextLabel') berurutan dari atas ke bawah, kiri ke kanan
+        self.label_angka = sorted(
+            [lbl for lbl in self.findChildren(QLabel) if lbl.text().strip().lower() == "textlabel"],
+            key=lambda w: (
+                round(w.mapToGlobal(w.rect().topLeft()).y() / 15),
+                w.mapToGlobal(w.rect().topLeft()).x()
+            )
+        )
 
         # Setup tabel (otomatis mendukung tableWidget maupun tableView)
         if hasattr(self.ui, "tableWidget"):
@@ -68,12 +88,39 @@ class AdminMonitoringPeminjamanController(QMainWindow):
         header.setSectionResizeMode(4, QHeaderView.ResizeToContents)  # Waktu Pinjam
         header.setSectionResizeMode(5, QHeaderView.ResizeToContents)  # Status
 
+    def _update_statistik_kartu(self):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT COUNT(*) FROM pengguna WHERE role = 'oki'")
+        jml_oki = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM ruang")
+        jml_ruang = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM pengajuan_peminjaman WHERE status_pengajuan = 'Menunggu'")
+        jml_menunggu = cursor.fetchone()[0]
+
+        cursor.execute(
+            "SELECT COUNT(*) FROM pengajuan_peminjaman WHERE status_pengajuan IN ('Disetujui', 'Selesai')"
+        )
+        jml_disetujui = cursor.fetchone()[0]
+        conn.close()
+
+        if len(self.label_angka) >= 4:
+            self.label_angka[0].setText(str(jml_oki))
+            self.label_angka[1].setText(str(jml_ruang))
+            self.label_angka[2].setText(str(jml_menunggu))
+            self.label_angka[3].setText(str(jml_disetujui))
+
     def _ambil_data_peminjaman(self):
-        return (self.model.select_pengajuan_admin("Disetujui") or []) + (
+        data = (self.model.select_pengajuan_admin("Disetujui") or []) + (
             self.model.select_pengajuan_admin("Selesai") or []
         )
+        return sorted(data, key=lambda r: r[0])
 
     def load_data(self):
+        self._update_statistik_kartu()
         rows = self._ambil_data_peminjaman()
         headers = ["ID", "Organisasi (OKI)", "Nama Kegiatan", "Ruang", "Waktu Pinjam", "Status"]
 

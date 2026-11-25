@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'jadwal_kampus.ui'
+# Form implementation generated from reading ui file 'D:\kuliah\SMT 3\PBO\UAS\ui\jadwal_kampus.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import resources_rc
 
 
 class Ui_JadwalKampus(object):
@@ -17,7 +16,7 @@ class Ui_JadwalKampus(object):
         JadwalKampus.setObjectName("JadwalKampus")
         JadwalKampus.resize(1000, 620)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/app.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\icons/app.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         JadwalKampus.setWindowIcon(icon)
         JadwalKampus.setStyleSheet("QWidget#JadwalKampus {\n"
 "    background-color: #F2EFE7;\n"
@@ -43,7 +42,7 @@ class Ui_JadwalKampus(object):
 "    color: #FFFFFF;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnDashboard.setIcon(icon1)
         self.btnDashboard.setIconSize(QtCore.QSize(20, 20))
         self.btnDashboard.setCheckable(True)
@@ -61,7 +60,7 @@ class Ui_JadwalKampus(object):
 "    color: #FFFFFF;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnDaftarRuang.setIcon(icon2)
         self.btnDaftarRuang.setIconSize(QtCore.QSize(20, 20))
         self.btnDaftarRuang.setCheckable(True)
@@ -79,7 +78,7 @@ class Ui_JadwalKampus(object):
 "    color: #FFFFFF;\n"
 "}")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("icon/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnAjukanPinjam.setIcon(icon3)
         self.btnAjukanPinjam.setIconSize(QtCore.QSize(20, 20))
         self.btnAjukanPinjam.setCheckable(True)
@@ -97,7 +96,7 @@ class Ui_JadwalKampus(object):
 "    color: #FFFFFF;\n"
 "}")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnRiwayat.setIcon(icon4)
         self.btnRiwayat.setIconSize(QtCore.QSize(20, 20))
         self.btnRiwayat.setCheckable(True)
@@ -112,7 +111,7 @@ class Ui_JadwalKampus(object):
 "    font-weight: bold;\n"
 "}")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("icon/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnJadwal.setIcon(icon5)
         self.btnJadwal.setIconSize(QtCore.QSize(20, 20))
         self.btnJadwal.setCheckable(True)
@@ -131,7 +130,7 @@ class Ui_JadwalKampus(object):
 "    color: #FFFFFF;\n"
 "}")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnLogout.setIcon(icon6)
         self.btnLogout.setIconSize(QtCore.QSize(20, 20))
         self.btnLogout.setObjectName("btnLogout")

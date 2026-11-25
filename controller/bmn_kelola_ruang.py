@@ -1,218 +1,449 @@
 from PyQt5.QtWidgets import (
-    QMainWindow, QMessageBox, QTableWidgetItem,
-    QHeaderView, QAbstractItemView
+    QMainWindow, QWidget, QDialog, QMessageBox, QTableWidget, QTableWidgetItem,
+    QHeaderView, QAbstractItemView, QLineEdit, QComboBox, QSpinBox, QTextEdit,
+    QPushButton, QLabel
 )
 from PyQt5.QtCore import Qt
+import ui.kelola_data_ruang_BMN as _ui_form
+import ui.tambah_ruang_BMN as _ui_tambah_ruang
+import ui.ubah_data_ruang_BMN as _ui_ubah_ruang
+from model.connectiondb import get_db_connection
 
-from ui.kelola_data_ruang_BMN import Ui_MainWindow
-from model.User import User
+_ui_name = [n for n in dir(_ui_form) if n.startswith("Ui_")][0]
+_UiClass = getattr(_ui_form, _ui_name)
+_BaseClass = QMainWindow if _ui_name == "Ui_MainWindow" else QWidget
 
-class KelolaDataRuangController(QMainWindow):
 
-    def __init__(self, user=None):
-        super().__init__()
-
-        self.ui = Ui_MainWindow()
+class _DialogTambahRuangBMN(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        ui_cls = getattr(_ui_tambah_ruang, [n for n in dir(_ui_tambah_ruang) if n.startswith("Ui_")][0])
+        self.ui = ui_cls()
         self.ui.setupUi(self)
 
-        self.user = user or {}
-        self.model = User()
+        self.inputs = self.findChildren(QLineEdit)
+        self.spins = self.findChildren(QSpinBox)
+        self.texts = self.findChildren(QTextEdit)
 
-        self.setup_filter()
-        self.setup_table()
-        self.connect_signals()
+        # Isi dropdown Gedung (self.ui.comboBox) dari database
+        self.cmb_gedung = getattr(self.ui, "comboBox", None)
+        if isinstance(self.cmb_gedung, QComboBox):
+            self.cmb_gedung.clear()
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT DISTINCT lokasi_gedung FROM ruang WHERE lokasi_gedung IS NOT NULL AND lokasi_gedung != '' ORDER BY lokasi_gedung ASC"
+            )
+            gedung_db = [r[0] for r in cursor.fetchall() or []]
+            conn.close()
+            self.cmb_gedung.addItems(gedung_db if gedung_db else ["Gedung A", "Gedung B"])
+
+        # Isi dropdown Status (self.ui.comboBox_2)
+        self.cmb_status = getattr(self.ui, "comboBox_2", None)
+        if isinstance(self.cmb_status, QComboBox):
+            self.cmb_status.clear()
+            self.cmb_status.addItems(["Tersedia", "Perbaikan", "Tidak Tersedia"])
+
+        for btn in self.findChildren(QPushButton):
+            teks = btn.text().lower()
+            if any(k in teks for k in ("simpan", "tambah", "save", "ok")):
+                btn.clicked.connect(self.simpan)
+            elif any(k in teks for k in ("batal", "tutup", "cancel")):
+                btn.clicked.connect(self.reject)
+
+    def simpan(self):
+        kode = self.inputs[0].text().strip() if len(self.inputs) > 0 else ""
+        nama = self.inputs[1].text().strip() if len(self.inputs) > 1 else ""
+        gedung = (
+            self.cmb_gedung.currentText().strip()
+            if isinstance(self.cmb_gedung, QComboBox)
+            else (self.inputs[2].text().strip() if len(self.inputs) > 2 else "Gedung A")
+        )
+        kapasitas = (
+            self.spins[0].value() if self.spins
+            else int(self.inputs[2].text().strip() or 30) if len(self.inputs) > 2 and self.inputs[2].text().strip().isdigit()
+            else 30
+        )
+        fasilitas = (
+            self.texts[0].toPlainText().strip() if self.texts
+            else self.inputs[-1].text().strip() if len(self.inputs) > 2
+            else "-"
+        )
+        status = (
+            self.cmb_status.currentText()
+            if isinstance(self.cmb_status, QComboBox)
+            else "Tersedia"
+        )
+
+        if not kode or not nama:
+            QMessageBox.warning(self, "Validasi", "Kode ruang dan nama ruang wajib diisi!")
+            return
+
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute(
+                """
+                INSERT INTO ruang (kode_ruang, nama_ruang, lokasi_gedung, kapasitas, fasilitas, status_ruang)
+                VALUES (%s, %s, %s, %s, %s, %s)
+                """,
+                (kode, nama, gedung or "Gedung A", kapasitas, fasilitas or "-", status)
+            )
+            conn.commit()
+            conn.close()
+            QMessageBox.information(self, "Berhasil", "Data ruang baru berhasil ditambahkan.")
+            self.accept()
+        except Exception as e:
+            QMessageBox.critical(self, "Error Database", f"Gagal menambah ruang:\n{e}")
+
+
+class _DialogUbahRuangBMN(QDialog):
+    def __init__(self, id_ruang, parent=None):
+        super().__init__(parent)
+        self.id_ruang = id_ruang
+        ui_cls = getattr(_ui_ubah_ruang, [n for n in dir(_ui_ubah_ruang) if n.startswith("Ui_")][0])
+        self.ui = ui_cls()
+        self.ui.setupUi(self)
+
+        self.inputs = self.findChildren(QLineEdit)
+        self.spins = self.findChildren(QSpinBox)
+        self.texts = self.findChildren(QTextEdit)
+
+        # Isi dropdown Gedung (self.ui.comboBox) dari database
+        self.cmb_gedung = getattr(self.ui, "comboBox", None)
+        if isinstance(self.cmb_gedung, QComboBox):
+            self.cmb_gedung.clear()
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT DISTINCT lokasi_gedung FROM ruang WHERE lokasi_gedung IS NOT NULL AND lokasi_gedung != '' ORDER BY lokasi_gedung ASC"
+            )
+            gedung_db = [r[0] for r in cursor.fetchall() or []]
+            conn.close()
+            self.cmb_gedung.addItems(gedung_db if gedung_db else ["Gedung A", "Gedung B"])
+
+        # Isi dropdown Status (self.ui.comboBox_2)
+        self.cmb_status = getattr(self.ui, "comboBox_2", None)
+        if isinstance(self.cmb_status, QComboBox):
+            self.cmb_status.clear()
+            self.cmb_status.addItems(["Tersedia", "Perbaikan", "Tidak Tersedia"])
+
+        for btn in self.findChildren(QPushButton):
+            teks = btn.text().lower()
+            if any(k in teks for k in ("simpan", "ubah", "update", "save", "ok")):
+                btn.clicked.connect(self.simpan)
+            elif any(k in teks for k in ("batal", "tutup", "cancel")):
+                btn.clicked.connect(self.reject)
+
+        self._load_detail()
+
+    def _load_detail(self):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT kode_ruang, nama_ruang, lokasi_gedung, kapasitas, fasilitas, status_ruang FROM ruang WHERE id_ruang = %s",
+            (self.id_ruang,)
+        )
+        row = cursor.fetchone()
+        conn.close()
+        if not row:
+            return
+
+        if len(self.inputs) > 0:
+            self.inputs[0].setText(row[0] or "")
+        if len(self.inputs) > 1:
+            self.inputs[1].setText(row[1] or "")
+        if isinstance(self.cmb_gedung, QComboBox):
+            idx_g = self.cmb_gedung.findText(row[2] or "")
+            if idx_g >= 0:
+                self.cmb_gedung.setCurrentIndex(idx_g)
+            elif row[2]:
+                self.cmb_gedung.addItem(row[2])
+                self.cmb_gedung.setCurrentText(row[2])
+        elif len(self.inputs) > 2:
+            self.inputs[2].setText(row[2] or "")
+
+        if self.spins:
+            self.spins[0].setValue(int(row[3] or 30))
+        elif len(self.inputs) > 2:
+            self.inputs[2].setText(str(row[3] or 30))
+
+        if self.texts:
+            self.texts[0].setPlainText(row[4] or "")
+        elif len(self.inputs) > 3:
+            self.inputs[3].setText(row[4] or "")
+
+        if isinstance(self.cmb_status, QComboBox):
+            idx_s = self.cmb_status.findText(row[5] or "Tersedia")
+            if idx_s >= 0:
+                self.cmb_status.setCurrentIndex(idx_s)
+
+    def simpan(self):
+        kode = self.inputs[0].text().strip() if len(self.inputs) > 0 else ""
+        nama = self.inputs[1].text().strip() if len(self.inputs) > 1 else ""
+        gedung = (
+            self.cmb_gedung.currentText().strip()
+            if isinstance(self.cmb_gedung, QComboBox)
+            else (self.inputs[2].text().strip() if len(self.inputs) > 2 else "Gedung A")
+        )
+        kapasitas = (
+            self.spins[0].value() if self.spins
+            else int(self.inputs[2].text().strip() or 30) if len(self.inputs) > 2 and self.inputs[2].text().strip().isdigit()
+            else 30
+        )
+        fasilitas = (
+            self.texts[0].toPlainText().strip() if self.texts
+            else self.inputs[-1].text().strip() if len(self.inputs) > 2
+            else "-"
+        )
+        status = (
+            self.cmb_status.currentText()
+            if isinstance(self.cmb_status, QComboBox)
+            else "Tersedia"
+        )
+
+        if not kode or not nama:
+            QMessageBox.warning(self, "Validasi", "Kode ruang dan nama ruang wajib diisi!")
+            return
+
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute(
+                """
+                UPDATE ruang
+                SET kode_ruang = %s, nama_ruang = %s, lokasi_gedung = %s,
+                    kapasitas = %s, fasilitas = %s, status_ruang = %s
+                WHERE id_ruang = %s
+                """,
+                (kode, nama, gedung or "Gedung A", kapasitas, fasilitas or "-", status, self.id_ruang)
+            )
+            conn.commit()
+            conn.close()
+            QMessageBox.information(self, "Berhasil", "Data ruang berhasil diperbarui.")
+            self.accept()
+        except Exception as e:
+            QMessageBox.critical(self, "Error Database", f"Gagal mengubah data ruang:\n{e}")
+
+
+class BmnKelolaRuangController(_BaseClass):
+    def __init__(self, user_data):
+        super().__init__()
+        self.ui = _UiClass()
+        self.ui.setupUi(self)
+        self.user = user_data
+
+        nama_bmn = self.user.get("nama", "Petugas BMN")
+        for nama_lbl in ("lblBmn", "lblUser", "label_user", "label_bmn"):
+            lbl = getattr(self.ui, nama_lbl, None)
+            if isinstance(lbl, QLabel):
+                lbl.setText(f"BMN: {nama_bmn}")
+                break
+
+        daftar_inp = self.findChildren(QLineEdit)
+        self.inp_cari = daftar_inp[0] if daftar_inp else None
+        if self.inp_cari:
+            self.inp_cari.setPlaceholderText("Cari kode / nama ruang / fasilitas...")
+            self.inp_cari.returnPressed.connect(self.load_data)
+
+        # Dropdown Gedung langsung dari self.ui.comboBox
+        self.cmb_gedung = getattr(self.ui, "comboBox", None)
+        if isinstance(self.cmb_gedung, QComboBox):
+            self._load_filter_gedung()
+            self.cmb_gedung.currentIndexChanged.connect(self.load_data)
+
+        daftar_tbl = self.findChildren(QTableWidget)
+        self.tabel = daftar_tbl[0] if daftar_tbl else None
+        if self.tabel:
+            self.tabel.setColumnCount(7)
+            self.tabel.setHorizontalHeaderLabels([
+                "ID", "Kode Ruang", "Nama Ruang", "Gedung", "Kapasitas", "Fasilitas", "Status"
+            ])
+            header = self.tabel.horizontalHeader()
+            header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+            header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
+            header.setSectionResizeMode(2, QHeaderView.Stretch)
+            header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
+            header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
+            header.setSectionResizeMode(5, QHeaderView.Stretch)
+            header.setSectionResizeMode(6, QHeaderView.ResizeToContents)
+            self.tabel.verticalHeader().setVisible(False)
+            self.tabel.setWordWrap(True)
+            self.tabel.setSelectionBehavior(QAbstractItemView.SelectRows)
+            self.tabel.setSelectionMode(QAbstractItemView.SingleSelection)
+            self.tabel.setEditTriggers(QAbstractItemView.NoEditTriggers)
+            self.tabel.doubleClicked.connect(self.ubah_ruang)
+
+        for btn in self.findChildren(QPushButton):
+            teks = btn.text().lower()
+            if "dashboard" in teks:
+                btn.clicked.connect(self.buka_dashboard)
+            elif "kelola ruang" in teks:
+                btn.clicked.connect(self.load_data)
+            elif "verifikasi" in teks or "ajuan" in teks or "pengajuan" in teks:
+                btn.clicked.connect(self.buka_kelola_pengajuan)
+            elif "riwayat" in teks:
+                btn.clicked.connect(self.buka_riwayat_bmn)
+            elif "logout" in teks:
+                btn.clicked.connect(self.logout)
+            elif "cari" in teks:
+                btn.clicked.connect(self.load_data)
+            elif "tambah" in teks:
+                btn.clicked.connect(self.tambah_ruang)
+            elif "ubah" in teks or "edit" in teks:
+                btn.clicked.connect(self.ubah_ruang)
+            elif "hapus" in teks:
+                btn.clicked.connect(self.hapus_ruang)
+
         self.load_data()
 
-    def setup_filter(self):
-        self.ui.comboBox.clear()
-        self.ui.comboBox.addItem("Semua")
-        self.ui.comboBox.addItems(self.model.daftar_gedung())
+    def _load_filter_gedung(self):
+        if not isinstance(self.cmb_gedung, QComboBox):
+            return
+        pilihan_sebelumnya = self.cmb_gedung.currentData()
+        self.cmb_gedung.blockSignals(True)
+        self.cmb_gedung.clear()
+        self.cmb_gedung.addItem("Semua Gedung", None)
 
-        self.ui.lineEdit.setPlaceholderText(
-            "Kode / nama ruang / fasilitas"
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT DISTINCT lokasi_gedung FROM ruang WHERE lokasi_gedung IS NOT NULL AND lokasi_gedung != '' ORDER BY lokasi_gedung ASC"
         )
+        for (gedung,) in cursor.fetchall() or []:
+            self.cmb_gedung.addItem(gedung, gedung)
+        conn.close()
 
-    def setup_table(self):
-        self.ui.tableWidget.setColumnCount(6)
-
-        self.ui.tableWidget.setHorizontalHeaderLabels([
-            "ID", "Kode Ruang", "Nama Ruang",
-            "Gedung", "Kapasitas", "Status"
-        ])
-
-        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(
-            QHeaderView.Stretch
-        )
-
-        self.ui.tableWidget.setSelectionBehavior(
-            QAbstractItemView.SelectRows
-        )
-
-        self.ui.tableWidget.setSelectionMode(
-            QAbstractItemView.SingleSelection
-        )
-
-        self.ui.tableWidget.setEditTriggers(
-            QAbstractItemView.NoEditTriggers
-        )
-
-    def connect_signals(self):
-        self.ui.pushButton.clicked.connect(self.menu_dashboard)
-        self.ui.pushButton_2.clicked.connect(self.load_data)
-        self.ui.pushButton_3.clicked.connect(self.menu_verifikasi)
-        self.ui.pushButton_4.clicked.connect(self.menu_riwayat)
-        self.ui.pushButton_5.clicked.connect(self.menu_logout)
-
-        self.ui.pushButton_6.clicked.connect(self.load_data)
-        self.ui.pushButton_7.clicked.connect(self.aksi_tambah)
-        self.ui.pushButton_8.clicked.connect(self.aksi_ubah)
-        self.ui.pushButton_9.clicked.connect(self.aksi_hapus)
-
-        self.ui.lineEdit.returnPressed.connect(self.load_data)
-        self.ui.comboBox.currentTextChanged.connect(self.load_data)
+        if pilihan_sebelumnya:
+            idx = self.cmb_gedung.findData(pilihan_sebelumnya)
+            if idx >= 0:
+                self.cmb_gedung.setCurrentIndex(idx)
+        self.cmb_gedung.blockSignals(False)
 
     def load_data(self):
-        try:
-            rows = self.model.daftar_ruang(
-                self.ui.lineEdit.text().strip(),
-                self.ui.comboBox.currentText()
-            )
+        keyword = self.inp_cari.text().strip() if self.inp_cari else ""
+        gedung = self.cmb_gedung.currentData() if isinstance(self.cmb_gedung, QComboBox) else None
 
-            self.ui.tableWidget.setRowCount(len(rows))
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        sql = """
+            SELECT id_ruang, kode_ruang, nama_ruang, lokasi_gedung, kapasitas, fasilitas, status_ruang
+            FROM ruang WHERE 1=1
+        """
+        params = []
+        if gedung:
+            sql += " AND lokasi_gedung = %s"
+            params.append(gedung)
+        if keyword:
+            sql += " AND (kode_ruang LIKE %s OR nama_ruang LIKE %s OR lokasi_gedung LIKE %s OR fasilitas LIKE %s OR status_ruang LIKE %s)"
+            kw = f"%{keyword}%"
+            params.extend([kw, kw, kw, kw, kw])
+        sql += " ORDER BY id_ruang ASC"
 
-            for i, row in enumerate(rows):
+        cursor.execute(sql, tuple(params))
+        rows = cursor.fetchall() or []
+        conn.close()
 
-                values = [
-                    row[0],
-                    row[1],
-                    row[2],
-                    row[3],
-                    row[4],
-                    row[6]
-                ]
+        if not self.tabel:
+            return
+        self.tabel.setRowCount(len(rows))
+        for idx, row in enumerate(rows):
+            items = [
+                str(row[0]), row[1], row[2], row[3],
+                f"{row[4]} Org", row[5] or "-", row[6]
+            ]
+            for col, val in enumerate(items):
+                item = QTableWidgetItem(val)
+                item.setData(Qt.UserRole, row[0])
+                if col in (0, 1, 3, 4, 6):
+                    item.setTextAlignment(Qt.AlignCenter)
+                self.tabel.setItem(idx, col, item)
+        self.tabel.resizeRowsToContents()
 
-                for j, value in enumerate(values):
-                    item = QTableWidgetItem(str(value))
-                    item.setData(Qt.UserRole, row[0])
-                    self.ui.tableWidget.setItem(i, j, item)
-
-            self.ui.tableWidget.resizeRowsToContents()
-
-        except Exception as e:
-            QMessageBox.critical(
-                self,
-                "Gagal Memuat Data",
-                str(e)
-            )
-
-    def selected_id(self):
-        row = self.ui.tableWidget.currentRow()
-
-        if row < 0:
-            QMessageBox.warning(
-                self,
-                "Pilih Data",
-                "Pilih data ruang pada tabel terlebih dahulu."
-            )
-            return None
-
-        return self.ui.tableWidget.item(
-            row, 0
-        ).data(Qt.UserRole)
-
-    def aksi_tambah(self):
-        from controller.dialog_tambah_ruang import DialogTambahRuangController
-
-        dialog = DialogTambahRuangController(self)
-
-        if dialog.exec_():
+    def tambah_ruang(self):
+        dialog = _DialogTambahRuangBMN(parent=self)
+        if dialog.exec_() == QDialog.Accepted:
+            self._load_filter_gedung()
             self.load_data()
 
-    def aksi_ubah(self):
-        id_ruang = self.selected_id()
-
-        if id_ruang is None:
+    def ubah_ruang(self):
+        if not self.tabel or self.tabel.currentRow() < 0:
+            QMessageBox.warning(self, "Pilih Ruang", "Pilih baris ruang yang ingin diubah terlebih dahulu!")
             return
-
-        from controller.dialog_ubah_ruang import DialogUbahRuangController
-
-        dialog = DialogUbahRuangController(id_ruang, self)
-
-        if dialog.exec_():
+        id_ruang = self.tabel.item(self.tabel.currentRow(), 0).data(Qt.UserRole)
+        dialog = _DialogUbahRuangBMN(id_ruang, parent=self)
+        if dialog.exec_() == QDialog.Accepted:
+            self._load_filter_gedung()
             self.load_data()
 
-    def aksi_hapus(self):
-        id_ruang = self.selected_id()
-
-        if id_ruang is None:
+    def hapus_ruang(self):
+        if not self.tabel or self.tabel.currentRow() < 0:
+            QMessageBox.warning(self, "Pilih Ruang", "Pilih baris ruang yang ingin dihapus terlebih dahulu!")
             return
+        row_idx = self.tabel.currentRow()
+        id_ruang = self.tabel.item(row_idx, 0).data(Qt.UserRole)
+        nama_ruang = f"{self.tabel.item(row_idx, 1).text()} - {self.tabel.item(row_idx, 2).text()}"
 
         reply = QMessageBox.question(
-            self,
-            "Konfirmasi Hapus",
-            "Apakah kamu yakin ingin menghapus ruang ini?",
-            QMessageBox.Yes | QMessageBox.No,
-            QMessageBox.No
+            self, "Konfirmasi Hapus", f"Hapus ruangan {nama_ruang}?",
+            QMessageBox.Yes | QMessageBox.No, QMessageBox.No
         )
-
         if reply == QMessageBox.Yes:
             try:
-                hasil = self.model.hapus_ruang(id_ruang)
-
-                if hasil:
-                    QMessageBox.information(
-                        self,
-                        "Berhasil",
-                        "Data ruang berhasil dihapus."
-                    )
-                    self.load_data()
-                else:
-                    QMessageBox.warning(
-                        self,
-                        "Gagal",
-                        "Data ruang tidak berhasil dihapus."
-                    )
-
+                conn = get_db_connection()
+                cursor = conn.cursor()
+                cursor.execute("DELETE FROM ruang WHERE id_ruang = %s", (id_ruang,))
+                conn.commit()
+                conn.close()
+                QMessageBox.information(self, "Berhasil", "Ruangan berhasil dihapus.")
+                self._load_filter_gedung()
+                self.load_data()
             except Exception as e:
-                QMessageBox.critical(
-                    self,
-                    "Gagal Menghapus",
-                    f"Data tidak dapat dihapus.\n{e}"
-                )
+                if "1451" in str(e):
+                    nonaktif = QMessageBox.question(
+                        self,
+                        "Ruang Memiliki Riwayat",
+                        f"Ruangan {nama_ruang} tidak bisa dihapus permanen karena sudah memiliki riwayat peminjaman.\n\n"
+                        "Ubah status ruangan menjadi 'Tidak Tersedia' agar tidak bisa dipinjam lagi?",
+                        QMessageBox.Yes | QMessageBox.No,
+                        QMessageBox.Yes
+                    )
+                    if nonaktif == QMessageBox.Yes:
+                        conn = get_db_connection()
+                        cursor = conn.cursor()
+                        cursor.execute("UPDATE ruang SET status_ruang = 'Tidak Tersedia' WHERE id_ruang = %s", (id_ruang,))
+                        conn.commit()
+                        conn.close()
+                        QMessageBox.information(self, "Berhasil", "Status ruangan diubah menjadi 'Tidak Tersedia'.")
+                        self.load_data()
+                else:
+                    QMessageBox.warning(self, "Gagal Hapus", f"Gagal menghapus ruangan:\n{e}")
 
-    def menu_dashboard(self):
+    def buka_dashboard(self):
         from controller.dashboard_bmn import DashboardBMNController
-
         self.win = DashboardBMNController(self.user)
         self.win.show()
         self.close()
 
-    def menu_verifikasi(self):
-        from controller.bmn_kelola_pengajuan import VerifikasiAjuanController
-
-        self.win = VerifikasiAjuanController(self.user)
+    def buka_kelola_pengajuan(self):
+        from controller.bmn_kelola_pengajuan import BmnKelolaPengajuanController
+        self.win = BmnKelolaPengajuanController(self.user)
         self.win.show()
         self.close()
 
-    def menu_riwayat(self):
-        from controller.bmn_riwayat_peminjaman import RiwayatPeminjamanController
-
-        self.win = RiwayatPeminjamanController(self.user)
+    def buka_riwayat_bmn(self):
+        from controller.bmn_riwayat_peminjaman import RiwayatPeminjamanBMNController
+        self.win = RiwayatPeminjamanBMNController(self.user)
         self.win.show()
         self.close()
 
-    def menu_logout(self):
+    def logout(self):
         reply = QMessageBox.question(
-            self,
-            "Konfirmasi Logout",
-            "Yakin ingin keluar?",
-            QMessageBox.Yes | QMessageBox.No,
-            QMessageBox.No
+            self, "Konfirmasi Logout", "Apakah Anda yakin ingin keluar dari sistem?",
+            QMessageBox.Yes | QMessageBox.No, QMessageBox.No
         )
-
         if reply == QMessageBox.Yes:
             from controller.login import LoginController
-
             self.login_win = LoginController()
             self.login_win.show()
             self.close()

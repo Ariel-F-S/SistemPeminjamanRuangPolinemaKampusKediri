@@ -24,7 +24,7 @@ def _cari(ui, kandidat, tipe):
 
 
 class OkiAjukanPeminjamanController(_BaseClass):
-    def __init__(self, user_data):
+    def __init__(self, user_data, id_ruang_terpilih=None, kode_ruang_terpilih=None):
         super().__init__()
         self.ui = _UiClass()
         self.ui.setupUi(self)
@@ -37,18 +37,53 @@ class OkiAjukanPeminjamanController(_BaseClass):
         if lbl_oki:
             lbl_oki.setText(f"OKI: {nama_oki}")
 
-        # Identifikasi widget input form secara otomatis
-        self.inp_kegiatan = _cari(self.ui, ["txtKegiatan", "txtNamaKegiatan", "lineEdit"], QLineEdit)
+        # Identifikasi dropdown ruang & field file surat
         self.cmb_ruang = _cari(self.ui, ["cmbRuang", "comboRuang", "comboBox"], QComboBox)
-        self.inp_tgl = _cari(self.ui, ["dtTanggal", "dateTanggal", "dateEdit"], QDateEdit)
-        self.inp_jam_mulai = _cari(self.ui, ["tmMulai", "timeMulai", "timeEdit"], QTimeEdit)
-        self.inp_jam_selesai = _cari(self.ui, ["tmSelesai", "timeSelesai", "timeEdit_2"], QTimeEdit)
-        self.dt_mulai = _cari(self.ui, ["dtMulai", "dateTimeEdit"], QDateTimeEdit)
-        self.dt_selesai = _cari(self.ui, ["dtSelesai", "dateTimeEdit_2"], QDateTimeEdit)
-        self.inp_keperluan = _cari(self.ui, ["txtKeperluan", "textEdit", "plainTextEdit"], (QTextEdit, QPlainTextEdit, QLineEdit))
-        self.lbl_file = _cari(self.ui, ["lblFileSurat", "lblNamaFile", "lblFile", "lineEdit_2", "txtFileSurat"], (QLabel, QLineEdit))
+        if not self.cmb_ruang:
+            combos = self.findChildren(QComboBox)
+            self.cmb_ruang = combos[0] if combos else None
+
+        self.inp_keperluan = _cari(self.ui, ["txtKeperluan", "textEdit", "plainTextEdit"], (QTextEdit, QPlainTextEdit))
+        self.lbl_file = _cari(
+            self.ui,
+            ["lblFileSurat", "lblNamaFile", "lblFile", "lineEdit_2", "txtFileSurat", "inputFile"],
+            (QLabel, QLineEdit)
+        )
         self.lbl_status_cek = _cari(self.ui, ["lblStatusJadwal", "lblStatus", "label_status"], QLabel)
         self.tbl_jadwal = _cari(self.ui, ["tblJadwal", "tableWidget"], QTableWidget)
+
+        if not self.lbl_file:
+            for w in self.findChildren((QLabel, QLineEdit)):
+                teks_w = w.text().lower() if isinstance(w, QLabel) else w.placeholderText().lower()
+                if any(k in teks_w for k in ("belum ada file", "file surat", "pilih file", ".pdf")) or (
+                    isinstance(w, QLineEdit) and w.isReadOnly()
+                ):
+                    self.lbl_file = w
+                    break
+
+        # Identifikasi input Nama Kegiatan (QLineEdit murni selain field file surat)
+        self.inp_kegiatan = _cari(
+            self.ui,
+            ["txtKegiatan", "txtNamaKegiatan", "inputKegiatan", "inputNamaKegiatan", "lineEdit"],
+            QLineEdit
+        )
+        if not self.inp_kegiatan:
+            self.inp_kegiatan = next(
+                (le for le in self.findChildren(QLineEdit) if le != self.lbl_file and not le.isReadOnly()),
+                None
+            )
+
+        # Identifikasi widget Tanggal dan Jam murni (hindari tertukar QDateTimeEdit vs QDateEdit/QTimeEdit)
+        date_edits = [w for w in self.findChildren(QDateEdit) if type(w) is QDateEdit]
+        self.inp_tgl = date_edits[0] if date_edits else None
+
+        time_edits = [w for w in self.findChildren(QTimeEdit) if type(w) is QTimeEdit]
+        self.inp_jam_mulai = time_edits[0] if len(time_edits) > 0 else None
+        self.inp_jam_selesai = time_edits[1] if len(time_edits) > 1 else None
+
+        dt_edits = [w for w in self.findChildren(QDateTimeEdit) if type(w) is QDateTimeEdit]
+        self.dt_mulai = dt_edits[0] if len(dt_edits) > 0 else None
+        self.dt_selesai = dt_edits[1] if len(dt_edits) > 1 else None
 
         if self.inp_tgl:
             self.inp_tgl.setDate(QDate.currentDate())
@@ -61,23 +96,43 @@ class OkiAjukanPeminjamanController(_BaseClass):
         if self.dt_selesai:
             self.dt_selesai.setDateTime(QDateTime.currentDateTime().addSecs(3600))
 
-        self._load_daftar_ruang()
+        self._load_daftar_ruang(id_ruang_terpilih, kode_ruang_terpilih)
 
-        # Hubungkan tombol aksi
+        # Hubungkan tombol aksi (berdasarkan objectName maupun teks tombol)
         btn_cek = _cari(self.ui, ["btnCekJadwal", "btnCekKetersediaan", "pushButton_7"], QPushButton)
+        btn_pilih = _cari(self.ui, ["btnPilihFile", "btnUpload", "btnBrowse", "pushButton_8"], QPushButton)
+        btn_reset = _cari(self.ui, ["btnReset", "pushButton_9"], QPushButton)
+        btn_kirim = _cari(self.ui, ["btnKirim", "btnAjukan", "btnSimpan", "pushButton_10"], QPushButton)
+
+        for btn in self.findChildren(QPushButton):
+            teks = btn.text().lower()
+            if any(k in teks for k in ("pilih file", "file surat", "upload", "browse", "lampir")):
+                btn_pilih = btn
+            elif any(k in teks for k in ("cek jadwal", "ketersediaan", "cek ruang")):
+                btn_cek = btn
+            elif "reset" in teks or "bersih" in teks:
+                btn_reset = btn
+            elif any(k in teks for k in ("kirim", "ajukan pengajuan", "simpan")):
+                btn_kirim = btn
+
         if btn_cek:
+            btn_cek.setEnabled(True)
+            btn_cek.raise_()
             btn_cek.clicked.connect(self.cek_ketersediaan_jadwal)
 
-        btn_pilih = _cari(self.ui, ["btnPilihFile", "btnUpload", "btnBrowse", "pushButton_8"], QPushButton)
         if btn_pilih:
+            btn_pilih.setEnabled(True)
+            btn_pilih.raise_()
             btn_pilih.clicked.connect(self.pilih_file_surat)
 
-        btn_reset = _cari(self.ui, ["btnReset", "pushButton_9"], QPushButton)
         if btn_reset:
+            btn_reset.setEnabled(True)
+            btn_reset.raise_()
             btn_reset.clicked.connect(self.reset_form)
 
-        btn_kirim = _cari(self.ui, ["btnKirim", "btnAjukan", "btnSimpan", "pushButton_10"], QPushButton)
         if btn_kirim:
+            btn_kirim.setEnabled(True)
+            btn_kirim.raise_()
             btn_kirim.clicked.connect(self.simpan_pengajuan)
 
         # Navigasi Sidebar OKI
@@ -93,9 +148,10 @@ class OkiAjukanPeminjamanController(_BaseClass):
             if isinstance(btn, QPushButton):
                 btn.clicked.connect(fungsi)
 
-    def _load_daftar_ruang(self):
+    def _load_daftar_ruang(self, id_ruang_terpilih=None, kode_ruang_terpilih=None):
         if not self.cmb_ruang:
             return
+        self.cmb_ruang.setStyleSheet("")
         self.cmb_ruang.clear()
         conn = get_db_connection()
         cursor = conn.cursor()
@@ -106,12 +162,26 @@ class OkiAjukanPeminjamanController(_BaseClass):
             self.cmb_ruang.addItem(f"{r[1]} - {r[2]}", r[0])
         conn.close()
 
+        self.pilih_ruang(id_ruang_terpilih, kode_ruang_terpilih)
+
+    def pilih_ruang(self, id_ruang=None, kode_ruang=None):
+        if not self.cmb_ruang or (id_ruang is None and not kode_ruang):
+            return
+        idx = self.cmb_ruang.findData(id_ruang) if id_ruang is not None else -1
+        if idx < 0 and kode_ruang:
+            for i in range(self.cmb_ruang.count()):
+                if kode_ruang in self.cmb_ruang.itemText(i):
+                    idx = i
+                    break
+        if idx >= 0:
+            self.cmb_ruang.setCurrentIndex(idx)
+
     def _ambil_waktu_mulai_selesai(self):
         if self.dt_mulai and self.dt_selesai:
             return self.dt_mulai.dateTime().toPyDateTime(), self.dt_selesai.dateTime().toPyDateTime()
         tgl = self.inp_tgl.date().toPyDate() if self.inp_tgl else datetime.now().date()
-        jm = self.inp_jam_mulai.time().toPyTime() if self.inp_jam_mulai else datetime.now().time()
-        js = self.inp_jam_selesai.time().toPyTime() if self.inp_jam_selesai else datetime.now().time()
+        jm = self.inp_jam_mulai.time().toPyTime() if self.inp_jam_mulai else QTime(8, 0).toPyTime()
+        js = self.inp_jam_selesai.time().toPyTime() if self.inp_jam_selesai else QTime(12, 0).toPyTime()
         return datetime.combine(tgl, jm), datetime.combine(tgl, js)
 
     def cek_ketersediaan_jadwal(self):
@@ -126,7 +196,6 @@ class OkiAjukanPeminjamanController(_BaseClass):
 
         conn = get_db_connection()
         cursor = conn.cursor()
-        # Tampilkan daftar jadwal terpakai pada tanggal tersebut ke tabel samping jika ada
         if self.tbl_jadwal:
             cursor.execute(
                 """
@@ -148,7 +217,6 @@ class OkiAjukanPeminjamanController(_BaseClass):
                 self.tbl_jadwal.setItem(idx, 1, QTableWidgetItem(jam_str))
                 self.tbl_jadwal.setItem(idx, 2, QTableWidgetItem(j[3]))
 
-        # Cek bentrok jam
         cursor.execute(
             """
             SELECT COUNT(*) FROM pengajuan_peminjaman
@@ -172,7 +240,7 @@ class OkiAjukanPeminjamanController(_BaseClass):
 
     def pilih_file_surat(self):
         file_path, _ = QFileDialog.getOpenFileName(
-            self, "Pilih Surat Pengajuan", "", "Dokumen (*.pdf *.jpg *.jpeg *.png)"
+            self, "Pilih Surat Pengajuan", "", "Dokumen (*.pdf *.jpg *.jpeg *.png);;Semua File (*.*)"
         )
         if not file_path:
             return

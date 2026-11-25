@@ -1,10 +1,11 @@
 from PyQt5.QtWidgets import (
     QMainWindow, QWidget, QMessageBox, QTableWidget, QTableWidgetItem,
-    QHeaderView, QAbstractItemView, QLineEdit, QComboBox, QPushButton, QLabel
+    QHeaderView, QAbstractItemView, QLineEdit, QComboBox, QSpinBox, QPushButton, QLabel
 )
 from PyQt5.QtCore import Qt
 import ui.daftar_ruang as ui_form
 from model.User import User
+from model.connectiondb import get_db_connection
 
 _ui_name = [n for n in dir(ui_form) if n.startswith("Ui_")][0]
 _UiClass = getattr(ui_form, _ui_name)
@@ -32,22 +33,59 @@ class OkiLihatRuangController(_BaseClass):
         if lbl_oki:
             lbl_oki.setText(f"OKI: {nama_oki}")
 
-        self.inp_cari = _cari(self.ui, ["txtCari", "txtSearch", "lineEdit"], QLineEdit)
+        # Input Cari Ruang & Kolom Fasilitas (otomatis mendeteksi QLineEdit di form)
+        self.inp_cari = _cari(self.ui, ["txtCari", "txtSearch", "inputCari", "lineEdit"], QLineEdit)
+        line_edits = self.findChildren(QLineEdit)
+        if not self.inp_cari and line_edits:
+            self.inp_cari = next(
+                (le for le in line_edits if not le.isReadOnly() and "fasilitas" not in le.placeholderText().lower()),
+                line_edits[0]
+            )
         if self.inp_cari:
-            self.inp_cari.setPlaceholderText("Cari kode / nama ruang / fasilitas...")
             self.inp_cari.returnPressed.connect(self.load_data)
+            self.inp_cari.textChanged.connect(self.load_data)
 
-        self.cmb_gedung = _cari(self.ui, ["cmbGedung", "cmbFilter", "comboBox"], QComboBox)
+        self.inp_fasilitas = _cari(self.ui, ["txtFasilitas", "inputFasilitas", "lineEdit_2"], QLineEdit)
+        if not self.inp_fasilitas:
+            self.inp_fasilitas = next((le for le in line_edits if le != self.inp_cari), None)
+        if self.inp_fasilitas:
+            self.inp_fasilitas.setReadOnly(True)
+
+        # SpinBox Min. Kapasitas
+        self.spin_kapasitas = _cari(self.ui, ["spinKapasitas", "spinBox"], QSpinBox)
+        if not self.spin_kapasitas:
+            spins = self.findChildren(QSpinBox)
+            self.spin_kapasitas = spins[0] if spins else None
+        if self.spin_kapasitas:
+            self.spin_kapasitas.valueChanged.connect(self.load_data)
+
+        # Dropdown Gedung (comboGedung)
+        self.cmb_gedung = _cari(self.ui, ["comboGedung", "cmbGedung", "cmbFilter", "comboBox"], QComboBox)
+        if not self.cmb_gedung:
+            combos = self.findChildren(QComboBox)
+            self.cmb_gedung = combos[0] if combos else None
         if self.cmb_gedung:
-            self.cmb_gedung.clear()
-            self.cmb_gedung.addItems(["Semua", "Gedung A", "Gedung B"])
-            self.cmb_gedung.currentTextChanged.connect(self.load_data)
+            self.cmb_gedung.setStyleSheet("")
+            self._load_filter_gedung()
+            self.cmb_gedung.currentIndexChanged.connect(self.load_data)
 
+        # Hubungkan tombol Cari & Ajukan Peminjaman Ruang Ini
         btn_cari = _cari(self.ui, ["btnCari", "btnFilter", "pushButton_7"], QPushButton)
         if btn_cari:
             btn_cari.clicked.connect(self.load_data)
 
-        self.tabel = _cari(self.ui, ["tblRuang", "tableWidget"], QTableWidget)
+        for btn in self.findChildren(QPushButton):
+            teks = btn.text().lower()
+            if "cari" in teks and btn != btn_cari:
+                btn.clicked.connect(self.load_data)
+            elif "ajukan peminjaman ruang ini" in teks:
+                btn.clicked.connect(self.ajukan_ruang_terpilih)
+
+        # Tabel Ruang
+        self.tabel = _cari(self.ui, ["tblRuang", "tableRuang", "tableWidget"], QTableWidget)
+        if not self.tabel:
+            tables = self.findChildren(QTableWidget)
+            self.tabel = tables[0] if tables else None
         if self.tabel:
             self.tabel.setColumnCount(6)
             self.tabel.setHorizontalHeaderLabels([
@@ -65,11 +103,13 @@ class OkiLihatRuangController(_BaseClass):
             self.tabel.setSelectionBehavior(QAbstractItemView.SelectRows)
             self.tabel.setSelectionMode(QAbstractItemView.SingleSelection)
             self.tabel.setEditTriggers(QAbstractItemView.NoEditTriggers)
+            self.tabel.itemSelectionChanged.connect(self.tampilkan_fasilitas)
+            self.tabel.doubleClicked.connect(self.ajukan_ruang_terpilih)
 
         # Navigasi Sidebar OKI
         for nama, fungsi in [
             ("btnDashboard", self.buka_dashboard),
-            ("btnDaftarRuang", self.load_data),
+            ("btnDaftarRuang", self.reset_filter),
             ("btnAjukanPinjam", self.buka_ajukan_pinjam),
             ("btnRiwayat", self.buka_riwayat),
             ("btnJadwal", self.buka_jadwal),
@@ -81,10 +121,59 @@ class OkiLihatRuangController(_BaseClass):
 
         self.load_data()
 
+    def _load_filter_gedung(self):
+        self.cmb_gedung.blockSignals(True)
+        self.cmb_gedung.clear()
+        self.cmb_gedung.addItem("Semua")
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT DISTINCT lokasi_gedung FROM ruang WHERE lokasi_gedung IS NOT NULL AND lokasi_gedung != '' ORDER BY lokasi_gedung ASC"
+        )
+        gedung_list = [r[0] for r in cursor.fetchall() or []]
+        conn.close()
+
+        self.cmb_gedung.addItems(gedung_list if gedung_list else ["Gedung A", "Gedung B"])
+        self.cmb_gedung.blockSignals(False)
+
+    def reset_filter(self):
+        if self.inp_cari:
+            self.inp_cari.clear()
+        if self.spin_kapasitas:
+            self.spin_kapasitas.setValue(0)
+        if self.cmb_gedung:
+            self.cmb_gedung.setCurrentIndex(0)
+        self.load_data()
+
     def load_data(self):
         keyword = self.inp_cari.text().strip() if self.inp_cari else ""
         gedung = self.cmb_gedung.currentText() if self.cmb_gedung else "Semua"
-        rows = self.model.select_data_ruang(keyword=keyword, gedung=gedung) or []
+        min_kapasitas = self.spin_kapasitas.value() if self.spin_kapasitas else 0
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        sql = """
+            SELECT kode_ruang, nama_ruang, lokasi_gedung, kapasitas, fasilitas, status_ruang, id_ruang
+            FROM ruang
+            WHERE 1=1
+        """
+        params = []
+        if keyword:
+            sql += " AND (kode_ruang LIKE %s OR nama_ruang LIKE %s OR fasilitas LIKE %s)"
+            kw = f"%{keyword}%"
+            params.extend([kw, kw, kw])
+        if gedung and gedung != "Semua":
+            sql += " AND lokasi_gedung = %s"
+            params.append(gedung)
+        if min_kapasitas > 0:
+            sql += " AND kapasitas >= %s"
+            params.append(min_kapasitas)
+        sql += " ORDER BY kode_ruang ASC"
+
+        cursor.execute(sql, tuple(params))
+        rows = cursor.fetchall() or []
+        conn.close()
 
         if not self.tabel:
             return
@@ -93,20 +182,57 @@ class OkiLihatRuangController(_BaseClass):
             items = [row[0], row[1], row[2], f"{row[3]} Org", row[4] or "-", row[5]]
             for col, val in enumerate(items):
                 item = QTableWidgetItem(val)
+                item.setData(Qt.UserRole, row[6])
                 if col in (0, 2, 3, 5):
                     item.setTextAlignment(Qt.AlignCenter)
                 self.tabel.setItem(idx, col, item)
         self.tabel.resizeRowsToContents()
 
-    def buka_dashboard(self):
-        from controller.dashboard_oki import DashboardOKIController
-        self.win = DashboardOKIController(self.user)
+    def tampilkan_fasilitas(self):
+        if not self.tabel or not self.inp_fasilitas:
+            return
+        row_idx = self.tabel.currentRow()
+        if row_idx >= 0:
+            self.inp_fasilitas.setText(self.tabel.item(row_idx, 4).text())
+
+    def ajukan_ruang_terpilih(self):
+        id_ruang = None
+        kode_ruang = None
+        if self.tabel and self.tabel.currentRow() >= 0:
+            row_idx = self.tabel.currentRow()
+            status = self.tabel.item(row_idx, 5).text()
+            if status != "Tersedia":
+                QMessageBox.warning(
+                    self, "Ruang Tidak Tersedia",
+                    f"Ruangan ini sedang berstatus '{status}' sehingga tidak dapat dipinjam."
+                )
+                return
+            kode_ruang = self.tabel.item(row_idx, 0).text()
+            id_ruang = self.tabel.item(row_idx, 0).data(Qt.UserRole)
+        self.buka_ajukan_pinjam(id_ruang=id_ruang, kode_ruang=kode_ruang)
+
+    def buka_ajukan_pinjam(self, id_ruang=None, kode_ruang=None):
+        from controller.oki_ajukan_peminjaman import OkiAjukanPeminjamanController
+        self.win = OkiAjukanPeminjamanController(self.user)
+
+        # Otomatis pilih ruang yang tadi diklik di Daftar Ruang pada comboRuang
+        cmb = getattr(self.win.ui, "comboRuang", None)
+        if cmb and (id_ruang is not None or kode_ruang):
+            idx = cmb.findData(id_ruang) if id_ruang is not None else -1
+            if idx < 0 and kode_ruang:
+                for i in range(cmb.count()):
+                    if kode_ruang in cmb.itemText(i):
+                        idx = i
+                        break
+            if idx >= 0:
+                cmb.setCurrentIndex(idx)
+
         self.win.show()
         self.close()
 
-    def buka_ajukan_pinjam(self):
-        from controller.oki_ajukan_peminjaman import OkiAjukanPeminjamanController
-        self.win = OkiAjukanPeminjamanController(self.user)
+    def buka_dashboard(self):
+        from controller.dashboard_oki import DashboardOKIController
+        self.win = DashboardOKIController(self.user)
         self.win.show()
         self.close()
 
