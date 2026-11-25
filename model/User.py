@@ -38,7 +38,7 @@ class User:
         if role_filter and role_filter != "Semua":
             sql += " AND role = %s"
             params.append(role_filter)
-        sql += " ORDER BY id_pengguna DESC"
+        sql += " ORDER BY id_pengguna ASC"
         cursor.execute(sql, tuple(params))
         result = cursor.fetchall()
         conn.close()

@@ -27,19 +27,23 @@ class AdminMonitoringPeminjamanController(QMainWindow):
         if hasattr(self.ui, "tableWidget"):
             self.ui.tableWidget.setColumnCount(6)
             self.ui.tableWidget.setHorizontalHeaderLabels([
-                "ID", "Organisasi (OKI)", "Nama Kegiatan", "Ruang", "Waktu Pinjam", "Status"
+                "ID", "OKI", "Kegiatan", "Ruang", "Waktu Pinjam", "Status"
             ])
-            self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+            self._atur_proporsi_kolom(self.ui.tableWidget.horizontalHeader())
+            self.ui.tableWidget.verticalHeader().setVisible(False)
+            self.ui.tableWidget.setWordWrap(True)
             self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
+            self.ui.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
             self.ui.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
             self.ui.tableWidget.doubleClicked.connect(self.buka_detail_pengajuan)
         elif hasattr(self.ui, "tableView"):
             self.table_model = QStandardItemModel()
             self.ui.tableView.setModel(self.table_model)
+            self.ui.tableView.verticalHeader().setVisible(False)
+            self.ui.tableView.setWordWrap(True)
             self.ui.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
             self.ui.tableView.setSelectionMode(QAbstractItemView.SingleSelection)
             self.ui.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
-            self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
             self.ui.tableView.doubleClicked.connect(self.buka_detail_pengajuan)
 
         # Hubungkan tombol Cetak Riwayat Peminjaman di bawah tabel (pushButton_7)
@@ -55,6 +59,14 @@ class AdminMonitoringPeminjamanController(QMainWindow):
         self.ui.pushButton_6.clicked.connect(self.logout)
 
         self.load_data()
+
+    def _atur_proporsi_kolom(self, header):
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  # ID
+        header.setSectionResizeMode(1, QHeaderView.Stretch)           # Organisasi (OKI)
+        header.setSectionResizeMode(2, QHeaderView.Stretch)           # Nama Kegiatan
+        header.setSectionResizeMode(3, QHeaderView.Stretch)           # Ruang
+        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)  # Waktu Pinjam
+        header.setSectionResizeMode(5, QHeaderView.ResizeToContents)  # Status
 
     def _ambil_data_peminjaman(self):
         return (self.model.select_pengajuan_admin("Disetujui") or []) + (
@@ -73,22 +85,38 @@ class AdminMonitoringPeminjamanController(QMainWindow):
                 for col, val in enumerate(items):
                     item = QTableWidgetItem(val)
                     item.setData(Qt.UserRole, row[0])
+                    if col in (0, 4, 5):
+                        item.setTextAlignment(Qt.AlignCenter)
                     self.ui.tableWidget.setItem(idx, col, item)
+            self.ui.tableWidget.resizeRowsToContents()
+
         elif hasattr(self.ui, "tableView"):
             self.table_model.clear()
             self.table_model.setHorizontalHeaderLabels(headers)
+            self._atur_proporsi_kolom(self.ui.tableView.horizontalHeader())
+
             for row in rows:
                 waktu = f"{row[5].strftime('%d-%m-%Y %H:%M')} s/d {row[6].strftime('%H:%M')}"
+
                 item_id = QStandardItem(str(row[0]))
                 item_id.setData(row[0], Qt.UserRole)
+                item_id.setTextAlignment(Qt.AlignCenter)
+
+                item_waktu = QStandardItem(waktu)
+                item_waktu.setTextAlignment(Qt.AlignCenter)
+
+                item_status = QStandardItem(row[7])
+                item_status.setTextAlignment(Qt.AlignCenter)
+
                 self.table_model.appendRow([
                     item_id,
                     QStandardItem(row[1]),
                     QStandardItem(row[2]),
                     QStandardItem(f"{row[3]} - {row[4]}"),
-                    QStandardItem(waktu),
-                    QStandardItem(row[7]),
+                    item_waktu,
+                    item_status,
                 ])
+            self.ui.tableView.resizeRowsToContents()
 
     def cetak_riwayat_pdf(self):
         rows = self._ambil_data_peminjaman()

@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, QHeaderView, QAbstractItemView
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtCore import Qt
 from ui.data_ruang_admin import Ui_MainWindow
 from model.User import User
 
@@ -19,8 +20,10 @@ class AdminMonitoringRuangController(QMainWindow):
         self.table_model = QStandardItemModel()
         self.ui.tableView.setModel(self.table_model)
         self.ui.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.ui.tableView.setSelectionMode(QAbstractItemView.SingleSelection)
         self.ui.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.ui.tableView.verticalHeader().setVisible(False)
+        self.ui.tableView.setWordWrap(True)
 
         self.ui.pushButton.clicked.connect(self.buka_dashboard)
         self.ui.pushButton_2.clicked.connect(self.buka_kelola_akun)
@@ -37,21 +40,45 @@ class AdminMonitoringRuangController(QMainWindow):
     def load_data(self):
         keyword = self.ui.lineEdit.text().strip()
         gedung = self.ui.comboBox.currentText()
-        rows = self.model.select_data_ruang(keyword=keyword, gedung=gedung)
+        rows = self.model.select_data_ruang(keyword=keyword, gedung=gedung) or []
 
         self.table_model.clear()
         self.table_model.setHorizontalHeaderLabels([
             "Kode Ruang", "Nama Ruang", "Gedung", "Kapasitas", "Fasilitas", "Status"
         ])
+
+        # Pasang ulang proporsi kolom setiap kali model di-clear
+        header = self.ui.tableView.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  # Kode Ruang
+        header.setSectionResizeMode(1, QHeaderView.Stretch)           # Nama Ruang
+        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)  # Gedung
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)  # Kapasitas
+        header.setSectionResizeMode(4, QHeaderView.Stretch)           # Fasilitas
+        header.setSectionResizeMode(5, QHeaderView.ResizeToContents)  # Status
+
         for row in rows:
+            item_kode = QStandardItem(row[0])
+            item_kode.setTextAlignment(Qt.AlignCenter)
+
+            item_gedung = QStandardItem(row[2])
+            item_gedung.setTextAlignment(Qt.AlignCenter)
+
+            item_kapasitas = QStandardItem(f"{row[3]} Org")
+            item_kapasitas.setTextAlignment(Qt.AlignCenter)
+
+            item_status = QStandardItem(row[5])
+            item_status.setTextAlignment(Qt.AlignCenter)
+
             self.table_model.appendRow([
-                QStandardItem(row[0]),
+                item_kode,
                 QStandardItem(row[1]),
-                QStandardItem(row[2]),
-                QStandardItem(f"{row[3]} Org"),
+                item_gedung,
+                item_kapasitas,
                 QStandardItem(row[4] or "-"),
-                QStandardItem(row[5]),
+                item_status,
             ])
+
+        self.ui.tableView.resizeRowsToContents()
 
     def buka_dashboard(self):
         from controller.dashboard_admin import DashboardAdminController
