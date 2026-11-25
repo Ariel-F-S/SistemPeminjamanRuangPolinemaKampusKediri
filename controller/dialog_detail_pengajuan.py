@@ -130,8 +130,4 @@ class DialogDetailPengajuanController(QDialog):
             QUrl.fromLocalFile(
                 os.path.abspath(self.file_surat)
             )
-<<<<<<< HEAD
         )
-=======
-        )
->>>>>>> temp-bmn
