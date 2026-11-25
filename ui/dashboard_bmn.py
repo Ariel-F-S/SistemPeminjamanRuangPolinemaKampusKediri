@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\kuliah\SMT 3\PBO\UAS\ui\dashboard_bmn.ui'
+# Form implementation generated from reading ui file 'ui\dashboard_bmn.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -42,7 +42,7 @@ class Ui_MainWindow(object):
 "    font-weight: bold;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("ui\\../icon/dashboard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
@@ -57,7 +57,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("ui\\../icon/meeting-room.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_2.setIcon(icon1)
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
@@ -72,7 +72,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/verifikasi.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("ui\\../icon/verifikasi.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_3.setIcon(icon2)
         self.pushButton_3.setObjectName("pushButton_3")
         self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
@@ -87,7 +87,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("ui\\../icon/riwayat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_4.setIcon(icon3)
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
@@ -102,11 +102,11 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("D:\\kuliah\\SMT 3\\PBO\\UAS\\ui\\../icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("ui\\../icon/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_5.setIcon(icon4)
         self.pushButton_5.setObjectName("pushButton_5")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(180, 70, 161, 16))
+        self.label_2.setGeometry(QtCore.QRect(180, 70, 521, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -168,7 +168,7 @@ class Ui_MainWindow(object):
         self.label_8.setGeometry(QtCore.QRect(120, 10, 61, 16))
         self.label_8.setObjectName("label_8")
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9.setGeometry(QtCore.QRect(180, 160, 171, 16))
+        self.label_9.setGeometry(QtCore.QRect(180, 160, 441, 16))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -193,7 +193,7 @@ class Ui_MainWindow(object):
         self.tableWidget.setRowCount(0)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 801, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 801, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
