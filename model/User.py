@@ -226,3 +226,25 @@ class User:
         result = cursor.fetchall()
         conn.close()
         return result or []
+
+    # --- RINGKASAN DASHBOARD (BMN) ---
+    def ringkasan(self):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT status_pengajuan, COUNT(*) FROM pengajuan_peminjaman GROUP BY status_pengajuan"
+        )
+        rows = cursor.fetchall() or []
+        conn.close()
+
+        hasil = {
+            "Menunggu": 0,
+            "Disetujui": 0,
+            "Ditolak": 0,
+            "Selesai": 0,
+            "Total": 0,
+        }
+        for r in rows:
+            hasil[r[0]] = r[1]
+            hasil["Total"] += r[1]
+        return hasil
