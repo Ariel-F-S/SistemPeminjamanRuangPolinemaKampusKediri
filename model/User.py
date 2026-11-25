@@ -153,7 +153,7 @@ class User:
         if status_filter and status_filter != "Semua":
             sql += " AND p.status_pengajuan = %s"
             params.append(status_filter)
-        sql += " ORDER BY p.tanggal_pengajuan DESC"
+        sql += " ORDER BY p.id_pengajuan ASC"
         cursor.execute(sql, tuple(params))
         result = cursor.fetchall()
         conn.close()
@@ -175,6 +175,39 @@ class User:
         result = cursor.fetchone()
         conn.close()
         return result
+
+    def get_file_surat(self, id_pengajuan):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT file_surat_pengajuan, data_surat_pengajuan FROM pengajuan_peminjaman WHERE id_pengajuan = %s",
+            (id_pengajuan,)
+        )
+        result = cursor.fetchone()
+        conn.close()
+        return result
+
+    def insert_pengajuan_oki(self, id_oki, id_ruang, nama_kegiatan, tanggal_mulai, tanggal_selesai, keperluan, nama_file, blob_surat):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        try:
+            sql = """
+                INSERT INTO pengajuan_peminjaman
+                (id_oki, id_ruang, nama_kegiatan, tanggal_mulai, tanggal_selesai, keperluan, file_surat_pengajuan, data_surat_pengajuan, status_pengajuan)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 'Menunggu')
+            """
+            cursor.execute(
+                sql,
+                (id_oki, id_ruang, nama_kegiatan, tanggal_mulai, tanggal_selesai, keperluan, nama_file, blob_surat)
+            )
+            conn.commit()
+            return True
+        except Exception as e:
+            print(f"[SQL Error] {e}")
+            conn.rollback()
+            return False
+        finally:
+            conn.close()
 
     def select_data_ruang(self, keyword="", gedung="Semua"):
         conn = get_db_connection()
