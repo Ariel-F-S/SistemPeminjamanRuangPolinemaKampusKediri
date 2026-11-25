@@ -59,7 +59,7 @@ class OkiLihatRuangController(_BaseClass):
         if self.spin_kapasitas:
             self.spin_kapasitas.valueChanged.connect(self.load_data)
 
-        # Dropdown Gedung (comboGedung)
+        # Dropdown Gedung (comboGedung) -> ambil langsung dari tabel lokasi_gedung
         self.cmb_gedung = _cari(self.ui, ["comboGedung", "cmbGedung", "cmbFilter", "comboBox"], QComboBox)
         if not self.cmb_gedung:
             combos = self.findChildren(QComboBox)
@@ -122,19 +122,19 @@ class OkiLihatRuangController(_BaseClass):
         self.load_data()
 
     def _load_filter_gedung(self):
+        if not self.cmb_gedung:
+            return
         self.cmb_gedung.blockSignals(True)
         self.cmb_gedung.clear()
         self.cmb_gedung.addItem("Semua")
 
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute(
-            "SELECT DISTINCT lokasi_gedung FROM ruang WHERE lokasi_gedung IS NOT NULL AND lokasi_gedung != '' ORDER BY lokasi_gedung ASC"
-        )
+        cursor.execute("SELECT nama_gedung FROM lokasi_gedung ORDER BY nama_gedung ASC")
         gedung_list = [r[0] for r in cursor.fetchall() or []]
         conn.close()
 
-        self.cmb_gedung.addItems(gedung_list if gedung_list else ["Gedung A", "Gedung B"])
+        self.cmb_gedung.addItems(gedung_list)
         self.cmb_gedung.blockSignals(False)
 
     def reset_filter(self):
@@ -213,20 +213,11 @@ class OkiLihatRuangController(_BaseClass):
 
     def buka_ajukan_pinjam(self, id_ruang=None, kode_ruang=None):
         from controller.oki_ajukan_peminjaman import OkiAjukanPeminjamanController
-        self.win = OkiAjukanPeminjamanController(self.user)
-
-        # Otomatis pilih ruang yang tadi diklik di Daftar Ruang pada comboRuang
-        cmb = getattr(self.win.ui, "comboRuang", None)
-        if cmb and (id_ruang is not None or kode_ruang):
-            idx = cmb.findData(id_ruang) if id_ruang is not None else -1
-            if idx < 0 and kode_ruang:
-                for i in range(cmb.count()):
-                    if kode_ruang in cmb.itemText(i):
-                        idx = i
-                        break
-            if idx >= 0:
-                cmb.setCurrentIndex(idx)
-
+        self.win = OkiAjukanPeminjamanController(
+            self.user,
+            id_ruang_terpilih=id_ruang,
+            kode_ruang_terpilih=kode_ruang
+        )
         self.win.show()
         self.close()
 

@@ -19,17 +19,24 @@ class DialogVerifikasiPengajuanController(QDialog):
         self.ui.setupUi(self)
         self.id_pengajuan = id_pengajuan
         self.user = user_data
-        self.surat_data = None
+        self.file_surat_path = None
+        self.surat_blob = None
         self.nama_file_surat = None
 
-        # Deteksi otomatis input catatan verifikasi (QTextEdit / QPlainTextEdit / QLineEdit)
+        # Deteksi input berkas surat (QLineEdit di atas tombol BUKA dan LIHAT SURAT)
+        # dan input catatan verifikasi (QTextEdit / QPlainTextEdit / QLineEdit bawah)
         texts = self.findChildren(QTextEdit)
         plains = self.findChildren(QPlainTextEdit)
-        lines = [inp for inp in self.findChildren(QLineEdit) if not inp.isReadOnly()]
+        line_edits = sorted(self.findChildren(QLineEdit), key=lambda w: w.y())
+
+        self.txt_nama_surat = line_edits[0] if line_edits else None
+        if isinstance(self.txt_nama_surat, QLineEdit):
+            self.txt_nama_surat.setReadOnly(True)
+
         self.inp_catatan = (
             texts[0] if texts
             else plains[0] if plains
-            else lines[-1] if lines
+            else line_edits[-1] if len(line_edits) > 1
             else None
         )
 
@@ -60,6 +67,39 @@ class DialogVerifikasiPengajuanController(QDialog):
                 return True
         return False
 
+    def _isi_textlabel_berdasarkan_posisi(self, mapping_judul_nilai):
+        """
+        Mencocokkan QLabel judul (misal 'ID Pengajuan:', 'Organisasi:') dengan QLabel
+        bernilai 'TextLabel' yang berada di sebelah kanannya pada baris (Y) yang sama.
+        """
+        semua_label = self.findChildren(QLabel)
+        label_nilai = [
+            lbl for lbl in semua_label
+            if lbl.text().strip().lower() == "textlabel"
+        ]
+
+        for lbl_judul in semua_label:
+            teks_judul = lbl_judul.text().lower().strip()
+            for kunci, nilai in mapping_judul_nilai:
+                if kunci in teks_judul and lbl_judul not in label_nilai:
+                    # Jika judul dan nilai ada di 1 label yang sama (misal 'ID Pengajuan: TextLabel')
+                    if "textlabel" in teks_judul:
+                        prefix = lbl_judul.text().split(":")[0]
+                        lbl_judul.setText(f"{prefix}: {nilai}")
+                        break
+
+                    # Cari QLabel 'TextLabel' di sebelah kanan pada baris Y yang sejajar (toleransi 15px)
+                    kandidat = [
+                        v for v in label_nilai
+                        if abs(v.y() - lbl_judul.y()) <= 15 and v.x() >= lbl_judul.x()
+                    ]
+                    if kandidat:
+                        target = min(kandidat, key=lambda v: v.x())
+                        target.setText(str(nilai))
+                        target.adjustSize()
+                        label_nilai.remove(target)
+                    break
+
     def load_detail(self):
         conn = get_db_connection()
         cursor = conn.cursor()
@@ -67,24 +107,15 @@ class DialogVerifikasiPengajuanController(QDialog):
         cursor.execute("SHOW COLUMNS FROM pengajuan_peminjaman")
         kolom_db = [c[0] for c in cursor.fetchall()]
 
-        kolom_surat = next(
-            (k for k in kolom_db if any(w in k.lower() for w in ("file_surat", "surat_blob", "dokumen", "surat"))),
-            None
-        )
-        kolom_nama_surat = next(
-            (k for k in kolom_db if "nama" in k.lower() and "surat" in k.lower()),
-            None
-        )
-
-        select_surat = f"p.{kolom_surat}" if kolom_surat else "NULL"
-        select_nama_surat = f"p.{kolom_nama_surat}" if kolom_nama_surat else "NULL"
+        select_file = "p.file_surat_pengajuan" if "file_surat_pengajuan" in kolom_db else "NULL"
+        select_blob = "p.data_surat_pengajuan" if "data_surat_pengajuan" in kolom_db else "NULL"
 
         sql = f"""
             SELECT p.id_pengajuan, COALESCE(u.nama_organisasi, u.nama), p.nama_kegiatan,
                    r.kode_ruang, r.nama_ruang, r.lokasi_gedung,
                    p.tanggal_mulai, p.tanggal_selesai, p.status_pengajuan,
                    COALESCE(p.catatan_verifikasi, ''),
-                   {select_surat}, {select_nama_surat}
+                   {select_file}, {select_blob}
             FROM pengajuan_peminjaman p
             JOIN ruang r ON p.id_ruang = r.id_ruang
             JOIN pengguna u ON p.id_oki = u.id_pengguna
@@ -98,9 +129,22 @@ class DialogVerifikasiPengajuanController(QDialog):
             QMessageBox.warning(self, "Data Tidak Ditemukan", "Detail pengajuan tidak ditemukan.")
             return
 
-        self.surat_data = row[10]
-        self.nama_file_surat = row[11] or f"Surat_Pengajuan_{row[0]}.pdf"
+        self.file_surat_path = row[10]
+        self.surat_blob = row[11]
+        self.nama_file_surat = (
+            os.path.basename(self.file_surat_path)
+            if self.file_surat_path
+            else f"Surat_Pengajuan_{row[0]}.pdf"
+        )
 
+        # Tampilkan nama file di kolom Berkas Surat Pengajuan
+        if isinstance(self.txt_nama_surat, QLineEdit):
+            if self.file_surat_path or self.surat_blob:
+                self.txt_nama_surat.setText(self.nama_file_surat)
+            else:
+                self.txt_nama_surat.setText("Tidak ada berkas terlampir")
+
+        id_str = f"PGJ-{int(row[0]):04d}" if str(row[0]).isdigit() else str(row[0])
         oki_str = row[1]
         kegiatan_str = row[2]
         ruang_str = f"{row[3]} - {row[4]} ({row[5]})"
@@ -111,6 +155,7 @@ class DialogVerifikasiPengajuanController(QDialog):
 
         # Isi berdasarkan nama objek widget jika sesuai
         terisi = [
+            self._isi_field(["lblId", "lblIdPengajuan", "txtId"], id_str),
             self._isi_field(["lblOki", "lblOrganisasi", "txtOki", "txtOrganisasi"], oki_str),
             self._isi_field(["lblKegiatan", "lblNamaKegiatan", "txtKegiatan", "txtNamaKegiatan"], kegiatan_str),
             self._isi_field(["lblRuang", "txtRuang"], ruang_str),
@@ -119,28 +164,17 @@ class DialogVerifikasiPengajuanController(QDialog):
             self._isi_field(["lblStatus", "txtStatus"], status_str),
         ]
 
-        # Fallback jika label nilai memakai nama default Qt Designer (label_2, label_4, dst.)
-        if not any(terisi):
-            ringkasan = [
+        # Isi semua QLabel yang masih bertuliskan 'TextLabel' berdasarkan posisinya
+        if not all(terisi):
+            self._isi_textlabel_berdasarkan_posisi([
+                ("id pengajuan", id_str),
                 ("organisasi", oki_str),
-                ("oki", oki_str),
-                ("kegiatan", kegiatan_str),
+                ("nama kegiatan", kegiatan_str),
                 ("ruang", ruang_str),
                 ("tanggal", tanggal_str),
                 ("waktu", waktu_str),
-                ("jam", waktu_str),
                 ("status", status_str),
-            ]
-            semua_label = self.findChildren(QLabel)
-            for idx, lbl in enumerate(semua_label):
-                teks_lbl = lbl.text().lower().strip()
-                for kunci, val in ringkasan:
-                    if teks_lbl.startswith(kunci) and ":" in teks_lbl:
-                        lbl.setText(f"{lbl.text().split(':')[0]}: {val}")
-                        break
-                    elif teks_lbl == kunci and idx + 1 < len(semua_label):
-                        semua_label[idx + 1].setText(val)
-                        break
+            ])
 
         if self.inp_catatan and catatan_str:
             if hasattr(self.inp_catatan, "setPlainText"):
@@ -149,26 +183,33 @@ class DialogVerifikasiPengajuanController(QDialog):
                 self.inp_catatan.setText(catatan_str)
 
     def buka_surat(self):
-        if not self.surat_data:
+        if not self.file_surat_path and not self.surat_blob:
             QMessageBox.information(self, "Lampiran Kosong", "Pengajuan ini tidak memiliki lampiran surat.")
             return
 
-        # Jika tersimpan sebagai path file lokal di database
-        if isinstance(self.surat_data, str):
-            if os.path.exists(self.surat_data):
-                QDesktopServices.openUrl(QUrl.fromLocalFile(os.path.abspath(self.surat_data)))
-            else:
-                QMessageBox.warning(self, "File Tidak Ditemukan", f"File surat tidak ditemukan:\n{self.surat_data}")
+        # 1. Cek apakah file fisik tersedia di folder lokal (misal uploads/surat_xxx.pdf)
+        if isinstance(self.file_surat_path, str) and os.path.exists(self.file_surat_path):
+            QDesktopServices.openUrl(QUrl.fromLocalFile(os.path.abspath(self.file_surat_path)))
             return
 
-        # Jika tersimpan sebagai bytes / LONGBLOB PDF di database
-        if isinstance(self.surat_data, (bytes, bytearray)):
-            temp_path = os.path.join(tempfile.gettempdir(), os.path.basename(self.nama_file_surat))
-            if not temp_path.lower().endswith(".pdf"):
-                temp_path += ".pdf"
+        # 2. Jika file fisik tidak ada di komputer ini, ambil dari kolom BLOB (data_surat_pengajuan)
+        if isinstance(self.surat_blob, (bytes, bytearray, memoryview)):
+            data_bytes = bytes(self.surat_blob)
+            nama_bersih = os.path.basename(self.nama_file_surat or f"Surat_PGJ_{self.id_pengajuan}.pdf")
+            if not nama_bersih.lower().endswith(".pdf"):
+                nama_bersih += ".pdf"
+
+            temp_path = os.path.join(tempfile.gettempdir(), nama_bersih)
             with open(temp_path, "wb") as f:
-                f.write(self.surat_data)
+                f.write(data_bytes)
             QDesktopServices.openUrl(QUrl.fromLocalFile(temp_path))
+            return
+
+        QMessageBox.warning(
+            self,
+            "File Tidak Ditemukan",
+            f"File surat tidak ditemukan di folder lokal maupun database:\n{self.file_surat_path}"
+        )
 
     def simpan_verifikasi(self, status_baru):
         catatan = ""

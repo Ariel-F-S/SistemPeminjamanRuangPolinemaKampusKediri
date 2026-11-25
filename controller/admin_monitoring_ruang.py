@@ -3,6 +3,7 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt
 from ui.data_ruang_admin import Ui_MainWindow
 from model.User import User
+from model.connectiondb import get_db_connection
 
 
 class AdminMonitoringRuangController(QMainWindow):
@@ -14,8 +15,8 @@ class AdminMonitoringRuangController(QMainWindow):
         self.model = User()
 
         self.ui.lineEdit.setPlaceholderText("Kode / nama ruang...")
-        self.ui.comboBox.clear()
-        self.ui.comboBox.addItems(["Semua", "Gedung A", "Gedung B"])
+        self.ui.comboBox.setStyleSheet("")
+        self._load_filter_gedung()
 
         self.table_model = QStandardItemModel()
         self.ui.tableView.setModel(self.table_model)
@@ -27,6 +28,7 @@ class AdminMonitoringRuangController(QMainWindow):
 
         self.ui.pushButton.clicked.connect(self.buka_dashboard)
         self.ui.pushButton_2.clicked.connect(self.buka_kelola_akun)
+        self.ui.pushButton_3.clicked.connect(self.refresh_semua)
         self.ui.pushButton_4.clicked.connect(self.buka_monitoring_pengajuan)
         self.ui.pushButton_5.clicked.connect(self.buka_monitoring_peminjaman)
         self.ui.pushButton_6.clicked.connect(self.logout)
@@ -35,6 +37,25 @@ class AdminMonitoringRuangController(QMainWindow):
         self.ui.lineEdit.returnPressed.connect(self.load_data)
         self.ui.comboBox.currentTextChanged.connect(self.load_data)
 
+        self.load_data()
+
+    def _load_filter_gedung(self):
+        self.ui.comboBox.blockSignals(True)
+        self.ui.comboBox.clear()
+        self.ui.comboBox.addItem("Semua")
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT nama_gedung FROM lokasi_gedung ORDER BY nama_gedung ASC")
+        gedung_list = [r[0] for r in cursor.fetchall() or []]
+        conn.close()
+
+        self.ui.comboBox.addItems(gedung_list)
+        self.ui.comboBox.blockSignals(False)
+
+    def refresh_semua(self):
+        self.ui.lineEdit.clear()
+        self._load_filter_gedung()
         self.load_data()
 
     def load_data(self):
@@ -47,14 +68,13 @@ class AdminMonitoringRuangController(QMainWindow):
             "Kode Ruang", "Nama Ruang", "Gedung", "Kapasitas", "Fasilitas", "Status"
         ])
 
-        # Pasang ulang proporsi kolom setiap kali model di-clear
         header = self.ui.tableView.horizontalHeader()
-        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  # Kode Ruang
-        header.setSectionResizeMode(1, QHeaderView.Stretch)           # Nama Ruang
-        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)  # Gedung
-        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)  # Kapasitas
-        header.setSectionResizeMode(4, QHeaderView.Stretch)           # Fasilitas
-        header.setSectionResizeMode(5, QHeaderView.ResizeToContents)  # Status
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
+        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(4, QHeaderView.Stretch)
+        header.setSectionResizeMode(5, QHeaderView.ResizeToContents)
 
         for row in rows:
             item_kode = QStandardItem(row[0])
@@ -79,6 +99,9 @@ class AdminMonitoringRuangController(QMainWindow):
             ])
 
         self.ui.tableView.resizeRowsToContents()
+        for r in range(self.table_model.rowCount()):
+            if self.ui.tableView.rowHeight(r) < 52:
+                self.ui.tableView.setRowHeight(r, 52)
 
     def buka_dashboard(self):
         from controller.dashboard_admin import DashboardAdminController

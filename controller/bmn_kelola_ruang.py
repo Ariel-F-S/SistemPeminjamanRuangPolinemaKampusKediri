@@ -14,6 +14,31 @@ _UiClass = getattr(_ui_form, _ui_name)
 _BaseClass = QMainWindow if _ui_name == "Ui_MainWindow" else QWidget
 
 
+def _ambil_daftar_gedung():
+    """Mengambil seluruh nama_gedung dari tabel lokasi_gedung."""
+    conn = None
+    cursor = None
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT nama_gedung FROM lokasi_gedung "
+            "WHERE nama_gedung IS NOT NULL AND TRIM(nama_gedung) != '' "
+            "ORDER BY id_gedung ASC"
+        )
+        rows = cursor.fetchall() or []
+        return [
+            (r["nama_gedung"] if isinstance(r, dict) else r[0]).strip()
+            for r in rows
+            if (r["nama_gedung"] if isinstance(r, dict) else r[0])
+        ]
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
+
+
 class _DialogTambahRuangBMN(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -25,18 +50,15 @@ class _DialogTambahRuangBMN(QDialog):
         self.spins = self.findChildren(QSpinBox)
         self.texts = self.findChildren(QTextEdit)
 
-        # Isi dropdown Gedung (self.ui.comboBox) dari database
+        # Isi dropdown Gedung (self.ui.comboBox) langsung dari tabel lokasi_gedung
         self.cmb_gedung = getattr(self.ui, "comboBox", None)
         if isinstance(self.cmb_gedung, QComboBox):
             self.cmb_gedung.clear()
-            conn = get_db_connection()
-            cursor = conn.cursor()
-            cursor.execute(
-                "SELECT DISTINCT lokasi_gedung FROM ruang WHERE lokasi_gedung IS NOT NULL AND lokasi_gedung != '' ORDER BY lokasi_gedung ASC"
-            )
-            gedung_db = [r[0] for r in cursor.fetchall() or []]
-            conn.close()
-            self.cmb_gedung.addItems(gedung_db if gedung_db else ["Gedung A", "Gedung B"])
+            try:
+                gedung_db = _ambil_daftar_gedung()
+                self.cmb_gedung.addItems(gedung_db if gedung_db else ["-- Data Gedung Kosong --"])
+            except Exception as e:
+                QMessageBox.warning(self, "Error Database", f"Gagal memuat data lokasi_gedung:\n{e}")
 
         # Isi dropdown Status (self.ui.comboBox_2)
         self.cmb_status = getattr(self.ui, "comboBox_2", None)
@@ -57,7 +79,7 @@ class _DialogTambahRuangBMN(QDialog):
         gedung = (
             self.cmb_gedung.currentText().strip()
             if isinstance(self.cmb_gedung, QComboBox)
-            else (self.inputs[2].text().strip() if len(self.inputs) > 2 else "Gedung A")
+            else (self.inputs[2].text().strip() if len(self.inputs) > 2 else "")
         )
         kapasitas = (
             self.spins[0].value() if self.spins
@@ -75,8 +97,8 @@ class _DialogTambahRuangBMN(QDialog):
             else "Tersedia"
         )
 
-        if not kode or not nama:
-            QMessageBox.warning(self, "Validasi", "Kode ruang dan nama ruang wajib diisi!")
+        if not kode or not nama or not gedung or gedung == "-- Data Gedung Kosong --":
+            QMessageBox.warning(self, "Validasi", "Kode ruang, nama ruang, dan lokasi gedung wajib diisi!")
             return
 
         try:
@@ -87,7 +109,7 @@ class _DialogTambahRuangBMN(QDialog):
                 INSERT INTO ruang (kode_ruang, nama_ruang, lokasi_gedung, kapasitas, fasilitas, status_ruang)
                 VALUES (%s, %s, %s, %s, %s, %s)
                 """,
-                (kode, nama, gedung or "Gedung A", kapasitas, fasilitas or "-", status)
+                (kode, nama, gedung, kapasitas, fasilitas or "-", status)
             )
             conn.commit()
             conn.close()
@@ -109,18 +131,15 @@ class _DialogUbahRuangBMN(QDialog):
         self.spins = self.findChildren(QSpinBox)
         self.texts = self.findChildren(QTextEdit)
 
-        # Isi dropdown Gedung (self.ui.comboBox) dari database
+        # Isi dropdown Gedung (self.ui.comboBox) langsung dari tabel lokasi_gedung
         self.cmb_gedung = getattr(self.ui, "comboBox", None)
         if isinstance(self.cmb_gedung, QComboBox):
             self.cmb_gedung.clear()
-            conn = get_db_connection()
-            cursor = conn.cursor()
-            cursor.execute(
-                "SELECT DISTINCT lokasi_gedung FROM ruang WHERE lokasi_gedung IS NOT NULL AND lokasi_gedung != '' ORDER BY lokasi_gedung ASC"
-            )
-            gedung_db = [r[0] for r in cursor.fetchall() or []]
-            conn.close()
-            self.cmb_gedung.addItems(gedung_db if gedung_db else ["Gedung A", "Gedung B"])
+            try:
+                gedung_db = _ambil_daftar_gedung()
+                self.cmb_gedung.addItems(gedung_db if gedung_db else ["-- Data Gedung Kosong --"])
+            except Exception as e:
+                QMessageBox.warning(self, "Error Database", f"Gagal memuat data lokasi_gedung:\n{e}")
 
         # Isi dropdown Status (self.ui.comboBox_2)
         self.cmb_status = getattr(self.ui, "comboBox_2", None)
@@ -184,7 +203,7 @@ class _DialogUbahRuangBMN(QDialog):
         gedung = (
             self.cmb_gedung.currentText().strip()
             if isinstance(self.cmb_gedung, QComboBox)
-            else (self.inputs[2].text().strip() if len(self.inputs) > 2 else "Gedung A")
+            else (self.inputs[2].text().strip() if len(self.inputs) > 2 else "")
         )
         kapasitas = (
             self.spins[0].value() if self.spins
@@ -202,8 +221,8 @@ class _DialogUbahRuangBMN(QDialog):
             else "Tersedia"
         )
 
-        if not kode or not nama:
-            QMessageBox.warning(self, "Validasi", "Kode ruang dan nama ruang wajib diisi!")
+        if not kode or not nama or not gedung or gedung == "-- Data Gedung Kosong --":
+            QMessageBox.warning(self, "Validasi", "Kode ruang, nama ruang, dan lokasi gedung wajib diisi!")
             return
 
         try:
@@ -216,7 +235,7 @@ class _DialogUbahRuangBMN(QDialog):
                     kapasitas = %s, fasilitas = %s, status_ruang = %s
                 WHERE id_ruang = %s
                 """,
-                (kode, nama, gedung or "Gedung A", kapasitas, fasilitas or "-", status, self.id_ruang)
+                (kode, nama, gedung, kapasitas, fasilitas or "-", status, self.id_ruang)
             )
             conn.commit()
             conn.close()
@@ -305,14 +324,11 @@ class BmnKelolaRuangController(_BaseClass):
         self.cmb_gedung.clear()
         self.cmb_gedung.addItem("Semua Gedung", None)
 
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute(
-            "SELECT DISTINCT lokasi_gedung FROM ruang WHERE lokasi_gedung IS NOT NULL AND lokasi_gedung != '' ORDER BY lokasi_gedung ASC"
-        )
-        for (gedung,) in cursor.fetchall() or []:
-            self.cmb_gedung.addItem(gedung, gedung)
-        conn.close()
+        try:
+            for gedung in _ambil_daftar_gedung():
+                self.cmb_gedung.addItem(gedung, gedung)
+        except Exception as e:
+            QMessageBox.warning(self, "Error Database", f"Gagal memuat filter lokasi_gedung:\n{e}")
 
         if pilihan_sebelumnya:
             idx = self.cmb_gedung.findData(pilihan_sebelumnya)

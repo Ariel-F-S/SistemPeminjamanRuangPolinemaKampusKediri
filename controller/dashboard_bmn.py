@@ -101,8 +101,7 @@ class DashboardBMNController(_BaseClass):
             FROM pengajuan_peminjaman p
             JOIN ruang r ON p.id_ruang = r.id_ruang
             JOIN pengguna u ON p.id_oki = u.id_pengguna
-            ORDER BY FIELD(p.status_pengajuan, 'Menunggu', 'Disetujui', 'Selesai', 'Ditolak'),
-                     p.id_pengajuan ASC
+            ORDER BY p.id_pengajuan ASC
         """
         cursor.execute(sql)
         rows = cursor.fetchall() or []

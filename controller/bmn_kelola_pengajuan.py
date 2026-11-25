@@ -122,8 +122,8 @@ class BmnKelolaPengajuanController(_BaseClass):
             None
         )
         select_surat = (
-            f"CASE WHEN p.{kolom_surat} IS NOT NULL AND p.{kolom_surat} != '' THEN 'Terlampir' ELSE '-' END"
-            if kolom_surat else "'Terlampir'"
+            "CASE WHEN (p.file_surat_pengajuan IS NOT NULL AND p.file_surat_pengajuan != '') "
+            "OR p.data_surat_pengajuan IS NOT NULL THEN 'Terlampir' ELSE '-' END"
         )
 
         sql = f"""
