@@ -11,21 +11,21 @@ class DashboardOKIController(QWidget):
         self.ui.setupUi(self)
         self.user = user_data
 
-        # Tampilkan nama organisasi OKI di pojok kanan atas
+        
         nama_oki = self.user.get("nama_organisasi") or self.user.get("nama", "OKI")
         self.ui.lblOki.setText(f"OKI: {nama_oki}")
 
-        # Setup tabel status pengajuan terbaru
+        
         self.ui.tableWidget.setColumnCount(5)
         self.ui.tableWidget.setHorizontalHeaderLabels([
             "ID", "Nama Kegiatan", "Ruang", "Waktu Pinjam", "Status"
         ])
         header = self.ui.tableWidget.horizontalHeader()
-        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  # ID
-        header.setSectionResizeMode(1, QHeaderView.Stretch)           # Nama Kegiatan
-        header.setSectionResizeMode(2, QHeaderView.Stretch)           # Ruang
-        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)  # Waktu Pinjam
-        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)  # Status
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)   
+        header.setSectionResizeMode(1, QHeaderView.Stretch)           
+        header.setSectionResizeMode(2, QHeaderView.Stretch)            
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)   
+        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)  
 
         self.ui.tableWidget.verticalHeader().setVisible(False)
         self.ui.tableWidget.setWordWrap(True)
@@ -34,7 +34,7 @@ class DashboardOKIController(QWidget):
         self.ui.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.ui.tableWidget.doubleClicked.connect(self.buka_detail_pengajuan)
 
-        # Navigasi Sidebar OKI
+        
         self.ui.btnDashboard.clicked.connect(self.load_data)
         self.ui.btnDaftarRuang.clicked.connect(self.buka_daftar_ruang)
         self.ui.btnAjukanPinjam.clicked.connect(self.buka_ajukan_pinjam)

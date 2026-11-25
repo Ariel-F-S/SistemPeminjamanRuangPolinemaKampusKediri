@@ -52,8 +52,6 @@ class BmnRiwayatPeminjamanController(_BaseClass):
                 lbl.setText(f"BMN: {nama_bmn}")
                 break
 
-        # Dropdown Bulan (comboBox) dan Ruang (comboBox_2)
-        # Dropdown Bulan (comboBox) dan Ruang (comboBox_2)
         self.cmb_bulan = getattr(self.ui, "comboBox", None)
         self.cmb_ruang = getattr(self.ui, "comboBox_2", None)
 
@@ -80,7 +78,6 @@ class BmnRiwayatPeminjamanController(_BaseClass):
         if self.spin_tahun:
             self.spin_tahun.setValue(QDate.currentDate().year())
 
-        # Pengaturan lebar kolom tabel agar proporsional dan tidak terpotong
         daftar_tbl = self.findChildren(QTableWidget)
         self.tabel = daftar_tbl[0] if daftar_tbl else None
         if self.tabel:
@@ -92,13 +89,13 @@ class BmnRiwayatPeminjamanController(_BaseClass):
             header.setSectionResizeMode(QHeaderView.Interactive)
             header.setStretchLastSection(True)
 
-            self.tabel.setColumnWidth(0, 38)   # ID
-            self.tabel.setColumnWidth(1, 115)  # Organisasi
-            self.tabel.setColumnWidth(2, 145)  # Nama Kegiatan
-            self.tabel.setColumnWidth(3, 130)  # Ruang
-            self.tabel.setColumnWidth(4, 110)  # Waktu Pinjam
-            self.tabel.setColumnWidth(5, 78)   # Status
-            self.tabel.setColumnWidth(6, 135)  # Catatan BMN
+            self.tabel.setColumnWidth(0, 38)   
+            self.tabel.setColumnWidth(1, 115)   
+            self.tabel.setColumnWidth(2, 145)   
+            self.tabel.setColumnWidth(3, 130)   
+            self.tabel.setColumnWidth(4, 110)   
+            self.tabel.setColumnWidth(5, 78)    
+            self.tabel.setColumnWidth(6, 135)   
 
             self.tabel.verticalHeader().setVisible(False)
             self.tabel.setWordWrap(True)

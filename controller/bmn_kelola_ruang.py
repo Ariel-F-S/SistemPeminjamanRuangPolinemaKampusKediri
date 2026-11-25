@@ -131,7 +131,6 @@ class _DialogUbahRuangBMN(QDialog):
         self.spins = self.findChildren(QSpinBox)
         self.texts = self.findChildren(QTextEdit)
 
-        # Isi dropdown Gedung (self.ui.comboBox) langsung dari tabel lokasi_gedung
         self.cmb_gedung = getattr(self.ui, "comboBox", None)
         if isinstance(self.cmb_gedung, QComboBox):
             self.cmb_gedung.clear()
@@ -141,7 +140,6 @@ class _DialogUbahRuangBMN(QDialog):
             except Exception as e:
                 QMessageBox.warning(self, "Error Database", f"Gagal memuat data lokasi_gedung:\n{e}")
 
-        # Isi dropdown Status (self.ui.comboBox_2)
         self.cmb_status = getattr(self.ui, "comboBox_2", None)
         if isinstance(self.cmb_status, QComboBox):
             self.cmb_status.clear()
@@ -265,7 +263,6 @@ class BmnKelolaRuangController(_BaseClass):
             self.inp_cari.setPlaceholderText("Cari kode / nama ruang / fasilitas...")
             self.inp_cari.returnPressed.connect(self.load_data)
 
-        # Dropdown Gedung langsung dari self.ui.comboBox
         self.cmb_gedung = getattr(self.ui, "comboBox", None)
         if isinstance(self.cmb_gedung, QComboBox):
             self._load_filter_gedung()

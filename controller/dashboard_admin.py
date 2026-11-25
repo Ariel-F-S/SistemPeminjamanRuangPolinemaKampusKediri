@@ -22,14 +22,14 @@ class DashboardAdminController(QMainWindow):
             "ID", "OKI", "Kegiatan", "Ruang", "Waktu Pinjam", "Status"
         ])
 
-        # Pengaturan proporsi kolom tabel agar tidak penyet
+        
         header = self.ui.tableWidget.horizontalHeader()
-        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  # ID
-        header.setSectionResizeMode(1, QHeaderView.Stretch)           # OKI
-        header.setSectionResizeMode(2, QHeaderView.Stretch)           # Nama Kegiatan
-        header.setSectionResizeMode(3, QHeaderView.Stretch)           # Ruang
-        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)  # Waktu Pinjam
-        header.setSectionResizeMode(5, QHeaderView.ResizeToContents)  # Status
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)   
+        header.setSectionResizeMode(1, QHeaderView.Stretch)            
+        header.setSectionResizeMode(2, QHeaderView.Stretch)            
+        header.setSectionResizeMode(3, QHeaderView.Stretch)            
+        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)   
+        header.setSectionResizeMode(5, QHeaderView.ResizeToContents)   
 
         self.ui.tableWidget.verticalHeader().setVisible(False)
         self.ui.tableWidget.setWordWrap(True)
@@ -62,11 +62,11 @@ class DashboardAdminController(QMainWindow):
             for col, val in enumerate(items):
                 item = QTableWidgetItem(val)
                 item.setData(Qt.UserRole, row[0])
-                if col in (0, 5):  # Rata tengah untuk ID dan Status agar lebih rapi
+                if col in (0, 5):   
                     item.setTextAlignment(Qt.AlignCenter)
                 self.ui.tableWidget.setItem(idx, col, item)
 
-        # Otomatis sesuaikan tinggi baris jika ada teks panjang yang turun ke bawah (word wrap)
+        
         self.ui.tableWidget.resizeRowsToContents()
 
     def buka_detail_pengajuan(self):

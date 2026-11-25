@@ -31,7 +31,6 @@ class BmnKelolaPengajuanController(_BaseClass):
             self.inp_cari.setPlaceholderText("Cari kegiatan / OKI / ruang...")
             self.inp_cari.returnPressed.connect(self.load_data)
 
-        # Dropdown 'Diajukan :' -> isi daftar Organisasi (OKI) dari database
         self.cmb_oki = getattr(self.ui, "comboBox", None)
         if not isinstance(self.cmb_oki, QComboBox):
             daftar_cmb = self.findChildren(QComboBox)
@@ -42,7 +41,6 @@ class BmnKelolaPengajuanController(_BaseClass):
             self._load_filter_oki()
             self.cmb_oki.currentIndexChanged.connect(self.load_data)
 
-        # Pengaturan lebar kolom tabel agar proporsional dan terbaca utuh
         daftar_tbl = self.findChildren(QTableWidget)
         self.tabel = daftar_tbl[0] if daftar_tbl else None
         if self.tabel:
@@ -54,13 +52,13 @@ class BmnKelolaPengajuanController(_BaseClass):
             header.setSectionResizeMode(QHeaderView.Interactive)
             header.setStretchLastSection(True)
 
-            self.tabel.setColumnWidth(0, 38)   # ID
-            self.tabel.setColumnWidth(1, 125)  # Organisasi (OKI)
-            self.tabel.setColumnWidth(2, 165)  # Nama Kegiatan
-            self.tabel.setColumnWidth(3, 145)  # Ruang
-            self.tabel.setColumnWidth(4, 115)  # Waktu Pinjam (2 baris)
-            self.tabel.setColumnWidth(5, 78)   # Surat
-            self.tabel.setColumnWidth(6, 85)   # Status
+            self.tabel.setColumnWidth(0, 38)  
+            self.tabel.setColumnWidth(1, 125) 
+            self.tabel.setColumnWidth(2, 165)   
+            self.tabel.setColumnWidth(3, 145)   
+            self.tabel.setColumnWidth(4, 115)   
+            self.tabel.setColumnWidth(5, 78)    
+            self.tabel.setColumnWidth(6, 85)    
 
             self.tabel.verticalHeader().setVisible(False)
             self.tabel.setWordWrap(True)

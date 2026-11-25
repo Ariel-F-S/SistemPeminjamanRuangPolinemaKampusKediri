@@ -65,7 +65,6 @@ class DialogDetailPengajuanController(QDialog):
             if lbl.text().strip().lower() == "textlabel"
         ]
 
-        # 1. Isi QLabel 'TextLabel' yang sejajar di sebelah kanan judul
         for lbl_judul in semua_label:
             if lbl_judul in label_nilai:
                 continue
@@ -86,7 +85,6 @@ class DialogDetailPengajuanController(QDialog):
                         label_nilai.remove(target)
                     break
 
-        # 2. Isi QLabel 'TextLabel' yang berada di bawah judul (termasuk yang di dalam QFrame)
         for lbl_judul in semua_label:
             if lbl_judul in label_nilai:
                 continue

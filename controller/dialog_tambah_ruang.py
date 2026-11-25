@@ -30,36 +30,36 @@ class DialogTambahRuangController(QDialog):
         self.connect_signals()
 
     def _deteksi_widget(self):
-        # Urutkan QComboBox berdasarkan posisi vertikal (Y) dari atas ke bawah
+        
         combos = sorted(self.findChildren(QComboBox), key=lambda w: w.y())
 
-        # Dropdown 1 (atas): Lokasi Gedung
+        
         self.cmb_gedung = _cari(self.ui, ["comboGedung", "cmbGedung", "comboBox"], QComboBox)
         if not self.cmb_gedung and len(combos) >= 1:
             self.cmb_gedung = combos[0]
 
-        # Dropdown 2 (bawah): Status Kondisi
+        
         self.cmb_status = _cari(self.ui, ["comboStatus", "cmbStatus", "comboBox_2"], QComboBox)
         if not self.cmb_status and len(combos) >= 2:
             self.cmb_status = combos[1]
 
-        # SpinBox: Kapasitas (Orang)
+        
         spins = self.findChildren(QSpinBox)
         self.spin_kapasitas = (
             _cari(self.ui, ["spinKapasitas", "spinBox"], QSpinBox)
             or (spins[0] if spins else None)
         )
 
-        # LineEdit (urut dari atas ke bawah: Kode Ruang, Nama Ruang)
+       
         line_edits = sorted(self.findChildren(QLineEdit), key=lambda w: w.y())
         self.txt_kode = _cari(self.ui, ["txtKode", "lineEdit"], QLineEdit) or (line_edits[0] if len(line_edits) > 0 else None)
         self.txt_nama = _cari(self.ui, ["txtNama", "lineEdit_2"], QLineEdit) or (line_edits[1] if len(line_edits) > 1 else None)
 
-        # TextEdit: Fasilitas Ruang
+       
         text_edits = self.findChildren(QTextEdit)
         self.txt_fasilitas = _cari(self.ui, ["txtFasilitas", "textEdit"], QTextEdit) or (text_edits[0] if text_edits else None)
 
-        # PushButton: Batal & Simpan
+        
         buttons = self.findChildren(QPushButton)
         self.btn_batal = next((b for b in buttons if "batal" in b.text().lower()), None) or _cari(self.ui, ["btnBatal", "pushButton"], QPushButton)
         self.btn_simpan = next((b for b in buttons if "simpan" in b.text().lower()), None) or _cari(self.ui, ["btnSimpan", "pushButton_2"], QPushButton)
@@ -93,7 +93,7 @@ class DialogTambahRuangController(QDialog):
                         nama_gedung = row[1]
 
                     if nama_gedung:
-                        # Teks yang tampil = nama_gedung, data tersembunyi = id_gedung
+                        
                         self.cmb_gedung.addItem(str(nama_gedung).strip(), id_gedung)
 
                 self.cmb_gedung.setCurrentIndex(0)

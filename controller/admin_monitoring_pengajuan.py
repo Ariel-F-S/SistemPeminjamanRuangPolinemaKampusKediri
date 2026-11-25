@@ -12,7 +12,6 @@ class AdminMonitoringPengajuanController(QMainWindow):
         self.user = user_data
         self.model = User()
 
-        # Perbaiki judul & teks kartu ringkasan bawaan UI hasil duplikat dashboard
         if hasattr(self.ui, "label"):
             self.ui.label.setText("POLINEMA PSDKU KEDIRI - Data Pengajuan")
         if hasattr(self.ui, "label_2"):
@@ -25,7 +24,6 @@ class AdminMonitoringPengajuanController(QMainWindow):
         if hasattr(self.ui, "label_11"):
             self.ui.label_11.setText("Daftar Pengajuan Peminjaman Ruang")
 
-        # Setup filter & pencarian jika ada di pengajuan_admin.ui
         if hasattr(self.ui, "lineEdit"):
             self.ui.lineEdit.setPlaceholderText("Cari kegiatan / organisasi / ruang...")
             self.ui.lineEdit.returnPressed.connect(self.load_data)
@@ -39,7 +37,6 @@ class AdminMonitoringPengajuanController(QMainWindow):
         if hasattr(self.ui, "pushButton_7"):
             self.ui.pushButton_7.clicked.connect(self.load_data)
 
-        # Langsung gunakan tableWidget (karena desain pengajuan_admin.ui memakai QTableWidget)
         self.ui.tableWidget.setColumnCount(6)
         self.ui.tableWidget.setHorizontalHeaderLabels([
             "ID", "OKI", "Kegiatan", "Ruang", "Waktu Pinjam", "Status"
@@ -52,11 +49,9 @@ class AdminMonitoringPengajuanController(QMainWindow):
         self.ui.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.ui.tableWidget.doubleClicked.connect(self.buka_detail_pengajuan)
 
-        # Tombol Detail jika ada di UI (misal pushButton_8)
         if hasattr(self.ui, "pushButton_8"):
             self.ui.pushButton_8.clicked.connect(self.buka_detail_pengajuan)
 
-        # Navigasi Sidebar Admin
         self.ui.pushButton.clicked.connect(self.buka_dashboard)
         self.ui.pushButton_2.clicked.connect(self.buka_kelola_akun)
         self.ui.pushButton_3.clicked.connect(self.buka_monitoring_ruang)
@@ -75,7 +70,6 @@ class AdminMonitoringPengajuanController(QMainWindow):
         header.setSectionResizeMode(5, QHeaderView.ResizeToContents)  # Status
 
     def load_data(self):
-        # Isi angka statistik pada kartu atas agar tidak muncul "TextLabel"
         stat = self.model.get_statistik_dashboard()
         if hasattr(self.ui, "label_4"):
             self.ui.label_4.setText(str(stat["OKI"]))

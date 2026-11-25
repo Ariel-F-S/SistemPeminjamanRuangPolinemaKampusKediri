@@ -50,7 +50,6 @@ class AdminKelolaAkunController(QMainWindow):
             "ID", "Username", "Nama/OKI", "No.Wa", "Role", "Status"
         ])
 
-        # Pasang ulang proporsi kolom setiap kali model di-clear
         header = self.ui.tableView.horizontalHeader()
         header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  # ID
         header.setSectionResizeMode(1, QHeaderView.Stretch)           # Username

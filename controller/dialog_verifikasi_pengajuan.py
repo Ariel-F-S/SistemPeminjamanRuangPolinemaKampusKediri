@@ -23,8 +23,7 @@ class DialogVerifikasiPengajuanController(QDialog):
         self.surat_blob = None
         self.nama_file_surat = None
 
-        # Deteksi input berkas surat (QLineEdit di atas tombol BUKA dan LIHAT SURAT)
-        # dan input catatan verifikasi (QTextEdit / QPlainTextEdit / QLineEdit bawah)
+        
         texts = self.findChildren(QTextEdit)
         plains = self.findChildren(QPlainTextEdit)
         line_edits = sorted(self.findChildren(QLineEdit), key=lambda w: w.y())
@@ -40,7 +39,7 @@ class DialogVerifikasiPengajuanController(QDialog):
             else None
         )
 
-        # Hubungkan tombol Setujui, Tolak, Lihat Surat, dan Tutup secara otomatis
+        
         for btn in self.findChildren(QPushButton):
             teks = btn.text().lower()
             obj = btn.objectName().lower()
@@ -82,13 +81,13 @@ class DialogVerifikasiPengajuanController(QDialog):
             teks_judul = lbl_judul.text().lower().strip()
             for kunci, nilai in mapping_judul_nilai:
                 if kunci in teks_judul and lbl_judul not in label_nilai:
-                    # Jika judul dan nilai ada di 1 label yang sama (misal 'ID Pengajuan: TextLabel')
+                    
                     if "textlabel" in teks_judul:
                         prefix = lbl_judul.text().split(":")[0]
                         lbl_judul.setText(f"{prefix}: {nilai}")
                         break
 
-                    # Cari QLabel 'TextLabel' di sebelah kanan pada baris Y yang sejajar (toleransi 15px)
+                    
                     kandidat = [
                         v for v in label_nilai
                         if abs(v.y() - lbl_judul.y()) <= 15 and v.x() >= lbl_judul.x()
@@ -137,7 +136,7 @@ class DialogVerifikasiPengajuanController(QDialog):
             else f"Surat_Pengajuan_{row[0]}.pdf"
         )
 
-        # Tampilkan nama file di kolom Berkas Surat Pengajuan
+       
         if isinstance(self.txt_nama_surat, QLineEdit):
             if self.file_surat_path or self.surat_blob:
                 self.txt_nama_surat.setText(self.nama_file_surat)
@@ -153,7 +152,7 @@ class DialogVerifikasiPengajuanController(QDialog):
         status_str = row[8]
         catatan_str = row[9]
 
-        # Isi berdasarkan nama objek widget jika sesuai
+        
         terisi = [
             self._isi_field(["lblId", "lblIdPengajuan", "txtId"], id_str),
             self._isi_field(["lblOki", "lblOrganisasi", "txtOki", "txtOrganisasi"], oki_str),
@@ -164,7 +163,7 @@ class DialogVerifikasiPengajuanController(QDialog):
             self._isi_field(["lblStatus", "txtStatus"], status_str),
         ]
 
-        # Isi semua QLabel yang masih bertuliskan 'TextLabel' berdasarkan posisinya
+       
         if not all(terisi):
             self._isi_textlabel_berdasarkan_posisi([
                 ("id pengajuan", id_str),
@@ -187,12 +186,12 @@ class DialogVerifikasiPengajuanController(QDialog):
             QMessageBox.information(self, "Lampiran Kosong", "Pengajuan ini tidak memiliki lampiran surat.")
             return
 
-        # 1. Cek apakah file fisik tersedia di folder lokal (misal uploads/surat_xxx.pdf)
+        
         if isinstance(self.file_surat_path, str) and os.path.exists(self.file_surat_path):
             QDesktopServices.openUrl(QUrl.fromLocalFile(os.path.abspath(self.file_surat_path)))
             return
 
-        # 2. Jika file fisik tidak ada di komputer ini, ambil dari kolom BLOB (data_surat_pengajuan)
+        
         if isinstance(self.surat_blob, (bytes, bytearray, memoryview)):
             data_bytes = bytes(self.surat_blob)
             nama_bersih = os.path.basename(self.nama_file_surat or f"Surat_PGJ_{self.id_pengajuan}.pdf")

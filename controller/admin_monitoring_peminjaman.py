@@ -24,7 +24,6 @@ class AdminMonitoringPeminjamanController(QMainWindow):
         if hasattr(self.ui, "label_11"):
             self.ui.label_11.setText("Data Peminjaman Ruang (Disetujui & Selesai)")
 
-        # Rapikan judul 3 kartu teratas yang sebelumnya duplikat 'Akun OKI :'
         lbl_judul = sorted(
             [lbl for lbl in self.findChildren(QLabel) if "akun oki" in lbl.text().lower()],
             key=lambda w: w.mapToGlobal(w.rect().topLeft()).x()
@@ -34,7 +33,6 @@ class AdminMonitoringPeminjamanController(QMainWindow):
             lbl_judul[1].setText("Total Ruang :")
             lbl_judul[2].setText("Menunggu :")
 
-        # Simpan referensi 4 QLabel angka ('TextLabel') berurutan dari atas ke bawah, kiri ke kanan
         self.label_angka = sorted(
             [lbl for lbl in self.findChildren(QLabel) if lbl.text().strip().lower() == "textlabel"],
             key=lambda w: (
@@ -43,7 +41,6 @@ class AdminMonitoringPeminjamanController(QMainWindow):
             )
         )
 
-        # Setup tabel (otomatis mendukung tableWidget maupun tableView)
         if hasattr(self.ui, "tableWidget"):
             self.ui.tableWidget.setColumnCount(6)
             self.ui.tableWidget.setHorizontalHeaderLabels([
@@ -66,11 +63,9 @@ class AdminMonitoringPeminjamanController(QMainWindow):
             self.ui.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
             self.ui.tableView.doubleClicked.connect(self.buka_detail_pengajuan)
 
-        # Hubungkan tombol Cetak Riwayat Peminjaman di bawah tabel (pushButton_7)
         if hasattr(self.ui, "pushButton_7"):
             self.ui.pushButton_7.clicked.connect(self.cetak_riwayat_pdf)
 
-        # Navigasi Sidebar Admin
         self.ui.pushButton.clicked.connect(self.buka_dashboard)
         self.ui.pushButton_2.clicked.connect(self.buka_kelola_akun)
         self.ui.pushButton_3.clicked.connect(self.buka_monitoring_ruang)

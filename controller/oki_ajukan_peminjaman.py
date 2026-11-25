@@ -37,7 +37,7 @@ class OkiAjukanPeminjamanController(_BaseClass):
         if lbl_oki:
             lbl_oki.setText(f"OKI: {nama_oki}")
 
-        # Identifikasi dropdown ruang & field file surat
+        
         self.cmb_ruang = _cari(self.ui, ["cmbRuang", "comboRuang", "comboBox"], QComboBox)
         if not self.cmb_ruang:
             combos = self.findChildren(QComboBox)
@@ -61,7 +61,7 @@ class OkiAjukanPeminjamanController(_BaseClass):
                     self.lbl_file = w
                     break
 
-        # Identifikasi input Nama Kegiatan (QLineEdit murni selain field file surat)
+        
         self.inp_kegiatan = _cari(
             self.ui,
             ["txtKegiatan", "txtNamaKegiatan", "inputKegiatan", "inputNamaKegiatan", "lineEdit"],
@@ -73,7 +73,7 @@ class OkiAjukanPeminjamanController(_BaseClass):
                 None
             )
 
-        # Identifikasi widget Tanggal dan Jam murni (hindari tertukar QDateTimeEdit vs QDateEdit/QTimeEdit)
+        
         date_edits = [w for w in self.findChildren(QDateEdit) if type(w) is QDateEdit]
         self.inp_tgl = date_edits[0] if date_edits else None
 
@@ -98,7 +98,7 @@ class OkiAjukanPeminjamanController(_BaseClass):
 
         self._load_daftar_ruang(id_ruang_terpilih, kode_ruang_terpilih)
 
-        # Hubungkan tombol aksi (berdasarkan objectName maupun teks tombol)
+        
         btn_cek = _cari(self.ui, ["btnCekJadwal", "btnCekKetersediaan", "pushButton_7"], QPushButton)
         btn_pilih = _cari(self.ui, ["btnPilihFile", "btnUpload", "btnBrowse", "pushButton_8"], QPushButton)
         btn_reset = _cari(self.ui, ["btnReset", "pushButton_9"], QPushButton)
@@ -135,7 +135,7 @@ class OkiAjukanPeminjamanController(_BaseClass):
             btn_kirim.raise_()
             btn_kirim.clicked.connect(self.simpan_pengajuan)
 
-        # Navigasi Sidebar OKI
+        
         for nama, fungsi in [
             ("btnDashboard", self.buka_dashboard),
             ("btnDaftarRuang", self.buka_daftar_ruang),

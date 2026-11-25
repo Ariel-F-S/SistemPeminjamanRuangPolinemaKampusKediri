@@ -30,7 +30,7 @@ class DashboardBMNController(QMainWindow):
         self.connect_signals()
         self.load_data()
 
-    # --- PENGATURAN TABEL ---
+    
     def setup_table(self):
         self.ui.tableWidget.setColumnCount(6)
 
@@ -55,7 +55,7 @@ class DashboardBMNController(QMainWindow):
             QAbstractItemView.NoEditTriggers
         )
 
-    # --- HUBUNGKAN TOMBOL ---
+    
     def connect_signals(self):
         self.ui.pushButton.clicked.connect(self.load_data)
         self.ui.pushButton_2.clicked.connect(self.menu_kelola_ruang)
@@ -63,7 +63,7 @@ class DashboardBMNController(QMainWindow):
         self.ui.pushButton_4.clicked.connect(self.menu_riwayat)
         self.ui.pushButton_5.clicked.connect(self.menu_logout)
 
-    # --- FORMAT TANGGAL ---
+    
     def format_tanggal(self, tanggal, format_tanggal):
         if tanggal is None:
             return "-"
@@ -73,26 +73,26 @@ class DashboardBMNController(QMainWindow):
 
         return str(tanggal)
 
-    # --- TAMPILKAN DATA DASHBOARD ---
+    
     
     def load_data(self):
         try:
-            # Ambil statistik BMN
+            
             menunggu, tersedia, terpakai = self.model.get_statistik_bmn()
 
-            # Tampilkan statistik
+           
             self.ui.label_4.setText(str(menunggu))
             self.ui.label_6.setText(str(tersedia))
             self.ui.label_8.setText(str(terpakai))
 
-            # Ambil pengajuan yang menunggu verifikasi
+            
             rows = self.model.select_pengajuan_admin("Menunggu") or []
 
-            # Bersihkan tabel
+            
             self.ui.tableWidget.setRowCount(0)
             self.ui.tableWidget.setRowCount(len(rows))
 
-            # Masukkan data ke tabel
+           
             for i, row in enumerate(rows):
                 tanggal_mulai = self.format_tanggal(
                     row[5], "%d-%m-%Y %H:%M"
@@ -125,7 +125,7 @@ class DashboardBMNController(QMainWindow):
             traceback.print_exc()
 
 
-    # --- MENU KELOLA RUANG ---
+    
     def menu_kelola_ruang(self):
         from controller.bmn_kelola_ruang import BmnKelolaRuangController
 
@@ -133,7 +133,7 @@ class DashboardBMNController(QMainWindow):
         self.win.show()
         self.close()
 
-    # --- MENU VERIFIKASI ---
+   
     def menu_verifikasi(self):
         from controller.bmn_kelola_pengajuan import BmnKelolaPengajuanController
 
@@ -141,7 +141,7 @@ class DashboardBMNController(QMainWindow):
         self.win.show()
         self.close()
 
-    # --- MENU RIWAYAT ---
+    
     def menu_riwayat(self):
         from controller.bmn_riwayat_peminjaman import BmnRiwayatPeminjamanController
 
@@ -149,7 +149,7 @@ class DashboardBMNController(QMainWindow):
         self.win.show()
         self.close()
 
-    # --- LOGOUT ---
+   
     def menu_logout(self):
         reply = QMessageBox.question(
             self,

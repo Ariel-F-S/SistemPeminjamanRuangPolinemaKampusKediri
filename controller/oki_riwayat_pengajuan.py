@@ -30,7 +30,7 @@ class OkiRiwayatPengajuanController(_BaseClass):
         if isinstance(lbl_oki, QLabel):
             lbl_oki.setText(f"OKI: {nama_oki}")
 
-        # Deteksi otomatis ComboBox Status
+       
         daftar_cmb = self.findChildren(QComboBox)
         self.cmb_status = daftar_cmb[0] if daftar_cmb else None
         if self.cmb_status:
@@ -38,13 +38,13 @@ class OkiRiwayatPengajuanController(_BaseClass):
             self.cmb_status.addItems(["Semua", "Menunggu", "Disetujui", "Ditolak", "Selesai"])
             self.cmb_status.currentTextChanged.connect(self.load_data)
 
-        # Deteksi otomatis tombol Cetak Bukti Peminjaman berdasarkan teks tombolnya
+        
         for btn in self.findChildren(QPushButton):
             if "cetak" in btn.text().lower():
                 btn.clicked.connect(self.cetak_bukti_peminjaman)
                 break
 
-        # Konfigurasi Tabel Riwayat Pengajuan
+       
         daftar_tbl = self.findChildren(QTableWidget)
         self.tabel = daftar_tbl[0] if daftar_tbl else None
         if self.tabel:
@@ -66,7 +66,7 @@ class OkiRiwayatPengajuanController(_BaseClass):
             self.tabel.setEditTriggers(QAbstractItemView.NoEditTriggers)
             self.tabel.doubleClicked.connect(self.buka_detail_pengajuan)
 
-        # Navigasi Sidebar OKI
+        
         for nama, fungsi in [
             ("btnDashboard", self.buka_dashboard),
             ("btnDaftarRuang", self.buka_daftar_ruang),
@@ -150,7 +150,7 @@ class OkiRiwayatPengajuanController(_BaseClass):
             )
             return
 
-        # Ambil detail lengkap peminjaman dari database
+        
         conn = get_db_connection()
         cursor = conn.cursor()
         sql = """

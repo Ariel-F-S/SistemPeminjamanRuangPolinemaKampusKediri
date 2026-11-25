@@ -28,26 +28,26 @@ class OKIJadwalDisetujuiController(_BaseClass):
         if isinstance(lbl_oki, QLabel):
             lbl_oki.setText(f"OKI: {nama_oki}")
 
-        # Deteksi otomatis ComboBox Ruang (widget QComboBox pertama di form)
+       
         daftar_cmb = self.findChildren(QComboBox)
         self.cmb_ruang = daftar_cmb[0] if daftar_cmb else None
         if self.cmb_ruang:
             self._load_filter_ruang()
 
-        # Deteksi otomatis DateEdit Tanggal (widget QDateEdit pertama di form)
+        
         daftar_dt = self.findChildren(QDateEdit)
         self.dt_filter = daftar_dt[0] if daftar_dt else None
         if self.dt_filter:
             self.dt_filter.setDate(QDate.currentDate())
             self.dt_filter.dateChanged.connect(self._aktifkan_filter_tanggal)
 
-        # Deteksi otomatis tombol Cari berdasarkan teksnya
+       
         for btn in self.findChildren(QPushButton):
             if "cari" in btn.text().lower():
                 btn.clicked.connect(self.cari_jadwal)
                 break
 
-        # Konfigurasi Tabel Jadwal Kampus
+        
         daftar_tbl = self.findChildren(QTableWidget)
         self.tabel = daftar_tbl[0] if daftar_tbl else None
         if self.tabel:
@@ -69,7 +69,7 @@ class OKIJadwalDisetujuiController(_BaseClass):
             self.tabel.setSelectionMode(QAbstractItemView.SingleSelection)
             self.tabel.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
-        # Navigasi Sidebar OKI
+        
         for nama, fungsi in [
             ("btnDashboard", self.buka_dashboard),
             ("btnDaftarRuang", self.buka_daftar_ruang),

@@ -19,7 +19,7 @@ class OkiLihatRuangController(_BaseClass):
         self.ui.setupUi(self)
         self.user = user_data
 
-        # Tampilkan nama OKI di pojok kanan atas
+        
         nama_oki = self.user.get("nama_organisasi") or self.user.get("nama", "OKI")
         for lbl in self.findChildren(QLabel):
             teks = lbl.text().lower()
@@ -28,8 +28,7 @@ class OkiLihatRuangController(_BaseClass):
                 lbl.setText(f"OKI: {nama_oki}")
                 break
 
-        # Deteksi QLineEdit berdasarkan posisi (atas ke bawah, kiri ke kanan)
-        # agar kotak Fasilitas di bawah tidak tertukar dengan Min. Kapasitas di atas
+        
         line_edits = sorted(self.findChildren(QLineEdit), key=lambda w: (w.y(), w.x()))
 
         self.txt_fasilitas = next(
@@ -47,7 +46,7 @@ class OkiLihatRuangController(_BaseClass):
         if self.inp_cari:
             self.inp_cari.returnPressed.connect(self.load_data)
 
-        # Deteksi Min. Kapasitas (bisa berupa QSpinBox atau QLineEdit di kanan atas)
+        
         spins = self.findChildren(QSpinBox)
         self.spin_kapasitas = spins[0] if spins else None
         self.inp_kapasitas = None
@@ -57,14 +56,14 @@ class OkiLihatRuangController(_BaseClass):
             if self.inp_kapasitas:
                 self.inp_kapasitas.returnPressed.connect(self.load_data)
 
-        # Dropdown Gedung -> ambil langsung dari tabel lokasi_gedung
+        
         combos = self.findChildren(QComboBox)
         self.cmb_gedung = getattr(self.ui, "comboBox", None) or (combos[0] if combos else None)
         if isinstance(self.cmb_gedung, QComboBox):
             self._load_filter_gedung()
             self.cmb_gedung.currentIndexChanged.connect(self.load_data)
 
-        # Pengaturan Tabel Informasi Ruang Kampus
+       
         tables = self.findChildren(QTableWidget)
         self.tabel = tables[0] if tables else None
         if self.tabel:
@@ -86,11 +85,11 @@ class OkiLihatRuangController(_BaseClass):
             self.tabel.setSelectionMode(QAbstractItemView.SingleSelection)
             self.tabel.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
-            # Saat baris ruangan diklik atau dipilih dengan panah keyboard, tampilkan fasilitasnya
+            
             self.tabel.itemSelectionChanged.connect(self.tampilkan_fasilitas)
             self.tabel.cellClicked.connect(lambda r, c: self.tampilkan_fasilitas())
 
-        # Hubungkan semua tombol navigasi & aksi
+        
         for btn in self.findChildren(QPushButton):
             teks = btn.text().lower()
             if "dashboard" in teks:
