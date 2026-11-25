@@ -15,12 +15,24 @@ class DashboardAdminController(QMainWindow):
         self.ui.label_2.setText("Akun OKI :")
         self.ui.label_5.setText("Akun BMN :")
         self.ui.label_7.setText("Akun Admin :")
+        self.ui.label_7.setStyleSheet(self.ui.label_7.styleSheet() + "\npadding-left: 8px;")
 
         self.ui.tableWidget.setColumnCount(6)
         self.ui.tableWidget.setHorizontalHeaderLabels([
-            "ID", "Organisasi (OKI)", "Nama Kegiatan", "Ruang", "Waktu Pinjam", "Status"
+            "ID", "OKI", "Kegiatan", "Ruang", "Waktu Pinjam", "Status"
         ])
-        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+        # Pengaturan proporsi kolom tabel agar tidak penyet
+        header = self.ui.tableWidget.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  # ID
+        header.setSectionResizeMode(1, QHeaderView.Stretch)           # OKI
+        header.setSectionResizeMode(2, QHeaderView.Stretch)           # Nama Kegiatan
+        header.setSectionResizeMode(3, QHeaderView.Stretch)           # Ruang
+        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)  # Waktu Pinjam
+        header.setSectionResizeMode(5, QHeaderView.ResizeToContents)  # Status
+
+        self.ui.tableWidget.verticalHeader().setVisible(False)
+        self.ui.tableWidget.setWordWrap(True)
         self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.ui.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.ui.tableWidget.doubleClicked.connect(self.buka_detail_pengajuan)
@@ -50,7 +62,12 @@ class DashboardAdminController(QMainWindow):
             for col, val in enumerate(items):
                 item = QTableWidgetItem(val)
                 item.setData(Qt.UserRole, row[0])
+                if col in (0, 5):  # Rata tengah untuk ID dan Status agar lebih rapi
+                    item.setTextAlignment(Qt.AlignCenter)
                 self.ui.tableWidget.setItem(idx, col, item)
+
+        # Otomatis sesuaikan tinggi baris jika ada teks panjang yang turun ke bawah (word wrap)
+        self.ui.tableWidget.resizeRowsToContents()
 
     def buka_detail_pengajuan(self):
         row_idx = self.ui.tableWidget.currentRow()

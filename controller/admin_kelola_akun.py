@@ -22,7 +22,8 @@ class AdminKelolaAkunController(QMainWindow):
         self.ui.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.ui.tableView.setSelectionMode(QAbstractItemView.SingleSelection)
         self.ui.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.ui.tableView.verticalHeader().setVisible(False)
+        self.ui.tableView.setWordWrap(True)
 
         self.ui.pushButton.clicked.connect(self.buka_dashboard)
         self.ui.pushButton_3.clicked.connect(self.buka_monitoring_ruang)
@@ -46,19 +47,42 @@ class AdminKelolaAkunController(QMainWindow):
 
         self.table_model.clear()
         self.table_model.setHorizontalHeaderLabels([
-            "ID", "Username", "Nama / Organisasi", "No. WhatsApp", "Role", "Status"
+            "ID", "Username", "Nama/OKI", "No.Wa", "Role", "Status"
         ])
+
+        # Pasang ulang proporsi kolom setiap kali model di-clear
+        header = self.ui.tableView.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  # ID
+        header.setSectionResizeMode(1, QHeaderView.Stretch)           # Username
+        header.setSectionResizeMode(2, QHeaderView.Stretch)           # Nama/OKI
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)  # No.Wa
+        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)  # Role
+        header.setSectionResizeMode(5, QHeaderView.ResizeToContents)  # Status
+
         for row in rows:
             item_id = QStandardItem(str(row[0]))
             item_id.setData(row[0], Qt.UserRole)
+            item_id.setTextAlignment(Qt.AlignCenter)
+
+            item_no_wa = QStandardItem(row[3] or "-")
+            item_no_wa.setTextAlignment(Qt.AlignCenter)
+
+            item_role = QStandardItem(row[4])
+            item_role.setTextAlignment(Qt.AlignCenter)
+
+            item_status = QStandardItem(row[5])
+            item_status.setTextAlignment(Qt.AlignCenter)
+
             self.table_model.appendRow([
                 item_id,
                 QStandardItem(row[1]),
                 QStandardItem(row[2]),
-                QStandardItem(row[3] or "-"),
-                QStandardItem(row[4]),
-                QStandardItem(row[5]),
+                item_no_wa,
+                item_role,
+                item_status,
             ])
+
+        self.ui.tableView.resizeRowsToContents()
 
     def _get_selected_id(self):
         indexes = self.ui.tableView.selectionModel().selectedRows()
