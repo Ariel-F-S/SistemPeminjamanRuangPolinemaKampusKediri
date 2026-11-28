@@ -67,7 +67,7 @@ class DashboardOKIController(QWidget):
             FROM pengajuan_peminjaman p
             JOIN ruang r ON p.id_ruang = r.id_ruang
             WHERE p.id_oki = %s
-            ORDER BY p.id_pengajuan DESC
+            ORDER BY p.id_pengajuan ASC
         """
         cursor.execute(sql, (id_oki,))
         rows = cursor.fetchall() or []
